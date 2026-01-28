@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoAssistenciaTecnicaWeb.Models;
+using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {

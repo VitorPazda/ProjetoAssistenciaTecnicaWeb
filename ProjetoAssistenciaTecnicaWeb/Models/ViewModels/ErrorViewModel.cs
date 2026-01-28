@@ -1,4 +1,4 @@
-namespace ProjetoAssistenciaTecnicaWeb.Models
+namespace ProjetoAssistenciaTecnicaWeb.Models.ViewModels
 {
     public class ErrorViewModel
     {

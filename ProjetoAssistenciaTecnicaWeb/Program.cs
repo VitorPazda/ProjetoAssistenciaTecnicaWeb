@@ -1,7 +1,18 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ProjetoAssistenciaTecnicaWeb.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Vincular o BD
+builder.Services.AddDbContext<ProjetoAssistenciaTecnicaWebContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("ProjetoAssistenciaTecnicaWebContext"),
+        new MySqlServerVersion(new Version(8, 0, 34))
+    )
+);
 
 var app = builder.Build();
 
