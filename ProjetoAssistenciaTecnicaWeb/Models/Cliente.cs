@@ -13,21 +13,24 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public DateTime DataNascimento { get; set; }
         public DateTime DataCadastro { get; set; }
         public string Modalidade { get; set; }
+        public int EnderecoId { get; set; }
+        public Endereco Endereco { get; set; }
 
         public Cliente() 
         {
         }
 
-        public Cliente (int idCliente, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, string modalidade)
+        public Cliente(int idCliente, string nome, string cpf_cnpj, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, string modalidade, Endereco endereco)
         {
             IdCliente = idCliente;
             Nome = nome;
-            CPF_CNPJ = cPF_CNPJ;
+            CPF_CNPJ = cpf_cnpj;
             Telefone = telefone;
             Email = email;
             DataNascimento = dataNascimento;
             DataCadastro = dataCadastro;
             Modalidade = modalidade;
+            Endereco = endereco;
         }
     }
 }
