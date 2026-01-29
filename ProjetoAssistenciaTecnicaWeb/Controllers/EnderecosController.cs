@@ -10,23 +10,22 @@ using ProjetoAssistenciaTecnicaWeb.Models;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
-    public class ClientesController : Controller
+    public class EnderecosController : Controller
     {
         private readonly ProjetoAssistenciaTecnicaWebContext _context;
 
-        public ClientesController(ProjetoAssistenciaTecnicaWebContext context)
+        public EnderecosController(ProjetoAssistenciaTecnicaWebContext context)
         {
             _context = context;
         }
 
-        // GET: Clientes
+        // GET: Enderecos
         public async Task<IActionResult> Index()
         {
-            var projetoAssistenciaTecnicaWebContext = _context.Cliente.Include(c => c.Endereco);
-            return View(await projetoAssistenciaTecnicaWebContext.ToListAsync());
+            return View(await _context.Endereco.ToListAsync());
         }
 
-        // GET: Clientes/Details/5
+        // GET: Enderecos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +33,39 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente
-                .Include(c => c.Endereco)
-                .FirstOrDefaultAsync(m => m.IdCliente == id);
-            if (cliente == null)
+            var endereco = await _context.Endereco
+                .FirstOrDefaultAsync(m => m.IdEndereco == id);
+            if (endereco == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(endereco);
         }
 
-        // GET: Clientes/Create
+        // GET: Enderecos/Create
         public IActionResult Create()
         {
-            ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco");
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: Enderecos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCliente,Nome,CPF_CNPJ,Telefone,Email,DataNascimento,DataCadastro,Modalidade,EnderecoId")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("IdEndereco,Estado,Municipio,Cep,Rua,Bairro,Complemento,NCasa,IdCliente")] Endereco endereco)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cliente);
+                _context.Add(endereco);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco", cliente.EnderecoId);
-            return View(cliente);
+            return View(endereco);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: Enderecos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +73,22 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente.FindAsync(id);
-            if (cliente == null)
+            var endereco = await _context.Endereco.FindAsync(id);
+            if (endereco == null)
             {
                 return NotFound();
             }
-            ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco", cliente.EnderecoId);
-            return View(cliente);
+            return View(endereco);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Enderecos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCliente,Nome,CPF_CNPJ,Telefone,Email,DataNascimento,DataCadastro,Modalidade,EnderecoId")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("IdEndereco,Estado,Municipio,Cep,Rua,Bairro,Complemento,NCasa,IdCliente")] Endereco endereco)
         {
-            if (id != cliente.IdCliente)
+            if (id != endereco.IdEndereco)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             {
                 try
                 {
-                    _context.Update(cliente);
+                    _context.Update(endereco);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.IdCliente))
+                    if (!EnderecoExists(endereco.IdEndereco))
                     {
                         return NotFound();
                     }
@@ -118,11 +113,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco", cliente.EnderecoId);
-            return View(cliente);
+            return View(endereco);
         }
 
-        // GET: Clientes/Delete/5
+        // GET: Enderecos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,35 +124,34 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente
-                .Include(c => c.Endereco)
-                .FirstOrDefaultAsync(m => m.IdCliente == id);
-            if (cliente == null)
+            var endereco = await _context.Endereco
+                .FirstOrDefaultAsync(m => m.IdEndereco == id);
+            if (endereco == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(endereco);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: Enderecos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cliente = await _context.Cliente.FindAsync(id);
-            if (cliente != null)
+            var endereco = await _context.Endereco.FindAsync(id);
+            if (endereco != null)
             {
-                _context.Cliente.Remove(cliente);
+                _context.Endereco.Remove(endereco);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClienteExists(int id)
+        private bool EnderecoExists(int id)
         {
-            return _context.Cliente.Any(e => e.IdCliente == id);
+            return _context.Endereco.Any(e => e.IdEndereco == id);
         }
     }
 }

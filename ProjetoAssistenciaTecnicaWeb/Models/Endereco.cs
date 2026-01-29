@@ -1,7 +1,10 @@
-﻿namespace ProjetoAssistenciaTecnicaWeb.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ProjetoAssistenciaTecnicaWeb.Models
 {
     public class Endereco
     {
+        [Key]
         public int IdEndereco { get; set; } = 0;
         public string Estado { get; set; } = string.Empty;
         public string Municipio { get; set; } = string.Empty;
