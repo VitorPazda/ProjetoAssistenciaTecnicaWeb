@@ -14,6 +14,11 @@ builder.Services.AddDbContext<ProjetoAssistenciaTecnicaWebContext>(options =>
     )
 );
 
+
+// Vincular o Seeding Service
+
+builder.Services.AddScoped<SeedingService>();
+
 var app = builder.Build();
 
 // Aqui, caso o projeto esteja rodando de forma de desenvolvimento,ira chamar o seeding service, se nao, ira apresentar o erro

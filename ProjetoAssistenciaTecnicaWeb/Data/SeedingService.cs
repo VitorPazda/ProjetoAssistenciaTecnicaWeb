@@ -26,7 +26,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
 
             Endereco endereco1 = new Endereco(1, "SC", "Canoinhas", "89460000", "Rua bonita", "Bairro legal", "Casa grande", "200", 1);
 
-            Cliente cliente1 = new Cliente(1, "Vitor", "11111111111", "47 9999999", "vitor@gmail.com", new DateTime(2005, 00, 18), DateTime.Now, "Cliente", endereco1);
+            Cliente cliente1 = new Cliente(1, "Vitor", "11111111111", "47 9999999", "vitor@gmail.com", new DateTime(2005, 09, 18), DateTime.Now, "Cliente", endereco1);
             // Add no banco
 
             _context.Cliente.AddRange(cliente1);
