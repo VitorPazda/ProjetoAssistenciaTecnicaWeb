@@ -34,7 +34,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
 
             var cliente = await _context.Cliente
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdCliente == id);
             if (cliente == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,CPF_CNPJ,Telefone,Email,DataNascimento,DataCadastro,Modalidade")] Cliente cliente)
         {
-            if (id != cliente.Id)
+            if (id != cliente.IdCliente)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.Id))
+                    if (!ClienteExists(cliente.IdCliente))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
 
             var cliente = await _context.Cliente
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdCliente == id);
             if (cliente == null)
             {
                 return NotFound();
@@ -151,7 +151,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 
         private bool ClienteExists(int id)
         {
-            return _context.Cliente.Any(e => e.Id == id);
+            return _context.Cliente.Any(e => e.IdCliente == id);
         }
     }
 }
