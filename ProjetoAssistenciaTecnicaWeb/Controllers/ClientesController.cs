@@ -59,12 +59,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdCliente,Nome,CPF_CNPJ,Telefone,Email,DataNascimento,DataCadastro,Modalidade,EnderecoId")] Cliente cliente)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(cliente);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+            cliente.DataCadastro = DateTime.Now;
+            _context.Add(cliente);
+            await _context.SaveChangesAsync();
             ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco", cliente.EnderecoId);
             return View(cliente);
         }
