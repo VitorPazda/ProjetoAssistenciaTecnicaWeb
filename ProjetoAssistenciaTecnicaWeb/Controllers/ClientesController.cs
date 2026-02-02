@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
+using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
@@ -48,8 +49,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
-            ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco");
-            return View();
+            var viewModel = new ClienteFormViewModel { Cliente = new Cliente(), Endereco = new Endereco()};
+            return View(viewModel);
         }
 
         // POST: Clientes/Create
@@ -57,13 +58,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCliente,Nome,CPF_CNPJ,Telefone,Email,DataNascimento,DataCadastro,Modalidade,EnderecoId")] Cliente cliente)
+        public async Task<IActionResult> Create(Cliente cliente, Endereco endereco)
         {
+            _context.Endereco.Add(endereco);
+            await _context.SaveChangesAsync();
+
             cliente.DataCadastro = DateTime.Now;
+            cliente.EnderecoId = endereco.IdEndereco;
             _context.Add(cliente);
             await _context.SaveChangesAsync();
-            ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco", cliente.EnderecoId);
-            return View(cliente);
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Clientes/Edit/5
