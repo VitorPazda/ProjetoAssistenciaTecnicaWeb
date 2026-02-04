@@ -143,13 +143,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cliente = await _context.Cliente.FindAsync(id);
+            var cliente = await _context.Cliente
+                .Include(c => c.Endereco)
+                .FirstOrDefaultAsync(m => m.IdCliente == id);
+
             if (cliente != null)
             {
+                _context.Endereco.Remove(cliente.Endereco);
                 _context.Cliente.Remove(cliente);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
