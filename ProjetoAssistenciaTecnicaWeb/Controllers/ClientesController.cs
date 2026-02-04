@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -76,16 +77,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
-            var cliente = await _context.Cliente.FindAsync(id);
+            var cliente = await _context.Cliente.Include(c => c.Endereco).FirstOrDefaultAsync(c => c.IdCliente == id);
             if (cliente == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
-            ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco", cliente.EnderecoId);
-            return View(cliente);
+
+            var viewModel = new ClienteFormViewModel { Cliente = cliente, Endereco = cliente.Endereco };
+            return View(viewModel);
         }
 
         // POST: Clientes/Edit/5
@@ -93,35 +95,28 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCliente,Nome,CPF_CNPJ,Telefone,Email,DataNascimento,DataCadastro,Modalidade,EnderecoId")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, ClienteFormViewModel viewModel)
         {
-            if (id != cliente.IdCliente)
+            if (id != viewModel.Cliente.IdCliente)
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(cliente);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClienteExists(cliente.IdCliente))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EnderecoId"] = new SelectList(_context.Endereco, "IdEndereco", "IdEndereco", cliente.EnderecoId);
-            return View(cliente);
+            try
+            {
+                _context.Update(viewModel.Endereco);
+                await _context.SaveChangesAsync();
+
+                viewModel.Cliente.EnderecoId = viewModel.Endereco.IdEndereco;
+
+                _context.Update(viewModel.Cliente);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException e)
+            {
+                throw;
+            }
         }
 
         // GET: Clientes/Delete/5
@@ -161,6 +156,24 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         private bool ClienteExists(int id)
         {
             return _context.Cliente.Any(e => e.IdCliente == id);
+        }
+
+        public async Task UpdateAsync(Cliente cliente) 
+        {
+            bool temAlgum = await _context.Cliente.AnyAsync(x => x.IdCliente == cliente.IdCliente);
+            if (!temAlgum)
+            {
+                throw new DirectoryNotFoundException("Id nao encontrado");
+            }
+            try
+            {
+                _context.Update(cliente);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DBConcurrencyException(e.Message);
+            }
         }
     }
 }
