@@ -6,12 +6,28 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
     {
         [Key]
         public int IdEndereco { get; set; } = 0;
+
+        [Required]
         public string Estado { get; set; } = string.Empty;
+
+        [Required]
         public string Municipio { get; set; } = string.Empty;
+
+        [Required]
+        [Display(Name = "CEP")]
         public string Cep { get; set; } = string.Empty;
+
+        [Required]
         public string Rua { get; set; } = string.Empty;
+
+        [Required]
         public string Bairro { get; set; } = string.Empty;
+
+        [Required]
         public string Complemento { get; set; } = string.Empty;
+
+        [Required]
+        [Display(Name = "Número da Casa")]
         public string NCasa { get; set; } = string.Empty;
 
         public Endereco()

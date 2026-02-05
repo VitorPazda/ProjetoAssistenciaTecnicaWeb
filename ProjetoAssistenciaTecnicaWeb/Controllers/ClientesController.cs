@@ -39,12 +39,15 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             var cliente = await _context.Cliente
                 .Include(c => c.Endereco)
                 .FirstOrDefaultAsync(m => m.IdCliente == id);
+
             if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            var viewModel = new ClienteFormViewModel { Cliente = cliente, Endereco = cliente.Endereco };
+
+            return View(viewModel);
         }
 
         // GET: Clientes/Create
