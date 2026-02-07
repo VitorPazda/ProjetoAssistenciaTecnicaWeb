@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoAssistenciaTecnicaWeb.Data;
+using ProjetoAssistenciaTecnicaWeb.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,6 +19,10 @@ builder.Services.AddDbContext<ProjetoAssistenciaTecnicaWebContext>(options =>
 // Vincular o Seeding Service
 
 builder.Services.AddScoped<SeedingService>();
+
+// Vincular o ClienteService
+
+builder.Services.AddScoped<ClienteService>();
 
 var app = builder.Build();
 

@@ -1,4 +1,6 @@
-﻿using ProjetoAssistenciaTecnicaWeb.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjetoAssistenciaTecnicaWeb.Data;
+using ProjetoAssistenciaTecnicaWeb.Models;
 
 namespace ProjetoAssistenciaTecnicaWeb.Services
 {
@@ -15,6 +17,15 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
         {
             _context.Add(obj);
             _context.SaveChanges();
+        }
+
+        public async Task<List<Cliente>> BuscaAsync(string nome) 
+        {
+            var resultado = _context.Cliente
+                .Include(x => x.Endereco)
+                .Where(x => x.Nome.Contains(nome));
+
+            return await resultado.ToListAsync();
         }
     }
 }

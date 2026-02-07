@@ -9,12 +9,15 @@ using Microsoft.EntityFrameworkCore;
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
+using ProjetoAssistenciaTecnicaWeb.Services;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
     public class ClientesController : Controller
     {
         private readonly ProjetoAssistenciaTecnicaWebContext _context;
+
+        private readonly ClienteService _clienteService;
 
         public ClientesController(ProjetoAssistenciaTecnicaWebContext context)
         {
@@ -181,6 +184,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             {
                 throw new DBConcurrencyException(e.Message);
             }
+        }
+
+        public async Task<IActionResult> Busca(string nome)
+        {
+            var resultado = await _clienteService.BuscaAsync(nome);
+            return View(resultado);
         }
     }
 }
