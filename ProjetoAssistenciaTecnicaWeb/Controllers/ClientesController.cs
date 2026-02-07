@@ -186,7 +186,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
         }
 
-        public async Task<IActionResult> Busca(string nome)
+        public async Task<IActionResult> Busca (string nome)
         {
             var resultado = await _clienteService.BuscaAsync(nome);
             return View(resultado);
