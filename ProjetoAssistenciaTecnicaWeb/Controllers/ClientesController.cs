@@ -19,9 +19,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 
         private readonly ClienteService _clienteService;
 
-        public ClientesController(ProjetoAssistenciaTecnicaWebContext context)
+        public ClientesController(ProjetoAssistenciaTecnicaWebContext context, ClienteService clienteService)
         {
             _context = context;
+            _clienteService = clienteService;
         }
 
         // GET: Clientes
