@@ -25,6 +25,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
                 .Include(x => x.Endereco)
                 .Where(x => x.Nome.Contains(nome));
 
+
+            if (string.IsNullOrEmpty(nome))
+            {
+                // retornar os utlimos 5 clientes cadastrados
+                
+                return await resultado
+                    .OrderByDescending(x => x.DataCadastro)
+                    .Take(5)
+                    .ToListAsync();
+            }
+
             return await resultado.ToListAsync();
         }
     }
