@@ -23,10 +23,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
         {
             var resultado = _context.Cliente
                 .Include(x => x.Endereco)
-                .Where(x => x.Nome.Contains(nome));
+                .AsQueryable();
 
 
-            if (string.IsNullOrEmpty(nome))
+            if (string.IsNullOrWhiteSpace(nome))
             {
                 // retornar os utlimos 5 clientes cadastrados
                 
@@ -36,7 +36,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
                     .ToListAsync();
             }
 
-            return await resultado.ToListAsync();
+            return await resultado
+                .Where(x => x.Nome.Contains(nome))
+                .ToListAsync();
         }
     }
 }
