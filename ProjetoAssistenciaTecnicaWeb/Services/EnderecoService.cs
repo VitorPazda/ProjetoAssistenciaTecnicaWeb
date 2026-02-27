@@ -19,7 +19,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             _context.SaveChanges();
         }
 
-        public async Task<List<Cliente>> FindAsyc(string nome)
+        public async Task<List<Cliente>> FindAsync(string nome)
         {
             var resultado = _context.Cliente
                 .Include(x => x.Endereco)
