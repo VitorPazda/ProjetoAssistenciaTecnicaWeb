@@ -110,6 +110,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
             try
             {
+                // Atualizar primeiro o Endereco, para depois atualizar o cliente
                 _context.Update(viewModel.Endereco);
                 await _context.SaveChangesAsync();
 
@@ -189,7 +190,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 
         public async Task<IActionResult> Find (string nome)
         {
-            var resultado = await _clienteService.FindAsyc(nome);
+            var resultado = await _clienteService.FindAsync(nome);
             return View(resultado);
         }
     }
