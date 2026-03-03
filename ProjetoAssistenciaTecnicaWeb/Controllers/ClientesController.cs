@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
 using ProjetoAssistenciaTecnicaWeb.Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
@@ -37,7 +38,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var cliente = await _context.Cliente
@@ -46,7 +47,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 
             if (cliente == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             var viewModel = new ClienteFormViewModel { Cliente = cliente, Endereco = cliente.Endereco };
@@ -82,15 +83,16 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            // Verificar se IdCliente e nulo
             if (id == null)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Error), new { message = "Id not provided"});
             }
 
             var cliente = await _context.Cliente.Include(c => c.Endereco).FirstOrDefaultAsync(c => c.IdCliente == id);
             if (cliente == null)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             var viewModel = new ClienteFormViewModel { Cliente = cliente, Endereco = cliente.Endereco };
@@ -106,7 +108,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             if (id != viewModel.Cliente.IdCliente)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Error), new { message = "Id not mismatch" });
             }
             try
             {
@@ -123,7 +125,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
             catch (ApplicationException e)
             {
-                throw;
+                return RedirectToAction(nameof(Error), new { message = e.Message }); ;
             }
         }
 
@@ -132,7 +134,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided"});
             }
 
             var cliente = await _context.Cliente
@@ -140,7 +142,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 .FirstOrDefaultAsync(m => m.IdCliente == id);
             if (cliente == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             return View(cliente);
@@ -165,11 +167,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClienteExists(int id)
-        {
-            return _context.Cliente.Any(e => e.IdCliente == id);
-        }
-
         public async Task UpdateAsync(Cliente cliente) 
         {
             bool temAlgum = await _context.Cliente.AnyAsync(x => x.IdCliente == cliente.IdCliente);
@@ -192,6 +189,16 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             var resultado = await _clienteService.FindAsync(nome);
             return View(resultado);
+        }
+
+        public IActionResult Error (string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

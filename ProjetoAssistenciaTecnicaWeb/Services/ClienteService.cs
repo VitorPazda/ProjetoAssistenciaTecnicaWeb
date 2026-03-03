@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
+using ProjetoAssistenciaTecnicaWeb.Services.Exceptions;
 
 namespace ProjetoAssistenciaTecnicaWeb.Services
 {
@@ -39,6 +40,23 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             return await resultado
                 .Where(x => x.Nome.Contains(nome))
                 .ToListAsync();
+        }
+
+        public void Update(Cliente obj)
+        {
+            if (_context.Cliente.Any(x => x.IdCliente == obj.IdCliente))
+            {
+                throw new DirectoryNotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }
