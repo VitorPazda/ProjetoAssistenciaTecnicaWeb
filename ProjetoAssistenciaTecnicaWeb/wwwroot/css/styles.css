@@ -1,0 +1,149 @@
+/* layout geral */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.conteudo-principal {
+  flex: 1;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
+
+#areaPagina {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: #323536;
+  position: fixed;
+  color: #fff;
+  transition: width 0.25s ease;
+  overflow-x: hidden;
+}
+
+/* recolhida */
+.sidebar.collapsed {
+  width: 80px;
+}
+
+/* botão toggle */
+.toggle-btn {
+  position: absolute;
+  top: 14px;
+  right: -16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: #0f4c66;
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+
+/* título */
+.logo {
+  padding: 18px 16px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+/* nav links */
+.sidebar .nav-link {
+  color: #cfd8dc;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* ícone fictício */
+.menu-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  display: none;            /* só aparece recolhido */
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex: 0 0 34px;
+}
+
+/* texto do item */
+.menu-text {
+  flex: 1;
+  white-space: nowrap;
+}
+
+/* seta */
+.arrow {
+  opacity: 0.9;
+}
+
+/* SUBMENU */
+.submenu {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.submenu .submenu-link {
+  padding-left: 44px;       /* alinhamento visual do submenu quando expandido */
+  font-size: 14px;
+  color: #e7eef2;
+}
+
+/* ---- COMPORTAMENTO QUANDO RECOLHIDO ---- */
+.sidebar.collapsed .menu-title {
+  display: none;            /* some "MENU" */
+}
+
+.sidebar.collapsed .menu-text,
+.sidebar.collapsed .arrow,
+.sidebar.collapsed .submenu {
+  display: none;            /* some textos e submenus */
+}
+
+.sidebar.collapsed .menu-icon {
+  display: inline-flex;     /* aparece ícone fictício */
+}
+
+/* centraliza melhor quando recolhido */
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+/* Tooltip mais profissional */
+.sidebar-tooltip .tooltip-inner {
+  background-color: #0f4c66;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.sidebar-tooltip .tooltip-arrow::before {
+  border-right-color: #0f4c66 !important;
+}
