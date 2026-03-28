@@ -7,7 +7,7 @@
 body {
     background-color: #027023;
     font-family: Arial, sans-serif;
-    color: white;
+    color: black;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -15,10 +15,12 @@ body {
 }
 
 .pagina {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #ffffff;
+    width: 70%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 10px;
+    border-radius: 20px;
 }
 
 .formulario {
@@ -27,7 +29,7 @@ body {
     padding: 20px;
 }
 
-.linha-principal {
+.general-infos {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,7 +38,7 @@ body {
     margin-bottom: 40px;
 }
 
-.grupo-campo {
+.personal-info {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -45,10 +47,10 @@ body {
 input,
 select {
     height: 35px;
-    padding: 6px 10px;
+    padding: 6px 100px;
     background-color: #92c3a0;
-    color: white;
-    border-radius: 15px;
+    color: black;
+    border-radius: 10px;
     border: none;
 }
 
@@ -57,9 +59,9 @@ select {
     }
 
 
-.botao {
+.botao-cadastro {
     height: 40px;
-    padding: 0 20px;
+    padding: 0 150px;
     background-color: #1b2e1c;
     color: rgb(255, 255, 255);
     border: none;
@@ -67,32 +69,45 @@ select {
     cursor: pointer;
 }
 
-.secao-endereco {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-}
+/*-----------------ENDEREÇO------------------*/
 
 .linha-endereco {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
-    align-items: end;
+    margin-bottom: 15px;
 }
 
 .linha-cep {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 15px;
+    margin-bottom: 15px;
     align-items: end;
 }
 
-.grupo-campo.pequeno {
-    width: 250px;
+.campo {
+    display: flex;
+    flex-direction: column;
 }
 
-.grupo-campo.medio {
-    width: 180px;
-}
+    .campo label {
+        margin-bottom: 5px;
+    }
 
-.grupo-campo.grande {
-    flex: 1;
+    .campo input,
+    .campo select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+    }
+
+.botao{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #0b3d1b;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
