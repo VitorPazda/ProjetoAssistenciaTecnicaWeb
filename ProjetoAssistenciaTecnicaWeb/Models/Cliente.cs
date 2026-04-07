@@ -6,6 +6,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
     {
         [Key]
         public int IdCliente { get; set; }
+
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         public string Nome { get; set; }
@@ -20,7 +21,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
 
-        [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
