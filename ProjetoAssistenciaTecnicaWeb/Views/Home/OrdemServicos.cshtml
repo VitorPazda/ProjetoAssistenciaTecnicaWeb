@@ -1,20 +1,16 @@
 ﻿@{
 }
 @section Styles {
-    <link rel="stylesheet" href="~/css/funcionarios.css" />
+    <link rel="stylesheet" href="~/css/ordem.css" />
 }
 
 <div class="pagina-principal">
 
+    <!-- FORM 1 -->
     <div class="pagina">
         <form class="formulario">
 
             <div class="general-infos">
-
-                <div class="personal-info">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome">
-                </div>
 
                 <div class="personal-info">
                     <label for="cpf">CPF:</label>
@@ -22,8 +18,8 @@
                 </div>
 
                 <div class="personal-info">
-                    <label for="data">Data Nascimento:</label>
-                    <input type="text" id="data" placeholder="__/__/__">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome">
                 </div>
 
                 <div class="personal-info">
@@ -31,20 +27,17 @@
                     <input type="text" id="telefone" placeholder="(__) ____-____">
                 </div>
 
-                <div class="personal-info">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email">
-                </div>
-
+                <!-- CEP -->
                 <div class="linha-cep">
                     <div class="campo">
                         <label for="cep">CEP:</label>
                         <input type="text" id="cep" placeholder="_____-___">
                     </div>
 
-                        <button type="button" class="botao-cep">Buscar</button>
+                    <button type="button" class="botao-cep">Buscar</button>
                 </div>
 
+                <!-- Rua e número -->
                 <div class="linha-endereco">
                     <div class="campo">
                         <label for="rua">Rua:</label>
@@ -57,6 +50,7 @@
                     </div>
                 </div>
 
+                <!-- Bairro e UF -->
                 <div class="linha-endereco">
                     <div class="campo">
                         <label for="bairro">Bairro:</label>
@@ -74,6 +68,7 @@
                     </div>
                 </div>
 
+                <!-- Município e complemento -->
                 <div class="linha-endereco">
                     <div class="campo">
                         <label for="municipio">Município:</label>
@@ -93,6 +88,7 @@
         </form>
     </div>
 
+    <!-- FORM 2 -->
     <div class="pagina-cargo">
         <form class="formulario-cargo">
 

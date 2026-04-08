@@ -1,4 +1,4 @@
-/* layout geral */
+
 body {
     margin: 0;
     padding: 0;
@@ -115,9 +115,9 @@ body {
         color: #e7eef2;
     }
 
-/* ---- COMPORTAMENTO QUANDO RECOLHIDO ---- */
+/* ---- COMPORTAMENTO QUANDO RECOLHE ---- */
 .sidebar.collapsed .menu-title {
-    display: none; /* some "MENU" */
+    display: none; /* some MENU */
 }
 
 .sidebar.collapsed .menu-text,
@@ -136,7 +136,7 @@ body {
     padding: 12px 0;
 }
 
-/* Tooltip mais profissional */
+/* Tooltip*/
 .sidebar-tooltip .tooltip-inner {
     background-color: #0f4c66;
     font-weight: 500;

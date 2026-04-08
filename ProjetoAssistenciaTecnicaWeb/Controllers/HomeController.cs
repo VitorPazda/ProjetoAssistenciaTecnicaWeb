@@ -29,6 +29,11 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View();
         }
 
+        public IActionResult Clientes()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

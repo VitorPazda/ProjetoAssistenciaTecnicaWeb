@@ -23,7 +23,6 @@ body {
     gap: 20px;
 }
 
-
 .pagina,
 .pagina-cargo {
     background-color: #ffffff;
@@ -35,12 +34,10 @@ body {
     justify-content: flex-start;
 }
 
-
 .formulario,
 .formulario-cargo {
     width: 100%;
 }
-
 
 .general-infos,
 .general-infos-cargo {
@@ -48,7 +45,6 @@ body {
     flex-direction: column;
     gap: 15px;
 }
-
 
 .personal-info,
 .cargo-info {
@@ -67,6 +63,7 @@ select {
     border: none;
 }
 
+
 .linha-endereco {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -84,6 +81,7 @@ select {
     display: flex;
     flex-direction: column;
 }
+
 
 .botao-cep {
     padding: 8px 15px;
