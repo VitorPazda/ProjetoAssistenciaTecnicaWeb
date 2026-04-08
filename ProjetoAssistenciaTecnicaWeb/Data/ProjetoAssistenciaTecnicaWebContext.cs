@@ -16,5 +16,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
 
         public DbSet<ProjetoAssistenciaTecnicaWeb.Models.Cliente> Cliente { get; set; } = default!;
         public DbSet<ProjetoAssistenciaTecnicaWeb.Models.Endereco> Endereco { get; set; } = default!;
+
+        public DbSet<ProjetoAssistenciaTecnicaWeb.Models.Funcionario> Funcionario { get; set; } = default!;
     }
 }
