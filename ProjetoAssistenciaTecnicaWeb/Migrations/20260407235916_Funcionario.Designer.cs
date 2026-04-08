@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoAssistenciaTecnicaWeb.Data;
 
@@ -11,9 +12,11 @@ using ProjetoAssistenciaTecnicaWeb.Data;
 namespace ProjetoAssistenciaTecnicaWeb.Migrations
 {
     [DbContext(typeof(ProjetoAssistenciaTecnicaWebContext))]
-    partial class ProjetoAssistenciaTecnicaWebContextModelSnapshot : ModelSnapshot
+    [Migration("20260407235916_Funcionario")]
+    partial class Funcionario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
