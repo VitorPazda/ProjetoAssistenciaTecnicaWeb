@@ -5,9 +5,9 @@
 }
 
 body {
-    background-color: #027023;
+    background-color: #181818;
     font-family: Arial, sans-serif;
-    color: black;
+    color: white;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -23,46 +23,61 @@ body {
     gap: 20px;
 }
 
+
 .pagina,
-.pagina-cargo {
-    background-color: #ffffff;
+.pagina-ordem {
+    background-color: #181818;
     width: 45%;
     padding: 20px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
+
 .formulario,
-.formulario-cargo {
+.formulario-ordem {
     width: 100%;
 }
 
+
 .general-infos,
-.general-infos-cargo {
+.general-infos-ordem {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+
 .personal-info,
-.cargo-info {
+.ordem-info {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
+
 
 input,
 select {
     width: 100%;
     height: 35px;
     padding: 6px 10px;
-    background-color: #92c3a0;
+    background-color: #2a2a2a;
     border-radius: 10px;
     border: none;
 }
 
+.input-descricao {
+    width: 100%;
+    min-height: 100px;
+    background-color: #2a2a2a;
+    color: white;
+    resize: vertical; /*aumenta só pra baixo */
+    padding: 10px;
+    border-radius: 8px;
+}
 
 .linha-endereco {
     display: grid;
@@ -82,7 +97,6 @@ select {
     flex-direction: column;
 }
 
-
 .botao-cep {
     padding: 8px 15px;
     border-radius: 10px;
@@ -92,8 +106,8 @@ select {
     cursor: pointer;
 }
 
-.botoes{
-    display:flex;
+.botoes {
+    display: flex;
     justify-content: space-evenly;
 }
 
@@ -124,4 +138,12 @@ select {
     cursor: pointer;
 }
 
+.linhas-ordem {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
 
+.input-id {
+    width:100px;
+}
