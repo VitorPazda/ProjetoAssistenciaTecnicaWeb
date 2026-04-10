@@ -22,7 +22,7 @@ body {
     gap: 20px;
 }
 
-.pagina{
+.pagina-cadastro{
     background-color: #181818;
     width: 45%;
     padding: 20px;
@@ -31,6 +31,19 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+.pagina-busca {
+    background-color: #181818;
+    color: white;
+    width: 45%;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    gap: 10px
 }
 
 .formulario,
@@ -43,11 +56,41 @@ body {
     flex-direction: column;
     gap: 15px;
 }
-.linha-peca{
+.busca-pecas{
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
+
+.codigos{
+    width: 70px;
+}
+
+.linha-busca {
+    display: flex;
+    flex-direction:row;
+    gap: 10px;
+    align-items: end;
+}
+
+.campo-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-2 {
+    display: flex;
+    flex-direction: column;
+}
+.botao-buscar{
+    padding: 8px 15px;
+    border-radius: 10px;
+    background: #0b3d1b;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 
 input,
 select {
@@ -55,6 +98,7 @@ select {
     height: 35px;
     padding: 6px 10px;
     background-color: #2a2a2a;
+    color: white;
     border-radius: 10px;
     border: none;
 }

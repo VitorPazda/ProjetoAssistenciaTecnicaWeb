@@ -12,17 +12,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px;
 }
 
-.pagina {
+.pagina-principal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.pagina-cadastro {
     background-color: #181818;
-    width: 70%;
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 10px;
+    width: 45%;
+    padding: 20px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
+
 
 .formulario {
     width: 100%;
@@ -50,7 +60,7 @@ select {
     height: 35px;
     padding: 6px 100px;
     background-color: #2a2a2a;
-    color: black;
+    color: white;
     border-radius: 10px;
     border: none;
 }
@@ -134,4 +144,67 @@ select {
     color: white;
     border: none;
     cursor: pointer;
+}
+
+/*-----------BUSCA------------------*/
+
+.pagina-busca {
+    background-color: #181818;
+    color: white;
+    width: 45%;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    gap: 10px
+}
+
+.busca-pecas {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.codigos {
+    width: 70px;
+}
+
+.linha-busca {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: end;
+}
+
+.campo-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.botao-buscar {
+    padding: 8px 15px;
+    border-radius: 10px;
+    background: #0b3d1b;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+input,
+select {
+    width: 100%;
+    height: 35px;
+    padding: 6px 10px;
+    background-color: #2a2a2a;
+    color: white;
+    border-radius: 10px;
+    border: none;
 }

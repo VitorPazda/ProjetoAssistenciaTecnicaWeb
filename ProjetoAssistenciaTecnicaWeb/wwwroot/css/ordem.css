@@ -65,6 +65,7 @@ select {
     height: 35px;
     padding: 6px 10px;
     background-color: #2a2a2a;
+    color: white;
     border-radius: 10px;
     border: none;
 }
