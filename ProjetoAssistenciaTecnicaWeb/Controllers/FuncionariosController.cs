@@ -86,5 +86,25 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
         }
+
+        // GET: Funcionarios/Delete
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var funcionario = await _context.Funcionario
+                .Include(f => f.Endereco)
+                .FirstOrDefaultAsync(f => f.IdFuncionario == id);
+
+            if (funcionario == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View(funcionario);
+        }
     }
 }

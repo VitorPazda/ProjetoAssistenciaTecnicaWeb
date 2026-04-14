@@ -134,12 +134,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided"});
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var cliente = await _context.Cliente
                 .Include(c => c.Endereco)
                 .FirstOrDefaultAsync(m => m.IdCliente == id);
+
             if (cliente == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
