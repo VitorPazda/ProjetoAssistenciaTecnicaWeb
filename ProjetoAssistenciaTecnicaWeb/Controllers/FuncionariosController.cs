@@ -28,7 +28,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         }
 
         // GET: Funcionarios
-       
+
         public async Task<IActionResult> Index()
         {
             var projetoAssistenciaTecnicaWebContext = _context.Funcionario.Include(f => f.Endereco);
@@ -55,6 +55,36 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Endereco = funcionario.Endereco };
 
             return View(viewModel);
+        }
+
+        // POST: Funcionarios/Edit/
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, FuncionarioFormViewModel viewModel)
+        {
+            if (id != viewModel.Funcionario.IdFuncionario)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id ot mismatch" });
+            }
+            try
+            {
+                // Atualizar o endereco, pra depois atualizar o cliente
+                _context.Update(viewModel.Endereco);
+                await _context.SaveChangesAsync();
+
+                viewModel.Funcionario.EnderecoId = viewModel.Endereco.IdEndereco;
+
+                _context.Update(viewModel.Funcionario);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
     }
 }
