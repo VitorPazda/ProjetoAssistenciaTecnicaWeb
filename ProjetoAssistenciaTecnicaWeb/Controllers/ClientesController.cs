@@ -33,7 +33,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(await projetoAssistenciaTecnicaWebContext.ToListAsync());
         }
 
-        // GET: Clientes/Details/5
+        // GET: Clientes/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
