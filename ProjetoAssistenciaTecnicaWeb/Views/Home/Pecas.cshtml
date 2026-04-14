@@ -5,7 +5,7 @@
 }
 <div class="pagina-principal">
 
-    <div class="pagina">
+    <div class="pagina-cadastro">
         <form class="formulario">
 
             <div class="general-infos">
@@ -36,19 +36,25 @@
 
             </div>
 
-            <div class="lista-pecas">
-                <div class="pecas-info">
-                    <label for="nomes">Nome da Peça:</label>
-                    <input type="text" id="nomes">
-                </div>
-
-                <div class="pecas-info">
-                    <label for="codigos">Código da Peça:</label>
-                    <input type="text" id="codigos">
-                </div>
-
-
-            </div>
-
         </form>
+    </div>
+
+        <div class="pagina-busca">
+            <form>
+                <div class="busca-pecas">
+
+                    <div class="linha-busca">
+                        <div class="campos-1">
+                            <label for="nomes">Peça:</label>
+                            <input type="text" id="nomes">
+                        </div>
+
+                        <div class="campo-2">
+                            <label for="codigos">Código:</label>
+                            <input class="codigos" type="text" id="codigos">
+                        </div>
+                        <button type="button" class="botao-buscar">Buscar</button>
+                    </div>
+            </form>
+           </div>
     </div>
