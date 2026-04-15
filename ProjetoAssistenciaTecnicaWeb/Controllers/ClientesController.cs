@@ -156,7 +156,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             var cliente = await _context.Cliente
                 .Include(c => c.Endereco)
-                .FirstOrDefaultAsync(m => m.IdCliente == id);
+                .FirstOrDefaultAsync(c => c.IdCliente == id);
 
             if (cliente != null)
             {
@@ -173,7 +173,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             bool temAlgum = await _context.Cliente.AnyAsync(x => x.IdCliente == cliente.IdCliente);
             if (!temAlgum)
             {
-                throw new DirectoryNotFoundException("Id nao encontrado");
+                throw new DirectoryNotFoundException("Id not found");
             }
             try
             {
@@ -186,13 +186,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
         }
 
-        public async Task<IActionResult> Find (string nome, string cpf)
+        public async Task<IActionResult> Find(string nome, string cpf)
         {
             var resultado = await _clienteService.FindAsync(nome, cpf);
             return View(resultado);
         }
 
-        public IActionResult Error (string message)
+        public IActionResult Error(string message)
         {
             var viewModel = new ErrorViewModel
             {

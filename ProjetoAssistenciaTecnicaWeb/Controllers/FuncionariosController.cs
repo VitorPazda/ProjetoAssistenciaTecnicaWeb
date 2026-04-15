@@ -11,7 +11,6 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
@@ -105,6 +104,59 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
 
             return View(funcionario);
+        }
+
+        // POST: Funcionarios/Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var funcionario = await _context.Funcionario
+                .Include(f => f.Endereco)
+                .FirstOrDefaultAsync(f => f.IdFuncionario == id);
+
+            if (funcionario != null)
+            {
+                _context.Endereco.Remove(funcionario.Endereco);
+                _context.Funcionario.Remove(funcionario);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task UpdateAsync(Funcionario funcionario)
+        {
+            bool temAlgum = await _context.Funcionario.AnyAsync(f => f.IdFuncionario == funcionario.IdFuncionario);
+            if (!temAlgum)
+            {
+                throw new DirectoryNotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(funcionario);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DBConcurrencyException(e.Message);
+            }
+        }
+
+        public async Task<IActionResult> Find(string nome, string cpf_cnpj)
+        {
+            var resultado = await _funcionarioService.FindAsync(nome, cpf_cnpj);
+            return View(resultado);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

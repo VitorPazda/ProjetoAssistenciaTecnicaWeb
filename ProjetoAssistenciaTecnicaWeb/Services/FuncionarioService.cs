@@ -1,6 +1,44 @@
-﻿namespace ProjetoAssistenciaTecnicaWeb.Services
+﻿using Microsoft.EntityFrameworkCore;
+using ProjetoAssistenciaTecnicaWeb.Data;
+using ProjetoAssistenciaTecnicaWeb.Models;
+using ProjetoAssistenciaTecnicaWeb.Services.Exceptions;
+
+namespace ProjetoAssistenciaTecnicaWeb.Services
 {
     public class FuncionarioService
     {
+        private readonly ProjetoAssistenciaTecnicaWebContext _context;
+
+        public FuncionarioService(ProjetoAssistenciaTecnicaWebContext context)
+        {
+            _context = context;
+        }
+
+        public void Insert(FuncionarioService obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
+
+        public async Task<List<Funcionario>> FindAsync(string nome, string cpf_cnpj)
+        {
+            var resultado = _context.Funcionario
+                .Include(f => f.Endereco)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(nome))
+            {
+                resultado = resultado.Where(f => f.CPF_CNPJ.Contains(cpf_cnpj));
+            }
+            else
+            {
+                // Retornar os ultimos 5 funcionarios cadastrados, caso nome e cpf/cnpj n sejam informaods
+                return await resultado
+                    .OrderByDescending(f => f.DataCadastro)
+                    .Take(5)
+                    .ToListAsync();
+            }
+            return await resultado.ToListAsync();
+        }
     }
 }

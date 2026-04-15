@@ -20,30 +20,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             _context.SaveChanges();
         }
 
-        /*
-        public async Task<List<Cliente>> FindAsync (string nome) 
-        {
-            var resultado = _context.Cliente
-                .Include(x => x.Endereco)
-                .AsQueryable();
-
-
-            if (string.IsNullOrWhiteSpace(nome))
-            {
-                // retornar os utlimos 5 clientes cadastrados
-                
-                return await resultado
-                    .OrderByDescending(x => x.DataCadastro)
-                    .Take(5)
-                    .ToListAsync();
-            }
-
-            return await resultado
-                .Where(x => x.Nome.Contains(nome))
-                .ToListAsync();
-        }
-        */
-
         public async Task<List<Cliente>> FindAsync(string nome, string cpf)
         {
             var resultado = _context.Cliente
