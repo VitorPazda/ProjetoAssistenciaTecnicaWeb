@@ -17,12 +17,13 @@ builder.Services.AddDbContext<ProjetoAssistenciaTecnicaWebContext>(options =>
 
 
 // Vincular o Seeding Service
-
 builder.Services.AddScoped<SeedingService>();
 
 // Vincular o ClienteService
-
 builder.Services.AddScoped<ClienteService>();
+
+// Vincular o FuncionarioService
+builder.Services.AddScoped<FuncionarioService>();
 
 var app = builder.Build();
 
