@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoAssistenciaTecnicaWeb.Models
 {
@@ -37,7 +36,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         {
         }
 
-        public Funcionario(int idFuncionario, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, string modalidade, int enderecoId, Endereco endereco, string categoria, string codigoFuncionario)
+        public Funcionario(int idFuncionario, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, string modalidade, Endereco endereco, string categoria, string codigoFuncionario)
         {
             IdFuncionario = idFuncionario;
             Nome = nome;
@@ -47,7 +46,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
             DataNascimento = dataNascimento;
             DataCadastro = dataCadastro;
             Modalidade = modalidade;
-            EnderecoId = enderecoId;
             Endereco = endereco;
             Categoria = categoria;
             CodigoFuncionario = codigoFuncionario;
