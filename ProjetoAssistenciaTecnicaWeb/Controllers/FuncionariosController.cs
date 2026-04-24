@@ -56,7 +56,32 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(viewModel);
         }
 
-        // POST: Funcionarios/Edit/
+        // GET: Clientes/Create
+        public IActionResult Create()
+        {
+            var viewModel = new FuncionarioFormViewModel { Funcionario = new Funcionario(), Endereco = new Endereco() };
+            return View(viewModel);
+        }
+
+        // POST: Funcionarios/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Funcionario funcionario, Endereco endereco)
+        {
+            _context.Endereco.Add(endereco);
+            await _context.SaveChangesAsync();
+
+            funcionario.DataCadastro = DateTime.Now;
+            funcionario.EnderecoId = endereco.IdEndereco;
+            _context.Add(funcionario);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // POST: Funcionarios/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
