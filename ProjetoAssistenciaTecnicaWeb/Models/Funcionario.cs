@@ -30,6 +30,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [Display(Name = "Data Cadastro")]
+        [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório")]
@@ -45,7 +48,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [StringLength(100, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Categoria")]
         public string Categoria { get; set; }
-        
+
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [StringLength(100, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
+        [Display(Name = "Código Funcionario")]
         public string CodigoFuncionario { get; set; }
 
         public Funcionario()

@@ -187,9 +187,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
         }
 
-        public async Task<IActionResult> Find(string nome, string cpf_cnpj)
+        public async Task<IActionResult> Find(string nome, string cpf_cnpj, string telefone)
         {
-            var resultado = await _funcionarioService.FindAsync(nome, cpf_cnpj);
+            var resultado = await _funcionarioService.FindAsync(nome, cpf_cnpj, telefone);
             return View(resultado);
         }
 

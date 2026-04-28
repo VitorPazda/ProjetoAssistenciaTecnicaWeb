@@ -30,6 +30,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [Display(Name = "Data Cadastro")]
+        [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; }
         
         [Required(ErrorMessage = "{0} é obrigatório")]

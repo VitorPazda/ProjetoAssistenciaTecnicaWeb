@@ -20,7 +20,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             _context.SaveChanges();
         }
 
-        public async Task<List<Funcionario>> FindAsync(string nome, string cpf_cnpj)
+        public async Task<List<Funcionario>> FindAsync(string nome, string cpf_cnpj, string telefone)
         {
             var resultado = _context.Funcionario
                 .Include(f => f.Endereco)
@@ -34,6 +34,11 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             if (!string.IsNullOrEmpty(cpf_cnpj))
             {
                 resultado = resultado.Where(f => f.CPF_CNPJ.Contains(cpf_cnpj));
+            }
+
+            if (!string.IsNullOrEmpty(telefone))
+            {
+                resultado = resultado.Where(f => f.Telefone.Contains(telefone));
             }
             else
             {
