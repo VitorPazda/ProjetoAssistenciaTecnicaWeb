@@ -81,6 +81,25 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Clientes/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            // Verificar se IdCliente e nulo
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var funcionario = await _context.Funcionario.Include(f => f.Endereco).FirstOrDefaultAsync(f => f.IdFuncionario == id);
+            if (funcionario == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Endereco = funcionario.Endereco };
+            return View(viewModel);
+        }
+
         // POST: Funcionarios/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
