@@ -20,26 +20,31 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             _context.SaveChanges();
         }
 
-        public async Task<List<Cliente>> FindAsync(string nome, string cpf)
+        public async Task<List<Cliente>> FindAsync(string nome, string cpf, string telefone)
         {
             var resultado = _context.Cliente
-                .Include(x => x.Endereco)
+                .Include(c => c.Endereco)
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(nome))
             {
-                resultado = resultado.Where(x => x.Nome.Contains(nome));
+                resultado = resultado.Where(c => c.Nome.Contains(nome));
             }
 
             if (!string.IsNullOrEmpty(cpf))
             {
-                resultado = resultado.Where(x => x.CPF_CNPJ.Contains(cpf));
+                resultado = resultado.Where(c => c.CPF_CNPJ.Contains(cpf));
+            }
+
+            if (!string.IsNullOrEmpty(telefone))
+            {
+                resultado = resultado.Where(c => c.Telefone.Contains(telefone));
             }
             else
             {
                 // retornar os utlimos 5 clientes cadastrados, caso nome e cpf nao sejam informados
                 return await resultado
-                    .OrderByDescending(x => x.DataCadastro)
+                    .OrderByDescending(c => c.DataCadastro)
                     .Take(5)
                     .ToListAsync();
             }
@@ -49,7 +54,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public void Update(Cliente obj)
         {
-            if (_context.Cliente.Any(x => x.IdCliente == obj.IdCliente))
+            if (_context.Cliente.Any(c => c.IdCliente == obj.IdCliente))
             {
                 throw new DirectoryNotFoundException("Id not found");
             }
