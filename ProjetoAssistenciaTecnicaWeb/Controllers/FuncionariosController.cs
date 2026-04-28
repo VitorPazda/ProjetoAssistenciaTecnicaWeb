@@ -90,7 +90,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             if (id != viewModel.Funcionario.IdFuncionario)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id ot mismatch" });
+                return RedirectToAction(nameof(Error), new { message = "Id not mismatch" });
             }
             try
             {

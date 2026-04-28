@@ -45,5 +45,22 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             }
             return await resultado.ToListAsync();
         }
+
+        public void Update(Funcionario obj)
+        {
+            if (_context.Funcionario.Any(f => f.IdFuncionario == obj.IdFuncionario))
+            {
+                throw new DirectoryNotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
+        }
     }
 }
