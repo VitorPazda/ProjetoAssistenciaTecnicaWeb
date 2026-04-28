@@ -28,6 +28,11 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             if (!string.IsNullOrEmpty(nome))
             {
+                resultado = resultado.Where(f => f.Nome.Contains(nome));
+            }
+
+            if (!string.IsNullOrEmpty(cpf_cnpj))
+            {
                 resultado = resultado.Where(f => f.CPF_CNPJ.Contains(cpf_cnpj));
             }
             else
