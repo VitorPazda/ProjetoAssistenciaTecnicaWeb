@@ -6,6 +6,10 @@
 
 <h2>@ViewData["Title"]</h2>
 
+<p>
+    <a asp-action="Create">Criar Novo</a>
+</p>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <form class="navbar-form navbar-left" role="search">
@@ -51,9 +55,6 @@
                         @Html.DisplayNameFor(model => model.DataCadastro)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Modalidade)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.Categoria)
                     </th>
                     <th>
@@ -85,9 +86,6 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DataCadastro)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Modalidade)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Categoria)

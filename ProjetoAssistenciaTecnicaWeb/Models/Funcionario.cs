@@ -38,7 +38,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(100, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Modalidade")]
-        public string Modalidade { get; set; }
 
         public int EnderecoId { get; set; }
 
@@ -58,7 +57,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         {
         }
 
-        public Funcionario(int idFuncionario, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, string modalidade, Endereco endereco, string categoria, string codigoFuncionario)
+        public Funcionario(int idFuncionario, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, Endereco endereco, string categoria, string codigoFuncionario)
         {
             IdFuncionario = idFuncionario;
             Nome = nome;
@@ -67,7 +66,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
             Email = email;
             DataNascimento = dataNascimento;
             DataCadastro = dataCadastro;
-            Modalidade = modalidade;
             Endereco = endereco;
             Categoria = categoria;
             CodigoFuncionario = codigoFuncionario;
