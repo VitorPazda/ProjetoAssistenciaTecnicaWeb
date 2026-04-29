@@ -65,6 +65,48 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Pecas/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            // Verificar se IdCliente e nulo
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var peca = await _context.Peca.FirstOrDefaultAsync(p => p.IdPeca == id);
+
+            if (peca == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+            return View();
+        }
+
+        // POST: Clientes/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Peca peca)
+        {
+            if (id != peca.IdPeca)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not mismatch" });
+            }
+            try
+            {
+                _context.Update(peca);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message }); ;
+            }
+        }
+
         public IActionResult Error(string message)
         {
             var viewModel = new ErrorViewModel
