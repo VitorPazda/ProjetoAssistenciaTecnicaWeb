@@ -1,16 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
 using ProjetoAssistenciaTecnicaWeb.Services;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
