@@ -43,9 +43,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
-            var viewModel = new PecaFormViewModel { Peca = peca };
-
-            return View(viewModel);
+            return View(peca);
         }
 
         public IActionResult Error(string message)
