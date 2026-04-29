@@ -7,7 +7,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Key]
         public int IdPeca { get; set; }
 
-        public float CustoCompra { get; set; }
+        public float ValorCompra { get; set; }
 
         public float ValorRevenda { get; set; }
 
@@ -21,10 +21,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         {
         }
 
-        public Peca(int idPeca, float custoCompra, float valorRevenda, string descricao, int quantidade, int codigo)
+        public Peca(int idPeca, float valorCompra, float valorRevenda, string descricao, int quantidade, int codigo)
         {
             IdPeca = idPeca;
-            CustoCompra = custoCompra;
+            ValorCompra = valorCompra;
             ValorRevenda = valorRevenda;
             Descricao = descricao;
             Quantidade = quantidade;
