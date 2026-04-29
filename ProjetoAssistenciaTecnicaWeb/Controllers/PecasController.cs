@@ -107,6 +107,66 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
         }
 
+        // GET: Pecas/Delete
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var peca = await _context.Peca
+                .FirstOrDefaultAsync(p => p.IdPeca == id);
+
+            if (peca == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View(peca);
+        }
+
+        // POST: Pecas/Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var peca = await _context.Peca
+                .FirstOrDefaultAsync(p => p.IdPeca == id);
+
+            if (peca != null)
+            {
+                _context.Peca.Remove(peca);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task UpdateAsync(Peca peca)
+        {
+            bool temAlgum = await _context.Peca.AnyAsync(p => p.IdPeca == peca.IdPeca);
+            if (!temAlgum)
+            {
+                throw new DirectoryNotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(peca);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DBConcurrencyException(e.Message);
+            }
+        }
+
+        public async Task<IActionResult> Find(string descricao)
+        {
+            var resultado = await _pecaService.FindAsync(descricao);
+            return View(resultado);
+        }
+
         public IActionResult Error(string message)
         {
             var viewModel = new ErrorViewModel
