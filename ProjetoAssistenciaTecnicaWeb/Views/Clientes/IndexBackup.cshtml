@@ -31,16 +31,14 @@
                 @Html.DisplayNameFor(model => model.DataCadastro)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Modalidade)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Endereco.Municipio)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model) 
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
@@ -61,9 +59,6 @@
                 @Html.DisplayFor(modelItem => item.DataCadastro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Modalidade)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Endereco.Municipio)
             </td>
             <td>
@@ -72,6 +67,6 @@
                 <a asp-action="Delete" asp-route-id="@item.IdCliente">Delete</a>
             </td>
         </tr>
-        }
+}
     </tbody>
 </table>

@@ -36,7 +36,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public DateTime DataCadastro { get; set; }
         
         [Required(ErrorMessage = "{0} é obrigatório")]
-        public string Modalidade { get; set; }
         public int EnderecoId { get; set; }
         public Endereco Endereco { get; set; }
 
@@ -44,7 +43,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         {
         }
 
-        public Cliente(int idCliente, string nome, string cpf_cnpj, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, string modalidade, Endereco endereco)
+        public Cliente(int idCliente, string nome, string cpf_cnpj, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, Endereco endereco)
         {
             IdCliente = idCliente;
             Nome = nome;
@@ -53,7 +52,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
             Email = email;
             DataNascimento = dataNascimento;
             DataCadastro = dataCadastro;
-            Modalidade = modalidade;
             Endereco = endereco;
         }
     }
