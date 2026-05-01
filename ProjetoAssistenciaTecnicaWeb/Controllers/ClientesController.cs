@@ -47,16 +47,14 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         }
 
         // GET: Clientes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var cliente = await _context.Cliente
-                .Include(c => c.Endereco)
-                .FirstOrDefaultAsync(m => m.IdCliente == id);
+            var cliente = await _clienteService.FindByIdAsync(id);
 
             if (cliente == null)
             {
@@ -71,9 +69,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cliente = await _context.Cliente
-                .Include(c => c.Endereco)
-                .FirstOrDefaultAsync(c => c.IdCliente == id);
+            var cliente = await _clienteService.FindByIdAsync(id);
 
             if (cliente != null)
             {

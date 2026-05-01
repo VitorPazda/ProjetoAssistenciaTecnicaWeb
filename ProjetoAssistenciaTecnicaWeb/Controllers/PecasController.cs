@@ -160,13 +160,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 throw new DBConcurrencyException(e.Message);
             }
         }
-
+        /*
         public async Task<IActionResult> Find(string descricao)
         {
             var resultado = await _pecaService.FindAsync(descricao);
             return View(resultado);
         }
-
+        */
         public IActionResult Error(string message)
         {
             var viewModel = new ErrorViewModel

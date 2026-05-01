@@ -32,6 +32,11 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Cliente> FindByIdAsync(int id)
+        {
+            return await _context.Cliente.Include(c => c.Endereco).FirstOrDefaultAsync(c => c.IdCliente == id);
+        }
+
         public async Task<List<Cliente>> FindAsync(string nome, string cpf, string telefone)
         {
             var resultado = _context.Cliente
@@ -64,7 +69,22 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             return await resultado.ToListAsync();
         }
 
-        public void Update(Cliente obj)
+        public async Task RemoveAsync(int id)
+        {
+            try
+            {
+                var cliente = await FindByIdAsync(id);
+                _context.Endereco.Remove(cliente.Endereco);
+                _context.Cliente.Remove(cliente);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new Exception("Can not delete");
+            }
+        }
+
+        public async Task UpdateAsync(Cliente obj)
         {
             if (_context.Cliente.Any(c => c.IdCliente == obj.IdCliente))
             {
