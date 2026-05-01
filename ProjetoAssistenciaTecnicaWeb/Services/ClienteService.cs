@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
+using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
 using ProjetoAssistenciaTecnicaWeb.Services.Exceptions;
 using System.Data;
 
@@ -75,7 +76,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             try
             {
                 var cliente = await FindByIdAsync(id);
-                _context.Endereco.Remove(cliente.Endereco);
                 _context.Cliente.Remove(cliente);
                 await _context.SaveChangesAsync();
             }
@@ -85,21 +85,40 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             }
         }
 
-        public async Task UpdateAsync(Cliente cliente)
+        public async Task UpdateAsync(ClienteFormViewModel model)
         {
-            bool temAlgum = await _context.Cliente.AnyAsync(c => c.IdCliente == cliente.IdCliente);
-            if (!temAlgum)
+            var cliente = await _context.Cliente
+                    .Include(c => c.Endereco)
+                    .FirstOrDefaultAsync(c => c.IdCliente == model.Cliente.IdCliente);
+
+            if (cliente == null)
             {
-                throw new DirectoryNotFoundException("Id not found");
+                throw new ApplicationException("Id not found");
             }
+
             try
             {
-                _context.Update(cliente);
+                // Cliente
+                cliente.Nome = model.Cliente.Nome;
+                cliente.CPF_CNPJ = model.Cliente.CPF_CNPJ;
+                cliente.Telefone = model.Cliente.Telefone;
+                cliente.Email = model.Cliente.Email;
+                cliente.DataNascimento = model.Cliente.DataNascimento;
+
+                // Endereco
+                cliente.Endereco.Estado = model.Endereco.Estado;
+                cliente.Endereco.Municipio = model.Endereco.Municipio;
+                cliente.Endereco.Cep = model.Endereco.Cep;
+                cliente.Endereco.Rua = model.Endereco.Rua;
+                cliente.Endereco.Bairro = model.Endereco.Bairro;
+                cliente.Endereco.Complemento = model.Endereco.Complemento;
+                cliente.Endereco.NCasa = model.Endereco.NCasa;
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {
-                throw new DBConcurrencyException(e.Message);
+                throw new Exception(e.Message);
             }
         }
     }

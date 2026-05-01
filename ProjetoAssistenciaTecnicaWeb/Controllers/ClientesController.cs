@@ -73,9 +73,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 
             if (cliente != null)
             {
-                _context.Endereco.Remove(cliente.Endereco);
-                _context.Cliente.Remove(cliente);
-                await _context.SaveChangesAsync();
+                await _clienteService.RemoveAsync(id);
             }
 
             return RedirectToAction(nameof(Index));
@@ -133,38 +131,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
             try
             {
-                // Atualizar primeiro o Endereco, para depois atualizar o cliente
-                _context.Update(viewModel.Endereco);
-                await _context.SaveChangesAsync();
-
-                viewModel.Cliente.EnderecoId = viewModel.Endereco.IdEndereco;
-
-                _context.Update(viewModel.Cliente);
-                await _context.SaveChangesAsync();
-
+                await _clienteService.UpdateAsync(viewModel);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message }); ;
-            }
-        }
-
-        public async Task UpdateAsync(Cliente cliente) 
-        {
-            bool temAlgum = await _context.Cliente.AnyAsync(c => c.IdCliente == cliente.IdCliente);
-            if (!temAlgum)
-            {
-                throw new DirectoryNotFoundException("Id not found");
-            }
-            try
-            {
-                _context.Update(cliente);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException e)
-            {
-                throw new DBConcurrencyException(e.Message);
             }
         }
 
