@@ -2,6 +2,7 @@
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Services.Exceptions;
+using System.Data;
 
 namespace ProjetoAssistenciaTecnicaWeb.Services
 {
@@ -84,20 +85,21 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             }
         }
 
-        public async Task UpdateAsync(Cliente obj)
+        public async Task UpdateAsync(Cliente cliente)
         {
-            if (_context.Cliente.Any(c => c.IdCliente == obj.IdCliente))
+            bool temAlgum = await _context.Cliente.AnyAsync(c => c.IdCliente == cliente.IdCliente);
+            if (!temAlgum)
             {
                 throw new DirectoryNotFoundException("Id not found");
             }
             try
             {
-                _context.Update(obj);
-                _context.SaveChanges();
+                _context.Update(cliente);
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {
-                throw new DbConcurrencyException(e.Message);
+                throw new DBConcurrencyException(e.Message);
             }
         }
     }
