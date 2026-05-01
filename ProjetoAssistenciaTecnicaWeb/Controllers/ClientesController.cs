@@ -42,14 +42,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Cliente cliente, Endereco endereco)
         {
-            _context.Endereco.Add(endereco);
-            await _context.SaveChangesAsync();
-
-            cliente.DataCadastro = DateTime.Now;
-            cliente.EnderecoId = endereco.IdEndereco;
-            _context.Add(cliente);
-            await _context.SaveChangesAsync();
-
+            await _clienteService.InsertAsync(cliente, endereco);
             return RedirectToAction(nameof(Index));
         }
 

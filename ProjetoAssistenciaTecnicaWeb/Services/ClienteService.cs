@@ -14,10 +14,22 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             _context = context;
         }
 
-        public void Insert(ClienteService obj) 
+        public async Task<List<Cliente>> FindAllAsync()
         {
-            _context.Add(obj);
-            _context.SaveChanges();
+            return await _context.Cliente.ToListAsync();
+        }
+
+        public async Task InsertAsync(Cliente cliente, Endereco endereco) 
+        {
+            //Salva o endereco primeiro
+            _context.Endereco.Add(endereco);
+            await _context.SaveChangesAsync();
+
+            cliente.DataCadastro = DateTime.Now;
+            cliente.EnderecoId = endereco.IdEndereco;
+
+            _context.Cliente.Add(cliente);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<Cliente>> FindAsync(string nome, string cpf, string telefone)
