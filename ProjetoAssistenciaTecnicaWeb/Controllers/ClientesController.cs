@@ -28,6 +28,70 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(await projetoAssistenciaTecnicaWebContext.ToListAsync());
         }
 
+        // GET: Clientes/Create
+        public IActionResult Create()
+        {
+            var viewModel = new ClienteFormViewModel { Cliente = new Cliente(), Endereco = new Endereco() };
+            return View(viewModel);
+        }
+
+        // POST: Clientes/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Cliente cliente, Endereco endereco)
+        {
+            _context.Endereco.Add(endereco);
+            await _context.SaveChangesAsync();
+
+            cliente.DataCadastro = DateTime.Now;
+            cliente.EnderecoId = endereco.IdEndereco;
+            _context.Add(cliente);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Clientes/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var cliente = await _context.Cliente
+                .Include(c => c.Endereco)
+                .FirstOrDefaultAsync(m => m.IdCliente == id);
+
+            if (cliente == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View(cliente);
+        }
+
+        // POST: Clientes/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var cliente = await _context.Cliente
+                .Include(c => c.Endereco)
+                .FirstOrDefaultAsync(c => c.IdCliente == id);
+
+            if (cliente != null)
+            {
+                _context.Endereco.Remove(cliente.Endereco);
+                _context.Cliente.Remove(cliente);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: Clientes/Details
         public async Task<IActionResult> Details(int? id)
         {
@@ -50,38 +114,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(viewModel);
         }
 
-        // GET: Clientes/Create
-        public IActionResult Create()
-        {
-            var viewModel = new ClienteFormViewModel { Cliente = new Cliente(), Endereco = new Endereco()};
-            return View(viewModel);
-        }
-
-        // POST: Clientes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Cliente cliente, Endereco endereco)
-        {
-            _context.Endereco.Add(endereco);
-            await _context.SaveChangesAsync();
-
-            cliente.DataCadastro = DateTime.Now;
-            cliente.EnderecoId = endereco.IdEndereco;
-            _context.Add(cliente);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
-        }
-
         // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             // Verificar se IdCliente e nulo
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided"});
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var cliente = await _context.Cliente.Include(c => c.Endereco).FirstOrDefaultAsync(c => c.IdCliente == id);
@@ -124,48 +163,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
         }
 
-        // GET: Clientes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
-            }
-
-            var cliente = await _context.Cliente
-                .Include(c => c.Endereco)
-                .FirstOrDefaultAsync(m => m.IdCliente == id);
-
-            if (cliente == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "Id not found" });
-            }
-
-            return View(cliente);
-        }
-
-        // POST: Clientes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var cliente = await _context.Cliente
-                .Include(c => c.Endereco)
-                .FirstOrDefaultAsync(c => c.IdCliente == id);
-
-            if (cliente != null)
-            {
-                _context.Endereco.Remove(cliente.Endereco);
-                _context.Cliente.Remove(cliente);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction(nameof(Index));
-        }
-
         public async Task UpdateAsync(Cliente cliente) 
         {
-            bool temAlgum = await _context.Cliente.AnyAsync(x => x.IdCliente == cliente.IdCliente);
+            bool temAlgum = await _context.Cliente.AnyAsync(c => c.IdCliente == cliente.IdCliente);
             if (!temAlgum)
             {
                 throw new DirectoryNotFoundException("Id not found");
