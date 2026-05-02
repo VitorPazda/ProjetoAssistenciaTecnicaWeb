@@ -76,8 +76,21 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             try
             {
                 var cliente = await FindByIdAsync(id);
+
+                var enderecoId = cliente.EnderecoId;
+
                 _context.Cliente.Remove(cliente);
                 await _context.SaveChangesAsync();
+
+                bool enderecoEmUso = await _context.Cliente.AnyAsync(c => c.EnderecoId == enderecoId);
+
+                // Caso o Endereco nao seja de nenhum cliente, ele sera excluido
+                if (!enderecoEmUso)
+                {
+                    var endereco = await _context.Endereco.FindAsync(enderecoId);
+                    _context.Endereco.Remove(endereco);
+                    await _context.SaveChangesAsync();
+                }
             }
             catch (DbUpdateException e)
             {
