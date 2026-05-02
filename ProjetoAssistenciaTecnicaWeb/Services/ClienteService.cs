@@ -18,7 +18,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task<List<Cliente>> FindAllAsync()
         {
-            return await _context.Cliente.ToListAsync();
+            return await _context.Cliente.Include(c => c.Endereco).ToListAsync();
         }
 
         public async Task InsertAsync(Cliente cliente, Endereco endereco) 

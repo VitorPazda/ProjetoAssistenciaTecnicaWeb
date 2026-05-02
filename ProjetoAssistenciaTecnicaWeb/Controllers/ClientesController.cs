@@ -15,17 +15,16 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 
         private readonly ClienteService _clienteService;
 
-        public ClientesController(ProjetoAssistenciaTecnicaWebContext context, ClienteService clienteService)
+        public ClientesController(ClienteService clienteService)
         {
-            _context = context;
             _clienteService = clienteService;
         }
 
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            var projetoAssistenciaTecnicaWebContext = _context.Cliente.Include(c => c.Endereco);
-            return View(await projetoAssistenciaTecnicaWebContext.ToListAsync());
+            var cliente = await _clienteService.FindAllAsync();
+            return View(cliente);
         }
 
         // GET: Clientes/Create
