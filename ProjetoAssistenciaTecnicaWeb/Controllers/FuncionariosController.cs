@@ -4,7 +4,6 @@ using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
 using ProjetoAssistenciaTecnicaWeb.Services;
-using System.Data;
 using System.Diagnostics;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
@@ -26,28 +25,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(funcionario);
         }
 
-        // GET: Funcioraios/Details
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
-            }
-
-            var funcionario = await _context.Funcionario
-                .Include(f => f.Endereco)
-                .FirstOrDefaultAsync(f => f.IdFuncionario == id);
-
-            if (funcionario == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "Id not found" });
-            }
-
-            var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Endereco = funcionario.Endereco };
-
-            return View(viewModel);
-        }
-
         // GET: Clientes/Create
         public IActionResult Create()
         {
@@ -62,27 +39,73 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Funcionario funcionario, Endereco endereco)
         {
-            _context.Endereco.Add(endereco);
-            await _context.SaveChangesAsync();
-
-            funcionario.DataCadastro = DateTime.Now;
-            funcionario.EnderecoId = endereco.IdEndereco;
-            _context.Add(funcionario);
-            await _context.SaveChangesAsync();
-
+            await _funcionarioService.InsertAsync(funcionario, endereco);
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Clientes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Funcionarios/Delete
+        public async Task<IActionResult> Delete(int? id)
         {
-            // Verificar se IdCliente e nulo
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var funcionario = await _context.Funcionario.Include(f => f.Endereco).FirstOrDefaultAsync(f => f.IdFuncionario == id);
+            var funcionario = await _funcionarioService.FindByIdAsync(id.Value);
+
+            if (funcionario == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View(funcionario);
+        }
+
+        // POST: Funcionarios/Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var funcionario = await _funcionarioService.FindByIdAsync(id);
+
+            if (funcionario != null)
+            {
+                await _funcionarioService.RemoveAsync(id);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Funcionarios/Details
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var funcionario = await _funcionarioService.FindByIdAsync(id.Value);
+
+            if (funcionario == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Endereco = funcionario.Endereco };
+
+            return View(viewModel);
+        }
+
+        // GET: Clientes/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            // Verifica se IdFuncionario e nulo
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var funcionario = await _funcionarioService.FindByIdAsync(id.Value);
             if (funcionario == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
@@ -105,77 +128,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
             try
             {
-                // Atualizar o endereco, pra depois atualizar o cliente
-                _context.Update(viewModel.Endereco);
-                await _context.SaveChangesAsync();
-
-                viewModel.Funcionario.EnderecoId = viewModel.Endereco.IdEndereco;
-
-                _context.Update(viewModel.Funcionario);
-                await _context.SaveChangesAsync();
-
+                await _funcionarioService.UpdateAsync(viewModel);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
-            }
-        }
-
-        // GET: Funcionarios/Delete
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
-            }
-
-            var funcionario = await _context.Funcionario
-                .Include(f => f.Endereco)
-                .FirstOrDefaultAsync(f => f.IdFuncionario == id);
-
-            if (funcionario == null)
-            {
-                return RedirectToAction(nameof(Error), new { message = "Id not found" });
-            }
-
-            return View(funcionario);
-        }
-
-        // POST: Funcionarios/Delete
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var funcionario = await _context.Funcionario
-                .Include(f => f.Endereco)
-                .FirstOrDefaultAsync(f => f.IdFuncionario == id);
-
-            if (funcionario != null)
-            {
-                _context.Endereco.Remove(funcionario.Endereco);
-                _context.Funcionario.Remove(funcionario);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction(nameof(Index));
-        }
-
-        public async Task UpdateAsync(Funcionario funcionario)
-        {
-            bool temAlgum = await _context.Funcionario.AnyAsync(f => f.IdFuncionario == funcionario.IdFuncionario);
-            if (!temAlgum)
-            {
-                throw new DirectoryNotFoundException("Id not found");
-            }
-            try
-            {
-                _context.Update(funcionario);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException e)
-            {
-                throw new DBConcurrencyException(e.Message);
             }
         }
 
