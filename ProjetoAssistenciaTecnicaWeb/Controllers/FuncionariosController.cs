@@ -1,37 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
 using ProjetoAssistenciaTecnicaWeb.Services;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
     public class FuncionariosController : Controller
     {
-        private readonly ProjetoAssistenciaTecnicaWebContext _context;
 
         private readonly FuncionarioService _funcionarioService;
 
-        public FuncionariosController(ProjetoAssistenciaTecnicaWebContext context, FuncionarioService funcionarioService)
+        public FuncionariosController(FuncionarioService funcionarioService)
         {
-            _context = context;
             _funcionarioService = funcionarioService;
         }
 
         // GET: Funcionarios
-
         public async Task<IActionResult> Index()
         {
-            var projetoAssistenciaTecnicaWebContext = _context.Funcionario.Include(f => f.Endereco);
-            return View(await projetoAssistenciaTecnicaWebContext.ToListAsync());
+            var funcionario = await _funcionarioService.FindAllAsync();
+            return View(funcionario);
         }
 
         // GET: Funcioraios/Details

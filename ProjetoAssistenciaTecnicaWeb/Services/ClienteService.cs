@@ -2,8 +2,6 @@
 using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
-using ProjetoAssistenciaTecnicaWeb.Services.Exceptions;
-using System.Data;
 
 namespace ProjetoAssistenciaTecnicaWeb.Services
 {

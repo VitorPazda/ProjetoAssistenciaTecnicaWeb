@@ -35,10 +35,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; }
 
-        [Required(ErrorMessage = "{0} é obrigatório")]
-        [StringLength(100, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
-        [Display(Name = "Modalidade")]
-
         public int EnderecoId { get; set; }
 
         public Endereco Endereco { get; set; }
