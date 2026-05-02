@@ -92,7 +92,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             }
             catch (DbUpdateException e)
             {
-                throw new Exception("Can not delete");
+                throw new Exception("Can not delete", e);
             }
         }
 
@@ -106,7 +106,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             {
                 throw new ApplicationException("Id not found");
             }
-
             try
             {
                 // Cliente

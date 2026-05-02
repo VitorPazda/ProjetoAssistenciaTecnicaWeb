@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <input type="hidden" asp-for="Funcionario.IdFuncionario" />
             <input type="hidden" asp-for="Endereco.IdEndereco" />
+            <input type="hidden" asp-for="Funcionario.CodigoFuncionario" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Funcionario.Nome" class="control-label"></label>
