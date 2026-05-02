@@ -12,7 +12,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório")]
-        [StringLength(18, MinimumLength = 14, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
+        [StringLength(18, MinimumLength = 11, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "CPF/CNPJ")]
         public string CPF_CNPJ { get; set; }
 
@@ -45,7 +45,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public string Categoria { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório")]
-        [StringLength(100, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Código Funcionario")]
         public int CodigoFuncionario { get; set; }
 

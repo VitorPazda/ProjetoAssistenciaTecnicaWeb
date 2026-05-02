@@ -47,7 +47,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
 
             Cliente cliente6 = new Cliente(6, "Miria de Fatima Pazda", "90001491008", "47 9999999", "miria@gmail.com", new DateTime(1972, 09, 28), DateTime.Now, endereco5);
 
-            Funcionario funcionario1 = new Funcionario(1, "Filipe Dirshnabel", "32131231", "47 9999999", "filipe@gmail.com", new DateTime(2005, 09, 05), DateTime.Now, endereco2, "Mecanico", "1");
+            Funcionario funcionario1 = new Funcionario(1, "Filipe Dirshnabel", "32131231", "47 9999999", "filipe@gmail.com", new DateTime(2005, 09, 05), DateTime.Now, endereco2, "Mecanico", 1);
 
             Peca peca1 = new Peca(1, 10, 20, "Fusivel 20", 20, 69);
 
