@@ -47,13 +47,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(100, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Código Funcionario")]
-        public string CodigoFuncionario { get; set; }
+        public int CodigoFuncionario { get; set; }
 
         public Funcionario()
         {
         }
 
-        public Funcionario(int idFuncionario, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, Endereco endereco, string categoria, string codigoFuncionario)
+        public Funcionario(int idFuncionario, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, Endereco endereco, string categoria, int codigoFuncionario)
         {
             IdFuncionario = idFuncionario;
             Nome = nome;

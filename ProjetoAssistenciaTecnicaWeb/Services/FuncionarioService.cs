@@ -27,6 +27,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             funcionario.DataCadastro = DateTime.Now;
             funcionario.EnderecoId = endereco.IdEndereco;
+            funcionario.CodigoFuncionario = funcionario.IdFuncionario;
 
 
             _context.Funcionario.Add(funcionario);
@@ -115,7 +116,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
                 funcionario.Email = model.Funcionario.Email;
                 funcionario.DataNascimento = model.Funcionario.DataNascimento;
                 funcionario.Categoria = model.Funcionario.Categoria;
-                funcionario.CodigoFuncionario = model.Funcionario.CodigoFuncionario;
 
                 // Endereco
                 funcionario.Endereco.Estado = model.Endereco.Estado;
