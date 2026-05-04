@@ -26,7 +26,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         }
 
         // GET: Clientes/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             var viewModel = new FuncionarioFormViewModel { Funcionario = new Funcionario(), Endereco = new Endereco() };
             return View(viewModel);
