@@ -22,6 +22,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
         {
             _context.Peca.Add(peca);
             await _context.SaveChangesAsync();
+
+            peca.Codigo = peca.IdPeca;
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Peca> FindByIdAsync(int id)
