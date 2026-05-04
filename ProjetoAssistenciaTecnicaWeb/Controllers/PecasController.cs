@@ -85,14 +85,14 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var cliente = await _pecaService.FindByIdAsync(id.Value);
+            var peca = await _pecaService.FindByIdAsync(id.Value);
 
-            if (cliente == null)
+            if (peca == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
-            return View();
+            return View(peca);
         }
 
         // GET: Pecas/Edit
