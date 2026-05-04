@@ -27,7 +27,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(peca);
         }
 
-        // GET: Pecas/
+        // GET: Pecas/Create
         public async Task<IActionResult> Create()
         {
             return View();
@@ -42,6 +42,114 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             await _pecaService.InsertAsync(peca);
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Pecas/Delete
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var cliente = await _pecaService.FindByIdAsync(id.Value);
+
+            if (cliente == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View(cliente);
+        }
+
+        // POST: Pecas/Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var cliente = await _pecaService.FindByIdAsync(id);
+
+            if (cliente != null)
+            {
+                await _pecaService.RemoveAsync(id);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Pecas/Details
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var cliente = await _pecaService.FindByIdAsync(id.Value);
+
+            if (cliente == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View();
+        }
+
+        // GET: Pecas/Edit
+        public async Task<IActionResult> Edit(int? id)
+        {
+            // Verificar se Id e nulo
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var peca = await _pecaService.FindByIdAsync(id.Value);
+
+            if (peca == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View();
+        }
+
+        // POST: Pecas/Edit
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Peca peca)
+        {
+            if (id != peca.IdPeca)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not mismatch" });
+            }
+            try
+            {
+                await _pecaService.UpdateAsync(peca);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message }); ;
+            }
+        }
+
+        public async Task<IActionResult> Find(string descricao)
+        {
+            var resultado = await _pecaService.FindAsync(descricao);
+            return View(resultado);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

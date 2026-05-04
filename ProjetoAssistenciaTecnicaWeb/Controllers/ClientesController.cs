@@ -43,7 +43,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Clientes/Delete/5
+        // GET: Clientes/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -61,7 +61,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(cliente);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: Clientes/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
@@ -96,7 +96,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(viewModel);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: Clientes/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             // Verificar se IdCliente e nulo
@@ -105,7 +105,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var cliente = await _clienteService.FindByIdAsync(id.Value);    
+            var cliente = await _clienteService.FindByIdAsync(id.Value); 
+            
             if (cliente == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
@@ -115,7 +116,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(viewModel);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Clientes/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
