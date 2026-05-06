@@ -59,9 +59,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             }
         }
 
-        public async Task UpdateAsync(Peca model)
+        public async Task UpdateAsync(Peca obj)
         {
-            bool hasAny = await _context.Peca.AnyAsync(p => p.IdPeca == model.IdPeca);
+            bool hasAny = await _context.Peca.AnyAsync(p => p.IdPeca == obj.IdPeca);
 
             if (!hasAny)
             {
@@ -70,7 +70,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             try
             {
-                _context.Update(model);
+                _context.Update(obj);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
