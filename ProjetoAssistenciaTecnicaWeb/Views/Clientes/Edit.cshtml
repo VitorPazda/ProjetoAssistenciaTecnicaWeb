@@ -12,6 +12,8 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <input type="hidden" asp-for="Cliente.IdCliente" />
+            <input type="hidden" asp-for="Cliente.EnderecoId" />
+            <input type="hidden" asp-for="Cliente.DataCadastro" />
             <input type="hidden" asp-for="Endereco.IdEndereco" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">

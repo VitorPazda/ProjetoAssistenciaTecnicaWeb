@@ -98,6 +98,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task UpdateAsync(ClienteFormViewModel model)
         {
+            /*
             var cliente = await _context.Cliente
                     .Include(c => c.Endereco)
                     .FirstOrDefaultAsync(c => c.IdCliente == model.Cliente.IdCliente);
@@ -123,6 +124,27 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
                 cliente.Endereco.Bairro = model.Endereco.Bairro;
                 cliente.Endereco.Complemento = model.Endereco.Complemento;
                 cliente.Endereco.NCasa = model.Endereco.NCasa;
+
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new Exception(e.Message);
+            }
+            */
+
+            bool hasAny = await _context.Cliente.AnyAsync(c => c.IdCliente == model.Cliente.IdCliente);
+
+            if (!hasAny)
+            {
+                throw new ApplicationException("Id not found");
+            }
+
+            try
+            {
+                _context.Update(model.Cliente);
+
+                _context.Update(model.Endereco);
 
                 await _context.SaveChangesAsync();
             }
