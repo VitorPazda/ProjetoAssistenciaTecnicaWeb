@@ -61,9 +61,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task UpdateAsync(Peca model)
         {
-            var peca = await _context.Peca.FirstOrDefaultAsync(p => p.IdPeca == model.IdPeca);
+            bool hasAny = await _context.Peca.AnyAsync(p => p.IdPeca == model.IdPeca);
 
-            if (peca == null)
+            if (!hasAny)
             {
                 throw new ApplicationException("Id not found");            
             }

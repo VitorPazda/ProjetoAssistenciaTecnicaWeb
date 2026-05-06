@@ -111,7 +111,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
-            return View();
+            return View(peca);
         }
 
         // POST: Pecas/Edit

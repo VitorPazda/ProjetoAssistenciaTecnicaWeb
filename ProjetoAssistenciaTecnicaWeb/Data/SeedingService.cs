@@ -49,7 +49,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
 
             Funcionario funcionario1 = new Funcionario(1, "Filipe Dirshnabel", "32131231", "47 9999999", "filipe@gmail.com", new DateTime(2005, 09, 05), DateTime.Now, endereco2, "Mecanico", 1);
 
-            Peca peca1 = new Peca(1, 10, 20, "Fusivel 20", 20, 69);
+            Peca peca1 = new Peca(1, 10, 20, "Fusivel 20", 20, 1);
 
             // Add no banco
             _context.Cliente.AddRange(cliente1, cliente2, cliente3, cliente4, cliente5, cliente6);
