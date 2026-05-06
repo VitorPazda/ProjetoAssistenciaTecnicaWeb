@@ -95,35 +95,20 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             }
         }
 
-        public async Task UpdateAsync(FuncionarioFormViewModel model)
+        public async Task UpdateAsync(FuncionarioFormViewModel obj)
         {
-            var funcionario = await _context.Funcionario
-                .Include(f => f.Endereco)
-                .FirstOrDefaultAsync(f => f.IdFuncionario == model.Funcionario.IdFuncionario);
+            bool hasAny = await _context.Funcionario.AnyAsync(c => c.IdFuncionario == obj.Funcionario.IdFuncionario);
 
-            if (funcionario == null)
+            if (!hasAny)
             {
                 throw new ApplicationException("Id not found");
             }
 
             try
             {
-                //Funcionario
-                funcionario.Nome = model.Funcionario.Nome;
-                funcionario.CPF_CNPJ = model.Funcionario.CPF_CNPJ;
-                funcionario.Telefone = model.Funcionario.Telefone;
-                funcionario.Email = model.Funcionario.Email;
-                funcionario.DataNascimento = model.Funcionario.DataNascimento;
-                funcionario.Categoria = model.Funcionario.Categoria;
+                _context.Update(obj.Funcionario);
 
-                // Endereco
-                funcionario.Endereco.Estado = model.Endereco.Estado;
-                funcionario.Endereco.Municipio = model.Endereco.Municipio;
-                funcionario.Endereco.Cep = model.Endereco.Cep;
-                funcionario.Endereco.Rua = model.Endereco.Rua;
-                funcionario.Endereco.Bairro = model.Endereco.Bairro;
-                funcionario.Endereco.Complemento = model.Endereco.Complemento;
-                funcionario.Endereco.NCasa = model.Endereco.NCasa;
+                _context.Update(obj.Endereco);
 
                 await _context.SaveChangesAsync();
             }

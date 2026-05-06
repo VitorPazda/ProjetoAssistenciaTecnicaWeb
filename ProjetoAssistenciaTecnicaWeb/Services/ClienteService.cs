@@ -98,41 +98,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task UpdateAsync(ClienteFormViewModel model)
         {
-            /*
-            var cliente = await _context.Cliente
-                    .Include(c => c.Endereco)
-                    .FirstOrDefaultAsync(c => c.IdCliente == model.Cliente.IdCliente);
-
-            if (cliente == null)
-            {
-                throw new ApplicationException("Id not found");
-            }
-            try
-            {
-                // Cliente
-                cliente.Nome = model.Cliente.Nome;
-                cliente.CPF_CNPJ = model.Cliente.CPF_CNPJ;
-                cliente.Telefone = model.Cliente.Telefone;
-                cliente.Email = model.Cliente.Email;
-                cliente.DataNascimento = model.Cliente.DataNascimento;
-
-                // Endereco
-                cliente.Endereco.Estado = model.Endereco.Estado;
-                cliente.Endereco.Municipio = model.Endereco.Municipio;
-                cliente.Endereco.Cep = model.Endereco.Cep;
-                cliente.Endereco.Rua = model.Endereco.Rua;
-                cliente.Endereco.Bairro = model.Endereco.Bairro;
-                cliente.Endereco.Complemento = model.Endereco.Complemento;
-                cliente.Endereco.NCasa = model.Endereco.NCasa;
-
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException e)
-            {
-                throw new Exception(e.Message);
-            }
-            */
-
             bool hasAny = await _context.Cliente.AnyAsync(c => c.IdCliente == model.Cliente.IdCliente);
 
             if (!hasAny)
