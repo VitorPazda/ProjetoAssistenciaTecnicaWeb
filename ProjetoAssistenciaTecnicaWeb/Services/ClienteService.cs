@@ -96,9 +96,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             }
         }
 
-        public async Task UpdateAsync(ClienteFormViewModel model)
+        public async Task UpdateAsync(ClienteFormViewModel obj)
         {
-            bool hasAny = await _context.Cliente.AnyAsync(c => c.IdCliente == model.Cliente.IdCliente);
+            bool hasAny = await _context.Cliente.AnyAsync(c => c.IdCliente == obj.Cliente.IdCliente);
 
             if (!hasAny)
             {
@@ -107,9 +107,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             try
             {
-                _context.Update(model.Cliente);
+                _context.Update(obj.Cliente);
 
-                _context.Update(model.Endereco);
+                _context.Update(obj.Endereco);
 
                 await _context.SaveChangesAsync();
             }
