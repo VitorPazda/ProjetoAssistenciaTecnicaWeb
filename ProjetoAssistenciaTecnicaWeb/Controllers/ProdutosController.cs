@@ -63,6 +63,21 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             return View(produto);
         }
 
+        // POST: Produtos/Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var produto = await _produtoService.FindByIdAsync(id);
+
+            if (produto != null)
+            {
+                await _clienteService.RemoveAsync(id);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: Produtos/Details
         public async Task<IActionResult> Details(int? id)
         {
