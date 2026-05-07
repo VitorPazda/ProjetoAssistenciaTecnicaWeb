@@ -159,6 +159,51 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                     b.ToTable("Funcionario");
                 });
 
+            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.OrdemServico", b =>
+                {
+                    b.Property<int>("IdOrdemServico")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdOrdemServico"));
+
+                    b.Property<string>("Acessorios")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("DataAbertura")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Defeito")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdOrcamentoInicial")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumeroAtendimento")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Tick")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdOrdemServico");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("OrdemServico");
+                });
+
             modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Peca", b =>
                 {
                     b.Property<int>("IdPeca")
@@ -243,6 +288,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Endereco");
+                });
+
+            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.OrdemServico", b =>
+                {
+                    b.HasOne("ProjetoAssistenciaTecnicaWeb.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Produto", b =>
