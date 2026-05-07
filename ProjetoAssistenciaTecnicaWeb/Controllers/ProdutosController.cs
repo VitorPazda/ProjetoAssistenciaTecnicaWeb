@@ -72,7 +72,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 
             if (produto != null)
             {
-                await _clienteService.RemoveAsync(id);
+                await _produtoService.RemoveAsync(id);
             }
 
             return RedirectToAction(nameof(Index));
