@@ -10,10 +10,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
     public class ProdutosController : Controller
     {
         private readonly ProdutoService _produtoService;
+        private readonly ClienteService _clienteService;
 
-        public ProdutosController(ProdutoService produtoService)
+        public ProdutosController(ProdutoService produtoService, ClienteService clienteService)
         {
             _produtoService = produtoService;
+            _clienteService = clienteService;
         }
 
         // GET: Produtos
@@ -26,7 +28,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // GET: Produtos/Create
         public async Task<IActionResult> Create()
         {
-            return View();
+            var clientes = await _clienteService.FindAllAsync();
+
+            var viewModel = new ProdutoFormViewModel { Produto = new Produto(), Clientes = clientes };
+            return View(viewModel);
         }
 
         // POST: Produtos/Create

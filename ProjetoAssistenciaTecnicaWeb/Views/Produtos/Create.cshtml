@@ -32,6 +32,15 @@
                 <input asp-for="Produto.Condicao" class="form-control" />
                 <span asp-validation-for="Produto.Condicao" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Produto.ClienteId"></label>
+                <select asp-for="Produto.ClienteId"
+                        asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))'
+                        class="form-control">
+                </select>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

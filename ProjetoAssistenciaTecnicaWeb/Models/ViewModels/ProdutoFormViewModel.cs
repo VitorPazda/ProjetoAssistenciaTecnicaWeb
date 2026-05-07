@@ -3,6 +3,6 @@
     public class ProdutoFormViewModel
     {
         public Produto Produto { get; set; }
-        public Cliente Cliente { get; set; }
+        public ICollection<Cliente> Clientes { get; set; }
     }
 }
