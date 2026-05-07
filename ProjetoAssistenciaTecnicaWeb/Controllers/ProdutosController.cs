@@ -99,7 +99,11 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
-            return View(produto);
+            var clientes = await _clienteService.FindAllAsync();
+
+            var viewModel = new ProdutoFormViewModel { Produto = produto, Clientes = clientes };
+
+            return View(viewModel);
         }
 
         // POST: Produtos/Edit
@@ -107,15 +111,15 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Produto produto)
+        public async Task<IActionResult> Edit(int id, ProdutoFormViewModel viewModel)
         {
-            if (id != produto.IdProduto)
+            if (id != viewModel.Produto.IdProduto)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not mismatch" });
             }
             try
             {
-                await _produtoService.UpdateAsync(produto);
+                await _produtoService.UpdateAsync(viewModel.Produto);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)
