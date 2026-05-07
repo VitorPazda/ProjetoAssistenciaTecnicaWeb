@@ -78,7 +78,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
-            return View(produto);
+            var viewModel = new ProdutoFormViewModel { Produto = produto };
+
+            return View(viewModel);
         }
 
         // GET: Produtos/Edit
