@@ -49,13 +49,18 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
 
             Funcionario funcionario1 = new Funcionario(1, "Filipe Dirshnabel", "32131231", "47 9999999", "filipe@gmail.com", new DateTime(2005, 09, 05), DateTime.Now, endereco2, "Mecanico", 1);
 
+            // Peca
             Peca peca1 = new Peca(1, 10, 20, "Fusivel 20", 20, 1);
+
+            // Produto 
+            Produto produto01 = new Produto(1, "Dell", "G15", "6996", "Placa mãe queimou!", cliente2);
 
             // Add no banco
             _context.Cliente.AddRange(cliente1, cliente2, cliente3, cliente4, cliente5, cliente6);
             _context.Funcionario.AddRange(funcionario1);
             _context.Endereco.AddRange(endereco1, endereco2, endereco3, endereco4, endereco5);
             _context.Peca.AddRange(peca1);
+            _context.Produto.AddRange(produto01);
 
             _context.SaveChanges();
         }
