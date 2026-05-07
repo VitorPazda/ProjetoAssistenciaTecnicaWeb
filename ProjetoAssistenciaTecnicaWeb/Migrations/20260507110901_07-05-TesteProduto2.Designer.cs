@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoAssistenciaTecnicaWeb.Data;
 
@@ -11,9 +12,11 @@ using ProjetoAssistenciaTecnicaWeb.Data;
 namespace ProjetoAssistenciaTecnicaWeb.Migrations
 {
     [DbContext(typeof(ProjetoAssistenciaTecnicaWebContext))]
-    partial class ProjetoAssistenciaTecnicaWebContextModelSnapshot : ModelSnapshot
+    [Migration("20260507110901_07-05-TesteProduto2")]
+    partial class _0705TesteProduto2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,9 +200,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdProduto"));
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Condicao")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -217,8 +217,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("IdProduto");
-
-                    b.HasIndex("ClienteId");
 
                     b.ToTable("Produto");
                 });
@@ -243,17 +241,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Endereco");
-                });
-
-            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Produto", b =>
-                {
-                    b.HasOne("ProjetoAssistenciaTecnicaWeb.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }

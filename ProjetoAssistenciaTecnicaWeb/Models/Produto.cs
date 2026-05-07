@@ -15,17 +15,22 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
 
         public string Condicao { get; set; }
 
+        public Cliente Cliente { get; set; }
+
+        public int ClienteId { get; set; } = 0;
+
         public Produto()
         {
         }
 
-        public Produto(int idProduto, string marca, string modelo, string nSerie, string condicao)
+        public Produto(int idProduto, string marca, string modelo, string nSerie, string condicao, Cliente cliente)
         {
             IdProduto = idProduto;
             Marca = marca;
             Modelo = modelo;
             NSerie  = nSerie;
             Condicao = condicao;
+            Cliente = cliente;
         }
     }
 }
