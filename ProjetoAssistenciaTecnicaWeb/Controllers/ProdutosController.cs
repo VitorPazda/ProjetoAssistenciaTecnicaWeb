@@ -9,9 +9,128 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
     public class ProdutosController : Controller
     {
-        public IActionResult Index()
+        private readonly ProdutoService _produtoService;
+
+        public ProdutosController(ProdutoService produtoService)
+        {
+            _produtoService = produtoService;
+        }
+
+        // GET: Produtos
+        public async Task<IActionResult> Index()
+        {
+            var produto = await _produtoService.FindAllAsync();
+            return View(produto);
+        }
+
+        // GET: Produtos/Create
+        public async Task<IActionResult> Create()
         {
             return View();
+        }
+
+        // POST: Produtos/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Produto produto)
+        {
+            await _produtoService.InsertAsync(produto);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Produtos/Delete
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var produto = await _produtoService.FindByIdAsync(id.Value);
+
+            if (produto == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View(produto);
+        }
+
+        // GET: Produtos/Details
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var produto = await _produtoService.FindByIdAsync(id.Value);
+
+            if (produto == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View(produto);
+        }
+
+        // GET: Produtos/Edit
+        public async Task<IActionResult> Edit(int? id)
+        {
+            // Verificar se Id e nulo
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+            }
+
+            var produto = await _produtoService.FindByIdAsync(id.Value);
+
+            if (produto == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+            }
+
+            return View(produto);
+        }
+
+        // POST: Produtos/Edit
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Produto produto)
+        {
+            if (id != produto.IdProduto)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not mismatch" });
+            }
+            try
+            {
+                await _produtoService.UpdateAsync(produto);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message }); ;
+            }
+        }
+
+        public async Task<IActionResult> Find(string modelo)
+        {
+            var resultado = await _produtoService.FindAsync(modelo);
+            return View(resultado);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

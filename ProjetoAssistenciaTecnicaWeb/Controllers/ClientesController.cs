@@ -9,8 +9,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
     public class ClientesController : Controller
     {
-        private readonly ProjetoAssistenciaTecnicaWebContext _context;
-
         private readonly ClienteService _clienteService;
 
         public ClientesController(ClienteService clienteService)
