@@ -80,7 +80,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task UpdateAsync(OrdemServico obj)
         {
-            bool hasAny = await _context.OrdemServico.AnyAsync(p => p.IdOrdemServico == obj.IdOrdemServico);
+            bool hasAny = await _context.OrdemServico.AnyAsync(ordem => ordem.IdOrdemServico == obj.IdOrdemServico);
 
             if (!hasAny)
             {
