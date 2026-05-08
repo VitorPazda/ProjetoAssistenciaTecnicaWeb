@@ -14,9 +14,20 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             _context = context;
         }
 
+            
         public async Task<List<OrdemServico>> FindAllAsync()
         {
-            return await _context.OrdemServico.Include(o => o.Cliente).ToListAsync();
+           return await _context.OrdemServico.Include(o => o.Cliente).Include(o => o.Produto).ToListAsync();
+        }
+
+        public async Task InsertAsync(OrdemServico ordemServico)
+        {
+            ordemServico.DataAbertura = DateTime.Now;
+            ordemServico.ClienteId = ordemServico.Cliente.IdCliente;
+            ordemServico.ProdutoId = ordemServico.Produto.IdProduto;
+
+            _context.OrdemServico.Add(ordemServico);
+            await _context.SaveChangesAsync();
         }
     }
 }
