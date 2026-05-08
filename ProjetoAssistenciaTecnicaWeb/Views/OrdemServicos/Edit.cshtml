@@ -11,9 +11,25 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <input type="hidden" asp-for="OrdemServico.IdOrdemServico" />
+            <input type="hidden" asp-for="OrdemServico.IdOrdemServico"/>
+            <input type="hidden" asp-for="OrdemServico.Tick"/>
+            <input type="hidden" asp-for="OrdemServico.NumeroAtendimento"/>
+            <input type="hidden" asp-for="OrdemServico.DataAbertura"/>
+            <input type="hidden" asp-for="OrdemServico.IdOrcamentoInicial"/>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrdemServico.ClienteId"></label>
+                <select asp-for="OrdemServico.ClienteId" asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))' class="form-control">
+                    <option value="">Selecione um cliente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrdemServico.ProdutoId"></label>
+                <select asp-for="OrdemServico.ProdutoId" asp-items='@(new SelectList(Model.Produtos, "IdProduto", "Modelo"))' class="form-control">
+                    <option value="">Selecione um produto</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label asp-for="OrdemServico.Defeito" class="control-label"></label>
                 <input asp-for="OrdemServico.Defeito" class="form-control" />
@@ -28,18 +44,6 @@
                 <label asp-for="OrdemServico.Status" class="control-label"></label>
                 <input asp-for="OrdemServico.Status" class="form-control" />
                 <span asp-validation-for="OrdemServico.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrdemServico.ClienteId"></label>
-                <select asp-for="OrdemServico.ClienteId" asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))' class="form-control">
-                    <option value="">Selecione um cliente</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrdemServico.ProdutoId"></label>
-                <select asp-for="OrdemServico.ProdutoId" asp-items='@(new SelectList(Model.Produtos, "IdProduto", "Modelo"))' class="form-control">
-                    <option value="">Selecione um produto</option>
-                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Edit" class="btn btn-primary" />
