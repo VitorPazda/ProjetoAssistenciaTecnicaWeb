@@ -11,8 +11,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
     public class PecasController : Controller
     {
-        private readonly ProjetoAssistenciaTecnicaWebContext _context;
-
         private readonly PecaService _pecaService;
 
         public PecasController(ProjetoAssistenciaTecnicaWebContext context, PecaService pecaService)
