@@ -1,0 +1,71 @@
+﻿@model ProjetoAssistenciaTecnicaWeb.Models.ViewModels.OrdemServicoFormViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.Tick)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.Tick)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.NumeroAtendimento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.NumeroAtendimento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.Defeito)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.Defeito)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.DataAbertura)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.DataAbertura)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.Cliente.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.Cliente.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.Cliente.CPF_CNPJ)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.Cliente.CPF_CNPJ)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.Produto.Marca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.Produto.Marca)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.Produto.Modelo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.Produto.Modelo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.OrdemServico.IdOrdemServico">Edit</a> |
+    <a asp-action="Index">Voltar</a>
+</div>
