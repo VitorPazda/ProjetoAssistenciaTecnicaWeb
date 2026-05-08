@@ -23,10 +23,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
         public async Task InsertAsync(OrdemServico ordemServico)
         {
             ordemServico.DataAbertura = DateTime.Now;
-            ordemServico.ClienteId = ordemServico.Cliente.IdCliente;
-            ordemServico.ProdutoId = ordemServico.Produto.IdProduto;
+            ordemServico.Status = "Pendente";
 
+            // Salvar para gerar Id
             _context.OrdemServico.Add(ordemServico);
+            await _context.SaveChangesAsync();
+
+            ordemServico.Tick = ordemServico.IdOrdemServico;
+            ordemServico.NumeroAtendimento = ordemServico.IdOrdemServico;
+            ordemServico.IdOrcamentoInicial = ordemServico.IdOrdemServico;
+
+            _context.OrdemServico.Update(ordemServico);
             await _context.SaveChangesAsync();
         }
 
@@ -52,7 +59,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
                 resultado = resultado.Where(ordem => ordem.DataAbertura.Date == dataAbertura.Value.Date);
             }
 
-            /*
             else
             {
                 // Retornar as 5 ultimas ordens cadastradas, caso nome numeroAtendimento ou dataAbertura n sejam informadas
@@ -61,7 +67,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
                     .Take(5)
                     .ToListAsync();
             }
-            */
+
             return await resultado.ToListAsync();
         }
 
