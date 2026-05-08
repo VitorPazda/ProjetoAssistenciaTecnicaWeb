@@ -38,6 +38,8 @@
                 <select asp-for="Produto.ClienteId"
                         asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))'
                         class="form-control">
+
+                    <option value="">Selecione um cliente</option>
                 </select>
             </div>
 
