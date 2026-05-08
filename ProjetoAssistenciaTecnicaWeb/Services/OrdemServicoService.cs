@@ -62,5 +62,41 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             }
             return await resultado.ToListAsync();
         }
+
+        public async Task RemoveAsync(int id)
+        {
+            try
+            {
+                var ordemServico = await FindByIdAsync(id);
+
+                _context.OrdemServico.Remove(ordemServico);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new Exception("Can not delete", e);
+            }
+        }
+
+        public async Task UpdateAsync(OrdemServico obj)
+        {
+            bool hasAny = await _context.OrdemServico.AnyAsync(p => p.IdOrdemServico == obj.IdOrdemServico);
+
+            if (!hasAny)
+            {
+                throw new ApplicationException("Id not found");
+            }
+
+            try
+            {
+                _context.Update(obj);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
