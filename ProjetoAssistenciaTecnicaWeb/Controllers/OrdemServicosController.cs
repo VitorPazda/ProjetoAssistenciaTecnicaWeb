@@ -145,7 +145,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
         }
 
-        public async Task<IActionResult> Find(int numeroAtendimento, DateTime dataAbertura)
+        public async Task<IActionResult> Find(int? numeroAtendimento, DateTime? dataAbertura)
         {
             var resultado = await _ordemServicoService.FindAsync(numeroAtendimento, dataAbertura);
             return View(resultado);

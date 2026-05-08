@@ -49,9 +49,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             if (dataAbertura.HasValue)
             {
-                resultado = resultado.Where(ordem => ordem.DataAbertura.Date == dataAbertura.Value.Date );
+                resultado = resultado.Where(ordem => ordem.DataAbertura.Date == dataAbertura.Value.Date);
             }
 
+            /*
             else
             {
                 // Retornar as 5 ultimas ordens cadastradas, caso nome numeroAtendimento ou dataAbertura n sejam informadas
@@ -60,6 +61,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
                     .Take(5)
                     .ToListAsync();
             }
+            */
             return await resultado.ToListAsync();
         }
 

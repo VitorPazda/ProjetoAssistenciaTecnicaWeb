@@ -22,8 +22,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         {
         }
 
-        public OrdemServico(int tick, int numeroAtendimento, string defeito, DateTime dataAbertura, string acessorios, string status, int idOrcamentoInicial, Cliente cliente, Produto produto)
+        public OrdemServico(int idOrdemServico, int tick, int numeroAtendimento, string defeito, DateTime dataAbertura, string acessorios, string status, int idOrcamentoInicial, Cliente cliente, Produto produto)
         {
+            IdOrdemServico = idOrdemServico;
             Tick = tick;
             NumeroAtendimento = numeroAtendimento;
             Defeito = defeito;

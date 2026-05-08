@@ -55,12 +55,16 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
             // Produto 
             Produto produto01 = new Produto(1, "Dell", "G15", "6996", "Placa mãe queimou!", cliente2);
 
+            // OrdemDeServico
+            OrdemServico ordem01 = new OrdemServico(1, 1, 1, "Nao liga", DateTime.Now, "Carregador", "Pendente", 1, cliente2, produto01);
+
             // Add no banco
             _context.Cliente.AddRange(cliente1, cliente2, cliente3, cliente4, cliente5, cliente6);
             _context.Funcionario.AddRange(funcionario1);
             _context.Endereco.AddRange(endereco1, endereco2, endereco3, endereco4, endereco5);
             _context.Peca.AddRange(peca1);
             _context.Produto.AddRange(produto01);
+            _context.OrdemServico.AddRange(ordem01);
 
             _context.SaveChanges();
         }
