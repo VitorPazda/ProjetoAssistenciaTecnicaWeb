@@ -39,6 +39,9 @@ builder.Services.AddScoped<PecaService>();
 // Vincular o ProdutoService
 builder.Services.AddScoped<ProdutoService>();
 
+// Vincular o OrdemServicoService
+builder.Services.AddScoped<OrdemServicoService>();
+
 var app = builder.Build();
 
 // Aqui, caso o projeto esteja rodando de forma de desenvolvimento,ira chamar o seeding service, se nao, ira apresentar o erro
