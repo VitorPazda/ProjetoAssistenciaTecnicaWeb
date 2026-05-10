@@ -1,0 +1,111 @@
+﻿@model ProjetoAssistenciaTecnicaWeb.Models.ViewModels.FuncionarioFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/FuncionariosCreate.css" />
+}
+
+<h1>Create</h1>
+
+<h4>Funcionario</h4>
+<hr />
+<div class="pagina-principal">
+    <div class="pagina">
+        <form asp-action="Create" class="general-infos">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="personal-info">
+                <label asp-for="Funcionario.Nome"></label>
+                <input asp-for="Funcionario.Nome"/>
+                <span asp-validation-for="Funcionario.Nome"></span>
+            </div>
+            <div class="personal-info">
+                <label asp-for="Funcionario.CPF_CNPJ"></label>
+                <input asp-for="Funcionario.CPF_CNPJ"/>
+                <span asp-validation-for="Funcionario.CPF_CNPJ"></span>
+            </div>
+            <div class="personal-info">
+                <label asp-for="Funcionario.Telefone"></label>
+                <input asp-for="Funcionario.Telefone"/>
+                <span asp-validation-for="Funcionario.Telefone"></span>
+            </div>
+            <div class="personal-info">
+                <label asp-for="Funcionario.Email"></label>
+                <input asp-for="Funcionario.Email"/>
+                <span asp-validation-for="Funcionario.Email"></span>
+            </div>
+            <div class="personal-info">
+                <label asp-for="Funcionario.DataNascimento"></label>
+                <input asp-for="Funcionario.DataNascimento"/>
+                <span asp-validation-for="Funcionario.DataNascimento"></span>
+            </div>
+            <div class="linha-endereco">
+                <label asp-for="Endereco.Estado" class="control-label"></label>
+                <input asp-for="Endereco.Estado" class="form-control" />
+                <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
+            </div>
+            <div class="linha-endereco">
+                <div class="campo">
+                    <label asp-for="Endereco.Municipio"></label>
+                    <input asp-for="Endereco.Municipio"/>
+                    <span asp-validation-for="Endereco.Municipio"></span>
+                </div>
+            </div>
+            <div class="linha-cep">
+                <div class="campo">
+                    <label asp-for="Endereco.Cep"></label>
+                    <input asp-for="Endereco.Cep"/>
+                    <span asp-validation-for="Endereco.Cep"></span>
+                </div>
+            </div>
+            <div class="linha-endereco">
+                <div class="campo">
+                    <label asp-for="Endereco.Rua"></label>
+                    <input asp-for="Endereco.Rua"/>
+                    <span asp-validation-for="Endereco.Rua"></span>
+                </div>
+            </div>
+            <div class="linha-endereco">
+                <div class="campo">
+                    <label asp-for="Endereco.Bairro"></label>
+                    <input asp-for="Endereco.Bairro"/>
+                    <span asp-validation-for="Endereco.Bairro"></span>
+                </div>
+            </div>
+            <div class="linha-endereco">
+                <div class="campo">
+                    <label asp-for="Endereco.Complemento"></label>
+                    <input asp-for="Endereco.Complemento"/>
+                    <span asp-validation-for="Endereco.Complemento"></span>
+                </div>
+            </div>
+            <div class="linha-endereco">
+                <div class="campo>"
+                    <label asp-for="Endereco.NCasa" class="control-label"></label>
+                    <input asp-for="Endereco.NCasa" class="form-control" />
+                    <span asp-validation-for="Endereco.NCasa" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="pagina-cargo">
+                <label asp-for="Funcionario.Categoria"></label>
+                <input asp-for="Funcionario.Categoria"/>
+                <span asp-validation-for="Funcionario.Categoria"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
