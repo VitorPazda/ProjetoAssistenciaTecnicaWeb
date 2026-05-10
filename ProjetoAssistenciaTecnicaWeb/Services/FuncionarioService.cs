@@ -27,9 +27,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             funcionario.DataCadastro = DateTime.Now;
             funcionario.EnderecoId = endereco.IdEndereco;
-            funcionario.CodigoFuncionario = funcionario.IdFuncionario;
 
             _context.Funcionario.Add(funcionario);
+            await _context.SaveChangesAsync();
+
+            funcionario.CodigoFuncionario = funcionario.IdFuncionario;
+            _context.Funcionario.Update(funcionario);
             await _context.SaveChangesAsync();
         }
 
