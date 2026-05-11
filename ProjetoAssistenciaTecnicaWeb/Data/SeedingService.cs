@@ -1,5 +1,6 @@
 ﻿using NuGet.Protocol.Plugins;
 using ProjetoAssistenciaTecnicaWeb.Models;
+using ProjetoAssistenciaTecnicaWeb.Services;
 
 namespace ProjetoAssistenciaTecnicaWeb.Data
 {
@@ -57,6 +58,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
 
             // OrdemDeServico
             OrdemServico ordem01 = new OrdemServico(1, 1, 1, "Nao liga", DateTime.Now, "Carregador", "Pendente", 1, cliente2, produto01);
+
+            // Orcamento
+            Orcamento orcamento01 = new Orcamento(1, 1, 20);
 
             // Add no banco
             _context.Cliente.AddRange(cliente1, cliente2, cliente3, cliente4, cliente5, cliente6);

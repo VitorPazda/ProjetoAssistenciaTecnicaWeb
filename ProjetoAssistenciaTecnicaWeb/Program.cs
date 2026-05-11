@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoAssistenciaTecnicaWeb.Data;
+using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +42,9 @@ builder.Services.AddScoped<ProdutoService>();
 
 // Vincular o OrdemServicoService
 builder.Services.AddScoped<OrdemServicoService>();
+
+// Vincular o OrcamentoService
+builder.Services.AddScoped<OrcamentoService>();
 
 var app = builder.Build();
 
