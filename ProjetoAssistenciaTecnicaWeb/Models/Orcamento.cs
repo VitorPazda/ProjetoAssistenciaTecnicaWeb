@@ -7,14 +7,14 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Key]
         public int IdOrcamento { get; set; }
 
-        public string CodigoOrcamento { get; set; }
+        public int CodigoOrcamento { get; set; }
         
         public double Valor {  get; set; }
         public Orcamento()
         {
         }
 
-        public Orcamento(int idOrcamento, string codigoOrcamento, double valor)
+        public Orcamento(int idOrcamento, int codigoOrcamento, double valor)
         {
             IdOrcamento = idOrcamento;
             CodigoOrcamento = codigoOrcamento;
