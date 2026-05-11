@@ -20,5 +20,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
         public DbSet<Peca> Peca { get; set; }
         public DbSet<Produto> Produto { get; set; }
         public DbSet<OrdemServico> OrdemServico { get; set; }
+        public DbSet<Orcamento> Orcamento { get; set; }
     }
 }
