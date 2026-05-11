@@ -9,36 +9,36 @@ using System.Diagnostics;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
-    public class PecasController : Controller
+    public class OrcamentosController : Controller
     {
-        private readonly PecaService _pecaService;
+        private readonly OrcamentoService _orcamentoService;
 
-        public PecasController(ProjetoAssistenciaTecnicaWebContext context, PecaService pecaService)
+        public OrcamentosController(ProjetoAssistenciaTecnicaWebContext context, OrcamentoService orcamentoService)
         {
-            _pecaService = pecaService;
+            _orcamentoService = orcamentoService;
         }
 
-        // GET: Pecas
+        // GET: Orcamentos
         public async Task<IActionResult> Index()
         {
-            var peca = await _pecaService.FindAllAsync();
-            return View(peca);
+            var orcamento = await _orcamentoService.FindAllAsync();
+            return View(orcamento);
         }
 
-        // GET: Pecas/Create
+        // GET: Orcamentos/Create
         public async Task<IActionResult> Create()
         {
             return View();
         }
 
-        // POST: Pecas/Create
+        // POST: Orcamentos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Peca peca)
+        public async Task<IActionResult> Create(Orcamento orcamento)
         {
-            await _pecaService.InsertAsync(peca);
+            await _orcamentoService.InsertAsync(orcamento);
             return RedirectToAction(nameof(Index));
         }
 
@@ -50,30 +50,32 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var peca = await _pecaService.FindByIdAsync(id.Value);
+            var orcamento = await _orcamentoService.FindByIdAsync(id.Value);
 
-            if (peca == null)
+            if (orcamento == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
-            return View(peca);
+
+            return View(orcamento);
         }
 
-        // POST: Pecas/Delete
+        // POST: Orcamentos/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var peca = await _pecaService.FindByIdAsync(id);
+            var orcamento = await _orcamentoService.FindByIdAsync(id);
 
-            if (peca != null)
+            if (orcamento != null)
             {
-                await _pecaService.RemoveAsync(id);
+                await _orcamentoService.RemoveAsync(id);
             }
+
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Pecas/Details
+        // GET: Orcamentos/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -81,17 +83,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var peca = await _pecaService.FindByIdAsync(id.Value);
+            var orcamento = await _orcamentoService.FindByIdAsync(id.Value);
 
-            if (peca == null)
+            if (orcamento == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
-            return View(peca);
+            return View(orcamento);
         }
 
-        // GET: Pecas/Edit
+        // GET: Orcamentos/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             // Verificar se Id e nulo
@@ -100,30 +102,29 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var peca = await _pecaService.FindByIdAsync(id.Value);
+            var orcamento = await _orcamentoService.FindByIdAsync(id.Value);
 
-            if (peca == null)
+            if (orcamento == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
-
-            return View(peca);
+            return View(orcamento);
         }
 
-        // POST: Pecas/Edit
+        // POST: Orcamentos/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Peca peca)
+        public async Task<IActionResult> Edit(int id, Orcamento orcamento)
         {
-            if (id != peca.IdPeca)
+            if (id != orcamento.IdOrcamento)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not mismatch" });
             }
             try
             {
-                await _pecaService.UpdateAsync(peca);
+                await _orcamentoService.UpdateAsync(orcamento);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)
@@ -132,9 +133,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             }
         }
 
-        public async Task<IActionResult> Find(string descricao)
+        public async Task<IActionResult> Find(int? codigo)
         {
-            var resultado = await _pecaService.FindAsync(descricao);
+            var resultado = await _orcamentoService.FindAsync(codigo.Value);
             return View(resultado);
         }
 
