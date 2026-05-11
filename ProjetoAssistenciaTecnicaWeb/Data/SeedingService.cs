@@ -69,7 +69,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
             _context.Peca.AddRange(peca1);
             _context.Produto.AddRange(produto01);
             _context.OrdemServico.AddRange(ordem01);
-
+            _context.Orcamento.AddRange(orcamento01);
             _context.SaveChanges();
         }
     }

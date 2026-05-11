@@ -135,7 +135,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
 
         public async Task<IActionResult> Find(int? codigo)
         {
-            var resultado = await _orcamentoService.FindAsync(codigo.Value);
+            var resultado = await _orcamentoService.FindAsync(codigo);
             return View(resultado);
         }
 
