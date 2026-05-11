@@ -43,28 +43,29 @@
                 <span asp-validation-for="Cliente.DataNascimento" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Endereco.Cep" class="control-label"></label>
+                <input asp-for="Endereco.Cep" id="cep" class="form-control" />
+                <button type="button" id="buscarCep" class="btn btn-primary">Buscar</button>
+                <span asp-validation-for="Endereco.Cep" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Endereco.Estado" class="control-label"></label>
-                <input asp-for="Endereco.Estado" class="form-control" />
+                <input asp-for="Endereco.Estado" id="estado" class="form-control" />
                 <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Endereco.Municipio" class="control-label"></label>
-                <input asp-for="Endereco.Municipio" class="form-control" />
+                <input asp-for="Endereco.Municipio" id="cidade" class="form-control" />
                 <span asp-validation-for="Endereco.Municipio" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Endereco.Cep" class="control-label"></label>
-                <input asp-for="Endereco.Cep" class="form-control" />
-                <span asp-validation-for="Endereco.Cep" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Endereco.Rua" class="control-label"></label>
-                <input asp-for="Endereco.Rua" class="form-control" />
+                <input asp-for="Endereco.Rua" id="rua" class="form-control" />
                 <span asp-validation-for="Endereco.Rua" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Endereco.Bairro" class="control-label"></label>
-                <input asp-for="Endereco.Bairro" class="form-control" />
+                <input asp-for="Endereco.Bairro" id="bairro" class="form-control" />
                 <span asp-validation-for="Endereco.Bairro" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -89,7 +90,45 @@
 </div>
 
 @section Scripts {
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>
+
+        document.getElementById("buscarCep")
+            .addEventListener("click", function () {
+
+            let cep = document.getElementById("cep")
+                .value
+                .replace(/\D/g, '');
+
+            if (cep.length != 8) {
+                alert("CEP inválido");
+                return;
+            }
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+
+                    if (data.erro) {
+                        alert("CEP não encontrado");
+                        return;
+                    }
+
+                    document.getElementById("rua").value = data.logradouro;
+                    document.getElementById("bairro").value = data.bairro;
+                    document.getElementById("cidade").value = data.localidade;
+                    document.getElementById("estado").value = data.uf;
+
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+        });
+
+    </script>
 }
