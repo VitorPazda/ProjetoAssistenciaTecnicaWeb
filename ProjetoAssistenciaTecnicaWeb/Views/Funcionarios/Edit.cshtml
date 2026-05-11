@@ -44,6 +44,11 @@
                 <span asp-validation-for="Funcionario.DataNascimento" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Funcionario.Categoria" class="control-label"></label>
+                <input asp-for="Funcionario.Categoria" class="form-control" />
+                <span asp-validation-for="Funcionario.Categoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Endereco.Cep" class="control-label"></label>
                 <input asp-for="Endereco.Cep" id="cep" class="form-control" />
                 <button type="button" id="buscarCep" class="btn btn-primary">Buscar</button>
@@ -78,11 +83,6 @@
                 <label asp-for="Endereco.NCasa" class="control-label"></label>
                 <input asp-for="Endereco.NCasa" class="form-control" />
                 <span asp-validation-for="Endereco.NCasa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Funcionario.Categoria" class="control-label"></label>
-                <input asp-for="Funcionario.Categoria" class="form-control" />
-                <span asp-validation-for="Funcionario.Categoria" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Edit" class="btn btn-primary" />
