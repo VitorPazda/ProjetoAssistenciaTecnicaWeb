@@ -10,22 +10,22 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [DataType(DataType.Text)]
-        public string Nome { get; set; }
+        public string Nome { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(13, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "CPF")]
         [DataType(DataType.Text)]
-        public string CPF_CNPJ {get; set; }
-        
+        public string CPF_CNPJ { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(12, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [DataType(DataType.PhoneNumber)]
-        public string Telefone { get; set; }
+        public string Telefone { get; set; } = string.Empty;
 
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [Display(Name = "Data Nascimento")]
@@ -36,7 +36,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Data Cadastro")]
         [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; }
-        
+
         [Required(ErrorMessage = "{0} é obrigatório")]
         public int EnderecoId { get; set; }
         public Endereco Endereco { get; set; }
