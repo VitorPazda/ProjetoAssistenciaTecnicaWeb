@@ -44,7 +44,6 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             return await resultado.ToListAsync();
         }
-
         public async Task RemoveAsync(int id)
         {
             try
