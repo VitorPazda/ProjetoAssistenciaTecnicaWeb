@@ -17,7 +17,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Valor de Compra")]
         [DataType(DataType.Currency)]
         [DisplayFormat(DataFormatString = "{0:C2}")]
-        public double Valor {  get; set; }
+        public double Valor { get; set; }
         public Orcamento()
         {
         }
