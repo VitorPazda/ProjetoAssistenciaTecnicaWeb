@@ -16,7 +16,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(300, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [DataType(DataType.Text)]
-        public string Defeito { get; set; }
+        public string Defeito { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [Display(Name = "Data Abertura")]
@@ -26,8 +26,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [StringLength(300, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Acessórios")]
         [DataType(DataType.Text)]
-        public string Acessorios { get; set; }
-        public string Status { get; set; }
+        public string Acessorios { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
 
         [Display(Name = "ID Orçamento Inicial")]
         public int IdOrcamentoInicial { get; set; }

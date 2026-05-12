@@ -24,7 +24,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Descrição")]
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "{0} required")]
         [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e 1")]
