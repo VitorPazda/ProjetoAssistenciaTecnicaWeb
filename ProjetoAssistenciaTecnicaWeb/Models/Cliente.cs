@@ -9,11 +9,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
+        [DataType(DataType.Text)]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(13, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "CPF")]
+        [DataType(DataType.Text)]
         public string CPF_CNPJ {get; set; }
         
         [Required(ErrorMessage = "{0} é obrigatório")]

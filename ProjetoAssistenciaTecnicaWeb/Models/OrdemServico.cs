@@ -7,13 +7,35 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Key]
         public int IdOrdemServico { get; set; }
         public int Tick { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Número do Atendimento")]
+        [DataType(DataType.Text)]
         public int NumeroAtendimento { get; set; }
+
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [StringLength(300, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
+        [DataType(DataType.Text)]
         public string Defeito { get; set; }
+
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [Display(Name = "Data Abertura")]
+        [DataType(DataType.Date)]
         public DateTime DataAbertura { get; set; }
+
+        [StringLength(300, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
+        [Display(Name = "Acessórios")]
+        [DataType(DataType.Text)]
         public string Acessorios { get; set; }
         public string Status { get; set; }
+
+        [Display(Name = "ID Orçamento Inicial")]
         public int IdOrcamentoInicial { get; set; }
+
+        [Display(Name = "Cliente")]
         public Cliente Cliente { get; set; }
+
+        [Display(Name = "Cliente")]
         public int ClienteId { get; set; }
         public Produto Produto { get; set; }
         public int ProdutoId { get; set; }

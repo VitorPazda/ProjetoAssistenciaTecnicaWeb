@@ -7,6 +7,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Key]
         public int IdOrcamento { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Código Orçamento")]
+        [DataType(DataType.Text)]
         public int CodigoOrcamento { get; set; }
 
         [Required(ErrorMessage = "{0} required")]
