@@ -8,55 +8,82 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProjetoAssistenciaTecnicaWeb.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProjetoAssistenciaTecnicaWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+        <div class="layout">
+
+            <aside class="sidebar" id="sidebar">
+
+                <button type="button" class="toggle-btn" id="toggleSidebar" >
+                <span class="material-symbols-outlined">
+                    menu_open
+                </span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index" accesskey="c">Cliente</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Funcionarios" asp-action="Index" accesskey="f">Funcionarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pecas" asp-action="Index" accesskey="p">Pecas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Index" accesskey="r">Produtos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="OrdemServicos" asp-action="Index" accesskey="o">Ordem de Servico</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Orcamentos" asp-action="Index" accesskey="a">Orçamentos</a>
-                        </li>
-                    </ul>
+
+                <div class="logo">
+                    <span class="menu-title" >MENU</span>
                 </div>
-            </div>
-        </nav>
-    </header>
+
+                <ul class="nav flex-column">
+
+                    <!-- CADASTRO -->
+                    <li class="nav-item">
+                        <a class="nav-link"
+                               data-bs-toggle="collapse"
+                               href="#Cadastro"
+                               data-bs-title="Cadastro">
+
+                            <span class="menu-icon">C</span>
+                            <span class="menu-icon">C</span>
+                            <span class="menu-text">Cadastro</span>
+                            <span class="arrow">▾</span>
+                        </a>
+
+                        <div class="collapse submenu" id="Cadastro">
+                            <ul class="nav flex-column">
+                                <li><a asp-controller="Funcionarios" asp-action="Index" class="nav-link submenu-link">Funcionários</a></li>
+                                <li><a asp-controller="Home" asp-action="Clientes" class="nav-link submenu-link">Clientes</a></li>
+                                <li><a asp-controller="Home" asp-action="OrdemServicos" class="nav-link submenu-link">Ordem de Serviços</a></li>
+                                <li><a asp-controller="Home" asp-action="Pecas" class="nav-link submenu-link">Peças</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- VENDAS -->
+                    <li class="nav-item">
+                        <a class="nav-link"
+                               data-bs-toggle="collapse"
+                               href="#Vendas"
+                               data-bs-title="Vendas">
+
+                            <span class="menu-icon">V</span>
+                            <span class="menu-text">Vendas</span>
+                            <span class="arrow">▾</span>
+                        </a>
+
+                        <div class="collapse submenu" id="Vendas">
+                            <ul class="nav flex-column">
+                                <li><a href="orcamentos.html" class="nav-link submenu-link">Orçamentos</a></li>
+                                <li><a href="pedidos.html" class="nav-link submenu-link">Pedidos</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </aside>
+
+            <main class="conteudo-principal">
+                <iframe id="areaPagina" src="" frameborder="0"></iframe>
+            </main>
+
+        </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - ProjetoAssistenciaTecnicaWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -1,26 +1,16 @@
 ﻿@model ProjetoAssistenciaTecnicaWeb.Models.ViewModels.FuncionarioFormViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-@section Styles {
-    <link rel="stylesheet" href="~/css/FuncionariosEdit.css" />
-}
-
-<h1>Edit</h1>
+<h1>Create</h1>
 
 <h4>Funcionario</h4>
-<hr/>
+<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
-            <input type="hidden" asp-for="Funcionario.IdFuncionario"/>
-            <input type="hidden" asp-for="Funcionario.EnderecoId"/>
-            <input type="hidden" asp-for="Funcionario.DataCadastro"/>
-            <input type="hidden" asp-for="Funcionario.CodigoFuncionario"/>
-            <input type="hidden" asp-for="Endereco.IdEndereco"/>
-            
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Funcionario.Nome" class="control-label"></label>
@@ -89,7 +79,7 @@
                 <span asp-validation-for="Endereco.NCasa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </form>
     </div>
