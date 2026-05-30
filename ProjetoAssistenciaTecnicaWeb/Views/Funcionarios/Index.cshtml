@@ -10,14 +10,12 @@
 
     <div class="pagina_menus">
 
-        <h1 class="titulo">Pesquisa</h1>
+        <h1 class="titulo">Funcionários</h1>
 
         <div class="botoes-menus">
             <a asp-action="Create" class="botao-salvar">Criar Novo</a>
-            <a asp-action="Edit" class="botao-editar">Editar</a>
-            <a asp-action="Delete" class="botao-deletar">Deletar</a>
         </div>
-        <form class="formulario">
+        <form class="formulario" asp-action="Find">
 
             <div class="general-infos">
 

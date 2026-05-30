@@ -6,42 +6,37 @@ ViewData["Title"] = "Pesquisa";
     <link rel="stylesheet" href="~/css/ClientesIndex.css" />
 }
 
+<div class="pagina-principal">
+
     <div class="pagina_menus">
 
         <h1 class="titulo">Clientes</h1>
 
         <div class="botoes-menus">
             <a asp-action="Create" class="botao-salvar">Criar Novo</a>
-            <a asp-action="Edit" class="botao-editar">Editar</a>
-            <a asp-action="Delete" class="botao-deletar">Deletar</a>
         </div>
+        <form class="formulario" asp-action="Find">
 
-            <form class="formulario" asp-action="Find">
-                <fieldset>
-                    <legend>Busca</legend>
-                    <div class="general-infos">
+            <div class="general-infos">
 
-                        <div class="filtro-infos">
-                            <label for="nome">Nome</label>
-                            <input type="text" name="nome"/>
-                        </div>
+                <div class="filtro-infos">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome">
+                </div>
 
+                <div class="filtro-infos">
+                    <label for="CPF">CPF:</label>
+                    <input type="text" id="cpf">
+                </div>
 
-                        <div class="filtro-infos">
-                            <label for="nome">CPF</label>
-                            <input type="text" name="cpf" />
-                        </div>
+                <div class="filtro-infos">
+                     <label for="nome">Telefone</label>
+                     <input type="text" name="telefone"/>
+                </div>
+             </div>
 
-
-                        <div class="filtro-infos">
-                             <label for="nome">Telefone</label>
-                            <input type="text" name="telefone"/>
-                        </div>
-                    </div>
-
-                    <div>
-                      <button type="submit"class="botao-filtro">Buscar</button>
-                    </div>
-                </fieldset>
-            </form>
+             <div>
+                  <button type="submit"class="botao-filtro">Buscar</button>
+              </div>
+        </form>
     </div>

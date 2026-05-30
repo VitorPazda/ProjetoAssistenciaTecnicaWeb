@@ -1,9 +1,11 @@
+/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ===== BODY ===== */
 body {
     background-color: #181818;
     font-family: Arial, sans-serif;
@@ -16,116 +18,149 @@ body {
 }
 
 
-.pagina-principal {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-
-.pagina,
-.pagina-cargo {
+/* ===== CONTAINER PRINCIPAL ===== */
+.pagina_menus {
+    width: 100%;
+    max-width: 600px;
     background-color: #181818;
-    width: 45%;
-    padding: 20px;
+    padding: 35px;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
-
-.formulario,
-.formulario-cargo {
-    width: 100%;
+/* ===== TÍTULO ===== */
+.titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: white;
 }
 
-
-.general-infos,
-.general-infos-cargo {
+/* ===== BOTÕES MENU ===== */
+.botoes-menus {
     display: flex;
-    flex-direction: column;
     gap: 15px;
+    margin-bottom: 35px;
+    width: 100%;
 }
 
+.botao-salvar,
+.botao-editar,
+.botao-deletar {
+    flex: 1;
+    padding: 14px;
+    border-radius: 10px;
+    background: #0b3d1b;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    text-align: center;
+}
 
-.personal-info,
-.cargo-info {
+    .botao-salvar:hover,
+    .botao-editar:hover,
+    .botao-deletar:hover {
+        background: #145c2b;
+        transform: translateY(-2px);
+    }
+
+/* ===== FORMULÁRIO ===== */
+.formulario {
+    width: 100%;
+}
+
+/* ===== FIELDSET ===== */
+fieldset {
+    padding: 25px;
+    background-color: #181818;
+}
+
+legend {
+    padding: 0 10px;
+    color: #d4d4d4;
+    font-size: 1.1rem;
+}
+
+/* ===== GRID FILTROS ===== */
+.general-infos {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 20px;
+    margin-bottom: 25px;
 }
 
-input,
-select {
+/* ===== CAMPOS ===== */
+.filtro-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .filtro-infos label {
+        color: #d4d4d4;
+        font-size: 0.95rem;
+    }
+
+/* ===== INPUTS ===== */
+input {
     width: 100%;
-    height: 35px;
-    padding: 6px 10px;
+    height: 40px;
+    padding: 8px 12px;
     background-color: #2a2a2a;
     color: white;
     border-radius: 10px;
     border: none;
+    transition: 0.3s;
 }
 
-.linha-endereco {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
+    input:focus {
+        outline: none;
+        background-color: #333;
+        box-shadow: 0 0 0 2px #0b3d1b;
+    }
 
-.linha-cep {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 10px;
-    align-items: end;
-}
-
-.campo {
-    display: flex;
-    flex-direction: column;
-}
-
-.botao-cep {
-    padding: 8px 15px;
+/* ===== BOTÃO FILTRAR ===== */
+.botao-filtro {
+    width: 100%;
+    padding: 12px;
     border-radius: 10px;
     background: #0b3d1b;
     color: white;
     border: none;
     cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
-.botoes{
-    display:flex;
-    justify-content: space-evenly;
+    .botao-filtro:hover {
+        background: #145c2b;
+        transform: scale(1.01);
+    }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .pagina_menus {
+        padding: 25px;
+    }
+
+    .general-infos {
+        grid-template-columns: 1fr;
+    }
+
+    .botoes-menus {
+        flex-direction: column;
+    }
+
+    .titulo {
+        font-size: 2rem;
+    }
 }
-
-.botao-salvar {
-    padding: 8px 80px;
-    border-radius: 10px;
-    background: #0b3d1b;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.botao-editar {
-    padding: 8px 30px;
-    border-radius: 10px;
-    background: #0b3d1b;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.botao-deletar {
-    padding: 8px 30px;
-    border-radius: 10px;
-    background: #0b3d1b;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-
