@@ -1,0 +1,129 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    background-color: #181818;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+    /* ===== CONTAINER ===== */
+    .pagina{
+        width: 100%;
+        max-width: 900px;
+        background-color: #181818;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(0,0,0,.5);
+    }
+
+/* ===== TÍTULOS ===== */
+h1 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+h4 {
+    margin-bottom: 15px;
+}
+
+hr {
+    border: 1px solid #2a2a2a;
+    margin-bottom: 25px;
+}
+
+/* ===== DADOS ===== */
+dl.row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+    dl.row dt {
+        color: #cfcfcf;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    dl.row dd {
+        margin: 0;
+        padding: 12px;
+        background-color: #2a2a2a;
+        border: 1px solid #333;
+        border-radius: 8px;
+        color: white;
+    }
+
+/* ===== FORM ===== */
+form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ===== BOTÃO EXCLUIR ===== */
+.btn-danger {
+    background-color: #dc3545 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    height: 45px;
+    padding: 0 25px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+    .btn-danger:hover {
+        background-color: #bb2d3b !important;
+    }
+
+/* ===== LINK ===== */
+a {
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+}
+
+    a:hover {
+        color: #cccccc;
+    }
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px;
+    }
+
+        body > div {
+            padding: 20px;
+        }
+
+    dl.row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-danger {
+        width: 100%;
+    }
+}
