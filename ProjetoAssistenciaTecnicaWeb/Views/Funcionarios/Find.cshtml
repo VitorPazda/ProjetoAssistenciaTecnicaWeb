@@ -4,33 +4,37 @@
     ViewData["Title"] = "Busca";
 }
 
-<h2>@ViewData["Title"]</h2>
+@section Styles {
+    <link rel="stylesheet" href="~/css/ClientesBuscar.css" />
+}
+<div class="pagina-principal">
+    <div class="pagina-menus">
 
-<p>
-    <a asp-action="Create">Criar Novo</a>
-</p>
+        <h1 class="titulo">Funcionários</h1>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <div class="form-group">
+        <div class="botoes-menus">
+            <a asp-action="Create" class="botao-salvar">Criar Novo</a>
+        </div>
+
+        <form class="formulario" role="search">
+            <div class="general-infos">
+                <div class="filtro-infos">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome" value=@ViewData["nome"] />
+                    <input type="text" name="nome" value=@ViewData["nome"] />
                 </div>
-                <div class="form-group">
-                    <label for="nome">CPF/CNPJ</label>
-                    <input type="text" class="form-control" name="cpf" value=@ViewData["cpf"] />
+                <div class="filtro-infos">
+                    <label for="nome">CPF</label>
+                    <input type="text" name="cpf" value=@ViewData["cpf"] />
                 </div>
-                <div class="form-group">
+                <div class="filtro-infos">
                     <label for="nome">Telefone</label>
-                    <input type="text" class="form-control" name="telefone" value=@ViewData["telefone"] />
+                    <input type="text" name="telefone" value=@ViewData["telefone"] />
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Filtrar</button>
+            <button type="submit" class="botao-buscar">Filtrar</button>
         </form>
     </div>
-</nav>
+</div>
 <div class="panel panel-primary">
     <div class="panel-body">
         <table class="table table-striped table-hover">
