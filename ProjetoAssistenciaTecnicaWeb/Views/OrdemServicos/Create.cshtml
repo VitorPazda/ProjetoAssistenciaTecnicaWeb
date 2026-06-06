@@ -3,46 +3,54 @@
 @{
     ViewData["Title"] = "Create";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/OrdemCreate.css" />
+}
 
-<h1>Create</h1>
-
-<h4>Ordem de Serviço</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+
+<div class="pagina-principal">
+    <div class="pagina">
+
+    <h4>Nova Ordem</h4>
+
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="OrdemServico.Defeito" class="control-label"></label>
-                <input asp-for="OrdemServico.Defeito" class="form-control" />
-                <span asp-validation-for="OrdemServico.Defeito" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrdemServico.Acessorios" class="control-label"></label>
-                <input asp-for="OrdemServico.Acessorios" class="form-control" />
-                <span asp-validation-for="OrdemServico.Acessorios" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrdemServico.ClienteId"></label>
-                <select asp-for="OrdemServico.ClienteId" asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))' class="form-control">
-                    <option value="">Selecione um cliente</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrdemServico.ProdutoId"></label>
-                <select asp-for="OrdemServico.ProdutoId" asp-items='@(new SelectList(Model.Produtos, "IdProduto", "Modelo"))' class="form-control">
-                    <option value="">Selecione um produto</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="general-infos">
+
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.Defeito" class="control-label"></label>
+                    <input asp-for="OrdemServico.Defeito" class="form-control" />
+                    <span asp-validation-for="OrdemServico.Defeito" class="text-danger"></span>
+                </div>
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.Acessorios" class="control-label"></label>
+                    <input asp-for="OrdemServico.Acessorios" class="form-control" />
+                    <span asp-validation-for="OrdemServico.Acessorios" class="text-danger"></span>
+                </div>
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.ClienteId"></label>
+                    <select asp-for="OrdemServico.ClienteId" asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))' class="form-control">
+                        <option value="">Selecione um cliente</option>
+                    </select>
+                </div>
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.ProdutoId"></label>
+                    <select asp-for="OrdemServico.ProdutoId" asp-items='@(new SelectList(Model.Produtos, "IdProduto", "Modelo"))' class="form-control">
+                        <option value="">Selecione um produto</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar Ordem" class="btn-primary" />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Voltar</a>
+<div class="voltar">
+    <a asp-action="Index">← Voltar para a lista</a>
 </div>
 
 @section Scripts {

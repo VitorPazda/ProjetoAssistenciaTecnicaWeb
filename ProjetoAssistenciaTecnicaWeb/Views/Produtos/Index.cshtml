@@ -1,30 +1,30 @@
 ﻿﻿@{
     ViewData["Title"] = "Pesquisa";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/ProdutoIndex.css" />
+}
 
-<h2>@ViewData["Title"]</h2>
+<div class="pagina-principal">
 
-<p>
-    <a asp-action="Create">Criar Novo</a>
-</p>
+    <div class="pagina_menus">
 
-<div class="row">
-    <div class="col-md-6">
-        <form class="form-horizontal" asp-action="Find">
-            <fieldset>
-                <legend>Busca</legend>
-                <div class="form-group">
-                    <label for="nome" class="col-lg-2 control-label">Modelo</label>
-                    <div class="col-lg-10">
-                        <input type="text" name="descricao" class="form-control" />
-                    </div>
+        <h1 class="titulo">Podutos</h1>
+
+        <div class="botoes-menus">
+            <a asp-action="Create" class="botao-salvar">Criar Novo</a>
+        </div>
+
+        <form class="formulario" asp-action="Find">
+            <div class="general-infos">
+                <div class="filtro-infos">
+                    <label for="nome">Modelo</label>
+                     <input type="text" name="descricao"/>
                 </div>
-                <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Filtrar</button>
-                    </div>
+                <div>
+                    <button type="submit" class="botao-filtro">Buscar</button>
                 </div>
-            </fieldset>
+            </div>
         </form>
     </div>
 </div>

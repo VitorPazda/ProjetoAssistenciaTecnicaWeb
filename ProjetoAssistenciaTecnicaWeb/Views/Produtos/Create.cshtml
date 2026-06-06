@@ -4,51 +4,58 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/ClientesCreate.css" />
+}
 
-<h4>Cliente</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="pagina-principal">
+    <div class="pagina">
+
+        <h4>Novo Produto</h4>
+
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Produto.Marca" class="control-label"></label>
-                <input asp-for="Produto.Marca" class="form-control" />
-                <span asp-validation-for="Produto.Marca" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Produto.Modelo" class="control-label"></label>
-                <input asp-for="Produto.Modelo" class="form-control" />
-                <span asp-validation-for="Produto.Modelo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Produto.NSerie" class="control-label"></label>
-                <input asp-for="Produto.NSerie" class="form-control" />
-                <span asp-validation-for="Produto.NSerie" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Produto.Condicao" class="control-label"></label>
-                <input asp-for="Produto.Condicao" class="form-control" />
-                <span asp-validation-for="Produto.Condicao" class="text-danger"></span>
-            </div>
+            <div class="general-infos">
 
-            <div class="form-group">
-                <label asp-for="Produto.ClienteId"></label>
-                <select asp-for="Produto.ClienteId" asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))' class="form-control">
-                    <option value="">Selecione um cliente</option>
-                </select>
-            </div>
+                <div class="personal-info">
+                    <label asp-for="Produto.Marca" class="control-label"></label>
+                    <input asp-for="Produto.Marca" class="form-control" />
+                    <span asp-validation-for="Produto.Marca" class="text-danger"></span>
+                </div>
+                <div class="personal-info">
+                    <label asp-for="Produto.Modelo" class="control-label"></label>
+                    <input asp-for="Produto.Modelo" class="form-control" />
+                    <span asp-validation-for="Produto.Modelo" class="text-danger"></span>
+                </div>
+                <div class="personal-info">
+                    <label asp-for="Produto.NSerie" class="control-label"></label>
+                    <input asp-for="Produto.NSerie" class="form-control" />
+                    <span asp-validation-for="Produto.NSerie" class="text-danger"></span>
+                </div>
+                <div class="personal-info">
+                    <label asp-for="Produto.Condicao" class="control-label"></label>
+                    <input asp-for="Produto.Condicao" class="form-control" />
+                    <span asp-validation-for="Produto.Condicao" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="personal-info">
+                    <label asp-for="Produto.ClienteId"></label>
+                    <select asp-for="Produto.ClienteId" asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))' class="form-control">
+                        <option value="">Selecione um cliente</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Salvar Produto" class="btn-primary" />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Voltar</a>
+<div class="voltar">
+    <a asp-action="Index">← Voltar para a lista</a>
 </div>
 
 @section Scripts {
