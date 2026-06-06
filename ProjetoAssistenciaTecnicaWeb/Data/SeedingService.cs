@@ -1,6 +1,4 @@
-﻿using NuGet.Protocol.Plugins;
-using ProjetoAssistenciaTecnicaWeb.Models;
-using ProjetoAssistenciaTecnicaWeb.Services;
+﻿using ProjetoAssistenciaTecnicaWeb.Models;
 
 namespace ProjetoAssistenciaTecnicaWeb.Data
 {
@@ -62,6 +60,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
             // Orcamento
             Orcamento orcamento01 = new Orcamento(1, 1, 20);
 
+            // Usuario
+            Usuario usuario01 = new Usuario(1, "32131231", "admin123", funcionario1);
+
             // Add no banco
             _context.Cliente.AddRange(cliente1, cliente2, cliente3, cliente4, cliente5, cliente6);
             _context.Funcionario.AddRange(funcionario1);
@@ -70,6 +71,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
             _context.Produto.AddRange(produto01);
             _context.OrdemServico.AddRange(ordem01);
             _context.Orcamento.AddRange(orcamento01);
+            _context.Usuario.AddRange(usuario01);
             _context.SaveChanges();
         }
     }

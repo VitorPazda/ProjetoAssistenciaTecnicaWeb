@@ -9,10 +9,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public int IdUsuario { get; set; }
         [Required]
         public string Cpf { get; set; }
-
         [Required]
         public string Senha { get; set; }
-
         public int FuncionarioId { get; set; }
         public Funcionario Funcionario { get; set; }
         public Usuario()

@@ -46,6 +46,9 @@ builder.Services.AddScoped<OrdemServicoService>();
 // Vincular o OrcamentoService
 builder.Services.AddScoped<OrcamentoService>();
 
+// Vincular o UsuarioService
+builder.Services.AddScoped<UsuarioService>();
+
 var app = builder.Build();
 
 // Aqui, caso o projeto esteja rodando de forma de desenvolvimento,ira chamar o seeding service, se nao, ira apresentar o erro
