@@ -106,14 +106,15 @@ body {
 
 /* SUBMENU */
 .submenu {
-    background: #1b2e1c;
+   background: #1b2e1c;
 }
 
-    .submenu .submenu-link {
-        padding-left: 44px; /* alinhamento visual do submenu quando expandido */
-        font-size: 14px;
-        color: #e7eef2;
-    }
+.submenu .submenu-link {
+   padding-left: 44px; /* alinhamento visual do submenu quando expandido */
+   font-size: 14px;
+   color: #e7eef2;
+
+}
 
 /* ---- COMPORTAMENTO QUANDO RECOLHE ---- */
 .sidebar.collapsed .menu-title {
