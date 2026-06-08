@@ -6,6 +6,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
     {
         [Key]
         public int IdOrdemServico { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Tick")]
         public int Tick { get; set; }
 
         [Required(ErrorMessage = "{0} required")]
@@ -23,6 +26,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [DataType(DataType.Date)]
         public DateTime DataAbertura { get; set; }
 
+        [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(300, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Acessórios")]
         [DataType(DataType.Text)]
@@ -38,6 +42,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Cliente")]
         public int ClienteId { get; set; }
         public Produto Produto { get; set; }
+
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [Display(Name = "Produto")]
         public int ProdutoId { get; set; }
 
         public OrdemServico()
