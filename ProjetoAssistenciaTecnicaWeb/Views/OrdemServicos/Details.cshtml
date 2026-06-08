@@ -2,11 +2,14 @@
 @{
     ViewData["Title"] = "Details";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/OrdemDetail.css" />
+}
 
 <h1>Detalhes</h1>
 
-<div>
-    <h4>Cliente</h4>
+<div class="details-container">
+    <h4>Ordem</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -65,7 +68,7 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.OrdemServico.IdOrdemServico">Edit</a> |
-    <a asp-action="Index">Voltar</a>
+<div class="actions">
+    <a class="btn-edit" asp-action="Edit" asp-route-id="@Model?.OrdemServico.IdOrdemServico">Edit</a> |
+    <a class="btn-back" asp-action="Index">Voltar</a>
 </div>
