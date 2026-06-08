@@ -1,0 +1,135 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    background-color: #181818;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* ===== TÍTULOS ===== */
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+}
+
+h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #333;
+    margin-bottom: 25px;
+}
+
+/* ===== CARD ===== */
+.details-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #181818;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== LISTA DE DETALHES ===== */
+dl.row {
+    margin: 0;
+}
+
+dt {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+dd {
+    color: white;
+    margin-bottom: 18px;
+    padding: 10px;
+    background-color: #1f1f1f;
+    border-radius: 20px;
+    border: 1px solid #333;
+}
+
+/* ===== BOTÕES ===== */
+.actions {
+    max-width: 900px;
+    margin: 20px auto 0;
+    display: flex;
+    gap: 15px;
+}
+
+    .actions a {
+        flex: 1;
+        text-align: center;
+        text-decoration: none;
+        padding: 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+/* Editar */
+.btn-edit {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0b3d1b;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .btn-edit:hover {
+        background-color: #145c2b;
+    }
+
+/* Voltar */
+.btn-back {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0b3d1b;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .btn-back:hover {
+        background-color: #145c2b;
+    }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    .details-container {
+        padding: 20px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    dt,
+    dd {
+        width: 100%;
+    }
+}

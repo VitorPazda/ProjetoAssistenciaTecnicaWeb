@@ -1,0 +1,155 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    background-color: #181818;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.pagina_menus {
+    width: 100%;
+    max-width: 600px;
+    background-color: #181818;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    margin-left: 280px;
+}
+
+/* ===== TÍTULO ===== */
+.titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: white;
+}
+
+/* ===== BOTÕES MENU ===== */
+.botoes-menus {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 35px;
+    width: 100%;
+}
+
+.botao-salvar,
+.botao-editar,
+.botao-deletar {
+    flex: 1;
+    padding: 14px;
+    border-radius: 10px;
+    background: #0b3d1b;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    text-align: center;
+}
+
+    .botao-salvar:hover,
+    .botao-editar:hover,
+    .botao-deletar:hover {
+        background: #145c2b;
+        transform: translateY(-2px);
+    }
+
+/* ===== FORMULÁRIO ===== */
+.formulario {
+    width: 100%;
+}
+
+/* ===== GRID FILTROS ===== */
+.general-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+/* ===== CAMPOS ===== */
+.filtro-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .filtro-infos label {
+        color: #d4d4d4;
+        font-size: 0.95rem;
+    }
+
+/* ===== INPUTS ===== */
+input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px;
+    background-color: #2a2a2a;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s;
+}
+
+    input:focus {
+        outline: none;
+        background-color: #333;
+        box-shadow: 0 0 0 2px #0b3d1b;
+    }
+
+/* ===== BOTÃO FILTRAR ===== */
+.botao-filtro {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: #0b3d1b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+    .botao-filtro:hover {
+        background: #145c2b;
+        transform: scale(1.01);
+    }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .pagina_menus {
+        padding: 25px;
+    }
+
+    .general-infos {
+        grid-template-columns: 1fr;
+    }
+
+    .botoes-menus {
+        flex-direction: column;
+    }
+
+    .titulo {
+        font-size: 2rem;
+    }
+}

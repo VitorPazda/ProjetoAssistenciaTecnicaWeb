@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #181818;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+}
+
+/* ==========================
+   CONTAINER PRINCIPAL
+========================== */
+
+.pagina-principal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pagina {
+    background-color: #111;
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================
+   TÍTULOS
+========================== */
+
+h1 {
+    margin-bottom: 10px;
+}
+
+h4 {
+    margin-bottom: 15px;
+    color: #f5f5f5;
+}
+
+hr {
+    border: 1px solid #2a2a2a;
+    margin-bottom: 25px;
+}
+
+/* ==========================
+   FORMULÁRIO
+========================== */
+
+.general-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.personal-info,
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .personal-info label,
+    .campo label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #e0e0e0;
+    }
+
+input,
+select {
+    width: 100%;
+    height: 42px;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+    input:focus,
+    select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
+    }
+
+.text-danger {
+    color: #dc3545;
+    font-size: 12px;
+}
+
+/* ==========================
+   ENDEREÇO
+========================== */
+
+.dados-endereco {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 10px;
+}
+
+    .dados-endereco .campo {
+        width: 100%;
+    }
+
+/* ==========================
+   BOTÕES
+========================== */
+
+.form-group {
+    margin-top: 20px;
+}
+
+.btn-primary {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0b3d1b;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+#buscarCep {
+    width: 100%;
+    margin-top: auto;
+}
+
+/* ==========================
+   RESUMO DE ERROS
+========================== */
+
+.validation-summary-errors,
+.validation-summary-valid {
+    margin-bottom: 15px;
+}
+
+/* ==========================
+   LINK VOLTAR
+========================== */
+
+a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+
+/* ==========================
+   ÁREA DO LINK VOLTAR
+========================== */
+
+.voltar {
+    margin-top: 25px;
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .pagina {
+        padding: 20px;
+    }
+
+    .dados-endereco {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagina {
+        padding: 15px;
+    }
+
+    input,
+    select,
+    .btn-primary {
+        height: 40px;
+    }
+}
