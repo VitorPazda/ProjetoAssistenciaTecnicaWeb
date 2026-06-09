@@ -34,7 +34,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task<List<Peca>> FindAsync(string descricao)
         {
-            var resultado = _context.Peca.AsQueryable();
+            var resultado = _context.Peca
+                .Include(p => p.Funcionario)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(descricao))
             {
