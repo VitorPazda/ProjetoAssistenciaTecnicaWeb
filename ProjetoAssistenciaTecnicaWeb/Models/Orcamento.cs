@@ -18,15 +18,20 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [DataType(DataType.Currency)]
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public double Valor { get; set; }
+
+        public int FuncionarioId { get; set; }
+
+        public Funcionario Funcionario { get; set; }
         public Orcamento()
         {
         }
 
-        public Orcamento(int idOrcamento, int codigoOrcamento, double valor)
+        public Orcamento(int idOrcamento, int codigoOrcamento, double valor, int funcionarioId)
         {
             IdOrcamento = idOrcamento;
             CodigoOrcamento = codigoOrcamento;
             Valor = valor;
+            FuncionarioId = funcionarioId;
         }
     }
 }

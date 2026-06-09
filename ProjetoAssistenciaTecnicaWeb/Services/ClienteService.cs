@@ -36,6 +36,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
         {
             return await _context.Cliente
                 .Include(c => c.Endereco)
+                .Include(c => c.Funcionario)
                 .FirstOrDefaultAsync(c => c.IdCliente == id);
         }
 

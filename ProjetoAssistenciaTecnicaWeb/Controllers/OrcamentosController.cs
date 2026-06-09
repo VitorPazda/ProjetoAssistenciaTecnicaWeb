@@ -12,10 +12,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
     public class OrcamentosController : Controller
     {
         private readonly OrcamentoService _orcamentoService;
+        private readonly FuncionarioService _funcionarioService;
 
-        public OrcamentosController(ProjetoAssistenciaTecnicaWebContext context, OrcamentoService orcamentoService)
+        public OrcamentosController(ProjetoAssistenciaTecnicaWebContext context, OrcamentoService orcamentoService, FuncionarioService funcionarioService)
         {
             _orcamentoService = orcamentoService;
+            _funcionarioService = funcionarioService;
         }
 
         // GET: Orcamentos
@@ -28,7 +30,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // GET: Orcamentos/Create
         public async Task<IActionResult> Create()
         {
-            return View();
+            var funcionarios = await _funcionarioService.FindAllAsync();
+            var viewModel = new OrcamentoFormViewModel { Orcamento = new Orcamento(), Funcionarios = funcionarios };
+            return View(viewModel);
         }
 
         // POST: Orcamentos/Create
@@ -36,9 +40,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Orcamento orcamento)
+        public async Task<IActionResult> Create(OrcamentoFormViewModel viewModel)
         {
-            await _orcamentoService.InsertAsync(orcamento);
+            await _orcamentoService.InsertAsync(viewModel.Orcamento);
             return RedirectToAction(nameof(Index));
         }
 

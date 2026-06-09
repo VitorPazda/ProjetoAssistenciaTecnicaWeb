@@ -58,7 +58,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
             OrdemServico ordem01 = new OrdemServico(1, 1, 1, "Nao liga", DateTime.Now, "Carregador", "Pendente", 1, cliente2, produto01);
 
             // Orcamento
-            Orcamento orcamento01 = new Orcamento(1, 1, 20);
+            Orcamento orcamento01 = new Orcamento(1, 1, 20, 1);
 
             // Usuario
             Usuario usuario01 = new Usuario(1, "32131231", "admin123", funcionario1);

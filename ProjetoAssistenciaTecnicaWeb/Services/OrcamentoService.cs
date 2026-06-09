@@ -15,7 +15,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task<List<Orcamento>> FindAllAsync()
         {
-            return await _context.Orcamento.ToListAsync();
+            return await _context.Orcamento
+                .Include(orcamento => orcamento.Funcionario)
+                .ToListAsync();
         }
 
         public async Task InsertAsync(Orcamento orcamento)
@@ -34,7 +36,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task<List<Orcamento>> FindAsync(int? codigo)
         {
-            var resultado = _context.Orcamento.AsQueryable();
+            var resultado = _context.Orcamento.Include(orcamento => orcamento.Funcionario).AsQueryable();
 
             if (codigo.HasValue)
             {
