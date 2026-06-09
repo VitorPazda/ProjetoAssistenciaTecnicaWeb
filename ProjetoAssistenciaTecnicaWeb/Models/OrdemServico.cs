@@ -47,11 +47,15 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Produto")]
         public int ProdutoId { get; set; }
 
+        public int FuncionarioId { get; set; }
+
+        public Funcionario Funcionario { get; set; }
+
         public OrdemServico()
         {
         }
 
-        public OrdemServico(int idOrdemServico, int tick, int numeroAtendimento, string defeito, DateTime dataAbertura, string acessorios, string status, int idOrcamentoInicial, Cliente cliente, Produto produto)
+        public OrdemServico(int idOrdemServico, int tick, int numeroAtendimento, string defeito, DateTime dataAbertura, string acessorios, string status, int idOrcamentoInicial, Cliente cliente, Produto produto, int funcionarioId)
         {
             IdOrdemServico = idOrdemServico;
             Tick = tick;
@@ -63,6 +67,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
             IdOrcamentoInicial = idOrcamentoInicial;
             Cliente = cliente;
             Produto = produto;
+            FuncionarioId = funcionarioId;
         }
     }
 }
