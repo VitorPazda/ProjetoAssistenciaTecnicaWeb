@@ -33,6 +33,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             funcionario.CodigoFuncionario = funcionario.IdFuncionario;
             _context.Funcionario.Update(funcionario);
+
+            funcionario.Ativo = true;
             await _context.SaveChangesAsync();
         }
 
@@ -65,6 +67,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             {
                 // Retornar os ultimos 5 funcionarios cadastrados, caso nome e cpf/cnpj n sejam informaods
                 return await resultado
+                    .Where(f => f.Ativo)
                     .OrderByDescending(f => f.DataCadastro)
                     .Take(5)
                     .ToListAsync();

@@ -48,11 +48,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Código Funcionario")]
         public int CodigoFuncionario { get; set; }
 
+        public bool Ativo { get; set; }
+
         public Funcionario()
         {
         }
 
-        public Funcionario(int idFuncionario, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, Endereco endereco, string categoria, int codigoFuncionario)
+        public Funcionario(int idFuncionario, string nome, string cPF_CNPJ, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, Endereco endereco, string categoria, int codigoFuncionario, bool ativo)
         {
             IdFuncionario = idFuncionario;
             Nome = nome;
@@ -64,6 +66,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
             Endereco = endereco;
             Categoria = categoria;
             CodigoFuncionario = codigoFuncionario;
+            Ativo = ativo;
         }
     }
 }
