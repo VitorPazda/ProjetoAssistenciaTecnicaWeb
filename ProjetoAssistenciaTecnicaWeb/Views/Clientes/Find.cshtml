@@ -89,8 +89,7 @@
                             @Html.DisplayFor(modelItem => item.DataCadastro)
                         </td>
                         <td>
-                            Id: @item.FuncionarioId <br />
-                            Nome: @(item.Funcionario == null ? "NULL" : item.Funcionario.Nome)
+                            @item.Funcionario.Nome
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Endereco.Municipio)

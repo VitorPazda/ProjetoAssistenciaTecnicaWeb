@@ -34,13 +34,16 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task<Cliente> FindByIdAsync(int id)
         {
-            return await _context.Cliente.Include(c => c.Endereco).FirstOrDefaultAsync(c => c.IdCliente == id);
+            return await _context.Cliente
+                .Include(c => c.Endereco)
+                .FirstOrDefaultAsync(c => c.IdCliente == id);
         }
 
         public async Task<List<Cliente>> FindAsync(string nome, string cpf, string telefone)
         {
             var resultado = _context.Cliente
                 .Include(c => c.Endereco)
+                .Include(c => c.Funcionario)
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(nome))

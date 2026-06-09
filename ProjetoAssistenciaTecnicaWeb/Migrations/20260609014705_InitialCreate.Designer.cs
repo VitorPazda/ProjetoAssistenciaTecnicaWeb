@@ -12,8 +12,8 @@ using ProjetoAssistenciaTecnicaWeb.Data;
 namespace ProjetoAssistenciaTecnicaWeb.Migrations
 {
     [DbContext(typeof(ProjetoAssistenciaTecnicaWebContext))]
-    [Migration("20260507110901_07-05-TesteProduto2")]
-    partial class _0705TesteProduto2
+    [Migration("20260609014705_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                     b.Property<int>("EnderecoId")
                         .HasColumnType("int");
 
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -65,6 +68,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                     b.HasKey("IdCliente");
 
                     b.HasIndex("EnderecoId");
+
+                    b.HasIndex("FuncionarioId");
 
                     b.ToTable("Cliente");
                 });
@@ -118,6 +123,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdFuncionario"));
 
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("CPF_CNPJ")
                         .IsRequired()
                         .HasMaxLength(18)
@@ -162,6 +170,74 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                     b.ToTable("Funcionario");
                 });
 
+            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Orcamento", b =>
+                {
+                    b.Property<int>("IdOrcamento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdOrcamento"));
+
+                    b.Property<int>("CodigoOrcamento")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Valor")
+                        .HasColumnType("double");
+
+                    b.HasKey("IdOrcamento");
+
+                    b.ToTable("Orcamento");
+                });
+
+            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.OrdemServico", b =>
+                {
+                    b.Property<int>("IdOrdemServico")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdOrdemServico"));
+
+                    b.Property<string>("Acessorios")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataAbertura")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Defeito")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<int>("IdOrcamentoInicial")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumeroAtendimento")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Tick")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdOrdemServico");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("OrdemServico");
+                });
+
             modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Peca", b =>
                 {
                     b.Property<int>("IdPeca")
@@ -200,25 +276,60 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdProduto"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Condicao")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Marca")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Modelo")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("NSerie")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("IdProduto");
 
+                    b.HasIndex("ClienteId");
+
                     b.ToTable("Produto");
+                });
+
+            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Usuario", b =>
+                {
+                    b.Property<int>("IdUsuario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdUsuario"));
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IdUsuario");
+
+                    b.HasIndex("FuncionarioId");
+
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Cliente", b =>
@@ -229,7 +340,15 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProjetoAssistenciaTecnicaWeb.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Endereco");
+
+                    b.Navigation("Funcionario");
                 });
 
             modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Funcionario", b =>
@@ -241,6 +360,47 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Endereco");
+                });
+
+            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.OrdemServico", b =>
+                {
+                    b.HasOne("ProjetoAssistenciaTecnicaWeb.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetoAssistenciaTecnicaWeb.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Produto", b =>
+                {
+                    b.HasOne("ProjetoAssistenciaTecnicaWeb.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Usuario", b =>
+                {
+                    b.HasOne("ProjetoAssistenciaTecnicaWeb.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funcionario");
                 });
 #pragma warning restore 612, 618
         }
