@@ -49,7 +49,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
             Funcionario funcionario1 = new Funcionario(1, "Filipe Dirshnabel", "32131231", "47 9999999", "filipe@gmail.com", new DateTime(2005, 09, 05), DateTime.Now, endereco2, "Mecanico", 1, true);
 
             // Peca
-            Peca peca1 = new Peca(1, 10, 20, "Fusivel 20", 20, 1);
+            Peca peca1 = new Peca(1, 10, 20, "Fusivel 20", 20, 1, 1);
 
             // Produto 
             Produto produto01 = new Produto(1, "Dell", "G15", "6996", "Placa mãe queimou!", cliente2);

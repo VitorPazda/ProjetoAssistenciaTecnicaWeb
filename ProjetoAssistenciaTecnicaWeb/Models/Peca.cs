@@ -33,11 +33,14 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
 
         public int Codigo { get; set; }
 
+        public int FuncionarioId { get; set; }
+
+        public Funcionario Funcionario { get; set; }
         public Peca()
         {
         }
 
-        public Peca(int idPeca, float valorCompra, float valorRevenda, string descricao, int quantidade, int codigo)
+        public Peca(int idPeca, float valorCompra, float valorRevenda, string descricao, int quantidade, int codigo, int funcionarioId)
         {
             IdPeca = idPeca;
             ValorCompra = valorCompra;
@@ -45,6 +48,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
             Descricao = descricao;
             Quantidade = quantidade;
             Codigo = codigo;
+            FuncionarioId = funcionarioId;
         }
     }
 }

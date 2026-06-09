@@ -38,7 +38,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             if (!string.IsNullOrEmpty(descricao))
             {
-                resultado = resultado.Where(p => p.Descricao.Contains(descricao));
+                resultado = resultado.Include(p => p.Funcionario).Where(p => p.Descricao.Contains(descricao));
             }
 
             return await resultado.ToListAsync();

@@ -12,10 +12,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
     public class PecasController : Controller
     {
         private readonly PecaService _pecaService;
+        private readonly FuncionarioService _funcionarioService;
 
-        public PecasController(ProjetoAssistenciaTecnicaWebContext context, PecaService pecaService)
+        public PecasController(ProjetoAssistenciaTecnicaWebContext context, PecaService pecaService, FuncionarioService funcionarioService)
         {
             _pecaService = pecaService;
+            _funcionarioService = funcionarioService;
         }
 
         // GET: Pecas
@@ -28,7 +30,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // GET: Pecas/Create
         public async Task<IActionResult> Create()
         {
-            return View();
+            var funcionarios = await _funcionarioService.FindAllAsync();
+            var viewModel = new PecaFormViewModel { Peca = new Peca(), Funcionarios = funcionarios };
+            return View(viewModel); ;
         }
 
         // POST: Pecas/Create
