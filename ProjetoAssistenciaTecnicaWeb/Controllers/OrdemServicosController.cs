@@ -12,11 +12,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         private readonly OrdemServicoService _ordemServicoService;
         private readonly ProdutoService _produtoService;
         private readonly ClienteService _clienteService;
-        public OrdemServicosController(OrdemServicoService ordemServicoService, ProdutoService produtoService, ClienteService clienteService)
+        private readonly FuncionarioService _funcionarioService;
+        public OrdemServicosController(OrdemServicoService ordemServicoService, ProdutoService produtoService, ClienteService clienteService, FuncionarioService funcionarioService)
         {
             _ordemServicoService = ordemServicoService;
             _produtoService = produtoService;
             _clienteService = clienteService;
+            _funcionarioService = funcionarioService;
         }
 
         // GET: OrdemServicos
@@ -31,8 +33,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             var clientes = await _clienteService.FindAllAsync();
             var produtos = await _produtoService.FindAllAsync();
+            var funcionarios = await _funcionarioService.FindAllAsync();
 
-            var viewModel = new OrdemServicoFormViewModel { OrdemServico = new OrdemServico(), Clientes = clientes, Produtos = produtos };
+            var viewModel = new OrdemServicoFormViewModel { OrdemServico = new OrdemServico(), Clientes = clientes, Produtos = produtos, Funcionarios = funcionarios };
             return View(viewModel);
         }
 

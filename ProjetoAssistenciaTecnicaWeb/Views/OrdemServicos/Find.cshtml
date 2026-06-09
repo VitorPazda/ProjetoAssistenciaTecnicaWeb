@@ -33,9 +33,7 @@
                            name="dataAbertura"
                            value="@ViewData["dataAbertura"]" />
                 </div>
-
             </div>
-
             <button type="submit" class="botao-buscar">
                 Filtrar
             </button>
@@ -72,6 +70,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Status)
                     </th>
+                    <th>
+                        <a href="#">Funcionário Cadastro</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -101,6 +102,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.IdOrdemServico">Editar</a>

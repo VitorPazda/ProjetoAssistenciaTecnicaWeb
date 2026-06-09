@@ -49,6 +49,14 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label asp-for="OrdemServico.FuncionarioId"></label>
+                    <select asp-for="OrdemServico.FuncionarioId"
+                            asp-items='@(new SelectList(Model.Funcionarios, "IdFuncionario", "Nome"))'
+                            class="form-control">
+                        <option value="">Selecione um funcionário</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="Salvar Ordem" class="btn-primary" />
                 </div>
             </div>

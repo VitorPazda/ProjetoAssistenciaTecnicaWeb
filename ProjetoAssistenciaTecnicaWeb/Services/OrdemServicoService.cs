@@ -17,7 +17,11 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             
         public async Task<List<OrdemServico>> FindAllAsync()
         {
-           return await _context.OrdemServico.Include(ordem => ordem.Cliente).Include(ordem => ordem.Produto).ToListAsync();
+           return await _context.OrdemServico
+                .Include(ordem => ordem.Cliente)
+                .Include(ordem => ordem.Produto)
+                .Include(ordem => ordem.Funcionario)
+                .ToListAsync();
         }
 
         public async Task InsertAsync(OrdemServico ordemServico)
@@ -39,7 +43,11 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task<OrdemServico> FindByIdAsync(int id)
         {
-            return await _context.OrdemServico.Include(ordem => ordem.Cliente).Include(ordem => ordem.Produto).FirstOrDefaultAsync(ordem => ordem.IdOrdemServico == id);
+            return await _context.OrdemServico
+                .Include(ordem => ordem.Cliente)
+                .Include(ordem => ordem.Produto)
+                .Include(ordem => ordem.Funcionario)
+                .FirstOrDefaultAsync(ordem => ordem.IdOrdemServico == id);
         }
 
         public async Task<List<OrdemServico>> FindAsync(int? numeroAtendimento, DateTime? dataAbertura)
@@ -47,6 +55,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             var resultado = _context.OrdemServico
                 .Include(ordem => ordem.Cliente)
                 .Include(ordem => ordem.Produto)
+                .Include(ordem => ordem.Funcionario)
                 .AsQueryable();
 
             if (numeroAtendimento.HasValue)
