@@ -110,8 +110,13 @@
                     <input type="submit" value="Salvar Cliente" class="btn-primary" />
                 </div>
 
+                <div class="personal-info">
+                    <label asp-for="Cliente.FuncionarioId"></label>
+                    <select asp-for="Cliente.FuncionarioId" asp-items='@(new SelectList(Model.Funcionarios, "IdFuncionario","Nome"))' class="form-control">
+                        <option value="">Selecione um funcionário</option>
+                    </select>
+                </div>
             </div>
-
         </form>
 
         <div class="voltar">

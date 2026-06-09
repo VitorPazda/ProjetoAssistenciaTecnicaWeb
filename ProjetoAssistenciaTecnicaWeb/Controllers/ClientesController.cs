@@ -10,10 +10,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
     public class ClientesController : Controller
     {
         private readonly ClienteService _clienteService;
+        private readonly FuncionarioService _funcionarioService;
 
-        public ClientesController(ClienteService clienteService)
+        public ClientesController(ClienteService clienteService, FuncionarioService funcionarioService)
         {
             _clienteService = clienteService;
+            _funcionarioService = funcionarioService;
         }
 
         // GET: Clientes
@@ -26,7 +28,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // GET: Clientes/Create
         public async Task<IActionResult> Create()
         {
-            var viewModel = new ClienteFormViewModel { Cliente = new Cliente(), Endereco = new Endereco() };
+            var funcionarios = await _funcionarioService.FindAllAsync();
+            var viewModel = new ClienteFormViewModel { Cliente = new Cliente(), Endereco = new Endereco(), Funcionarios = funcionarios };
             return View(viewModel);
         }
 

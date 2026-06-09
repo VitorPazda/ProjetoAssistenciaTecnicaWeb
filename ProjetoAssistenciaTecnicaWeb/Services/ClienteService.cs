@@ -16,10 +16,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
         public async Task<List<Cliente>> FindAllAsync()
         {
-            return await _context.Cliente.Include(c => c.Endereco).ToListAsync();
+            return await _context.Cliente.Include(c => c.Endereco).Include(c => c.Funcionario).ToListAsync();
         }
 
-        public async Task InsertAsync(Cliente cliente, Endereco endereco) 
+        public async Task InsertAsync(Cliente cliente, Endereco endereco)
         {
             //Salva o endereco primeiro
             _context.Endereco.Add(endereco);

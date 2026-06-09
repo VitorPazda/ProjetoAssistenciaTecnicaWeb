@@ -12,8 +12,8 @@ using ProjetoAssistenciaTecnicaWeb.Data;
 namespace ProjetoAssistenciaTecnicaWeb.Migrations
 {
     [DbContext(typeof(ProjetoAssistenciaTecnicaWebContext))]
-    [Migration("20260609002723_AtualizandoFuncionario")]
-    partial class AtualizandoFuncionario
+    [Migration("20260609012204_Clientev2AgoraVai")]
+    partial class Clientev2AgoraVai
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,9 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                     b.Property<int>("EnderecoId")
                         .HasColumnType("int");
 
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -65,6 +68,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                     b.HasKey("IdCliente");
 
                     b.HasIndex("EnderecoId");
+
+                    b.HasIndex("FuncionarioId");
 
                     b.ToTable("Cliente");
                 });
@@ -335,7 +340,15 @@ namespace ProjetoAssistenciaTecnicaWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProjetoAssistenciaTecnicaWeb.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Endereco");
+
+                    b.Navigation("Funcionario");
                 });
 
             modelBuilder.Entity("ProjetoAssistenciaTecnicaWeb.Models.Funcionario", b =>

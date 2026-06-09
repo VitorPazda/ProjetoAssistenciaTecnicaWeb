@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetoAssistenciaTecnicaWeb.Models
 {
@@ -41,11 +42,13 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public int EnderecoId { get; set; }
         public Endereco Endereco { get; set; }
 
+        public int FuncionarioId { get; set; }
+        public Funcionario Funcionario { get; set; }
         public Cliente() 
         {
         }
 
-        public Cliente(int idCliente, string nome, string cpf_cnpj, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, Endereco endereco)
+        public Cliente(int idCliente, string nome, string cpf_cnpj, string telefone, string email, DateTime dataNascimento, DateTime dataCadastro, Endereco endereco, int funcionarioId)
         {
             IdCliente = idCliente;
             Nome = nome;
@@ -55,6 +58,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
             DataNascimento = dataNascimento;
             DataCadastro = dataCadastro;
             Endereco = endereco;
+            FuncionarioId = funcionarioId;
         }
     }
 }
