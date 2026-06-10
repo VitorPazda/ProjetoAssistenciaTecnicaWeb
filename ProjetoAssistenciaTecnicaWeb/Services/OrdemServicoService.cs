@@ -115,5 +115,31 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
                 throw new Exception(e.Message);
             }
         }
+
+        public async Task FinishAsync(int id, OrdemServico dadosFinalizacao)
+        {
+            var ordemServico = await _context.OrdemServico.FirstOrDefaultAsync(o => o.IdOrdemServico == id);
+
+            if (ordemServico == null)
+            {
+                throw new ApplicationException("Ordem de serviço não encontrada.");
+            }
+
+            ordemServico.DataConserto = dadosFinalizacao.DataConserto;
+            ordemServico.DescricaoServicoPrestado = dadosFinalizacao.DescricaoServicoPrestado;
+
+            ordemServico.TecnicoResponsavelId = dadosFinalizacao.TecnicoResponsavelId;
+
+            ordemServico.ValorConsertoBase = dadosFinalizacao.ValorConsertoBase;
+            ordemServico.PercentualEstabelecimento = dadosFinalizacao.PercentualEstabelecimento;
+            ordemServico.PercentualTecnico = dadosFinalizacao.PercentualTecnico;
+
+            ordemServico.ValorPecas = dadosFinalizacao.ValorPecas;
+            ordemServico.ValorAcrescentado = dadosFinalizacao.ValorAcrescentado;
+
+            ordemServico.Status = "Finalizada";
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -163,5 +163,24 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             };
             return View(viewModel);
         }
+
+        // GET: OrdemServicos/Finish
+        public async Task<IActionResult> Finish(int id)
+        {
+            var ordemServico = await _ordemServicoService.FindByIdAsync(id);
+            var viewModel = new OrdemServicoFormViewModel { OrdemServico = ordemServico, Funcionarios = await _funcionarioService.FindAllAsync() };
+            return View(viewModel);
+        }
+
+        // POST: OrdemServicos/Finish
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Finish(int id, OrdemServicoFormViewModel viewModel)
+        {
+            await _ordemServicoService.FinishAsync(id, viewModel.OrdemServico);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
