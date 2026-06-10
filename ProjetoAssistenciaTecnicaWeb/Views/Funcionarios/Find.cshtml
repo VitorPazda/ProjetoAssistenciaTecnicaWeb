@@ -30,6 +30,14 @@
                     <label for="nome">Telefone</label>
                     <input type="text" name="telefone" value=@ViewData["telefone"] />
                 </div>
+                <div class="filtro-infos">
+                    <label for="Ativo">Ativo:</label>
+                    <select name="ativo" class="form-control">
+                        <option value="">Todos</option>
+                        <option value="true">Ativos</option>
+                        <option value="false">Inativos</option>
+                    </select>
+                </div>
             </div>
             <button type="submit" class="botao-buscar">Filtrar</button>
         </form>

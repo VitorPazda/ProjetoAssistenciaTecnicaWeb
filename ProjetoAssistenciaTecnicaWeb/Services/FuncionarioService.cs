@@ -43,7 +43,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             return await _context.Funcionario.Include(f => f.Endereco).FirstOrDefaultAsync(f => f.IdFuncionario == id);
         }
 
-        public async Task<List<Funcionario>> FindAsync(string nome, string cpf_cnpj, string telefone)
+        public async Task<List<Funcionario>> FindAsync(string nome, string cpf_cnpj, string telefone, bool? ativo)
         {
             var resultado = _context.Funcionario
                 .Include(f => f.Endereco)
@@ -63,11 +63,14 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             {
                 resultado = resultado.Where(f => f.Telefone.Contains(telefone));
             }
+            if (ativo.HasValue)
+            {
+                resultado = resultado.Where(f => f.Ativo == ativo.Value);
+            }
             else
             {
                 // Retornar os ultimos 5 funcionarios cadastrados, caso nome e cpf/cnpj n sejam informaods
                 return await resultado
-                    .Where(f => f.Ativo)
                     .OrderByDescending(f => f.DataCadastro)
                     .Take(5)
                     .ToListAsync();
