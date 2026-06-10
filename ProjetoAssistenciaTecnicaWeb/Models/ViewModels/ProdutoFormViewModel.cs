@@ -4,5 +4,6 @@
     {
         public Produto Produto { get; set; }
         public ICollection<Cliente> Clientes { get; set; }
+        public ICollection<Funcionario> Funcionarios { get; set; }
     }
 }

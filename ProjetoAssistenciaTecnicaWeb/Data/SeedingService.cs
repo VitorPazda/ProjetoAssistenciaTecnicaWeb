@@ -52,7 +52,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
             Peca peca1 = new Peca(1, 10, 20, "Fusivel 20", 20, 1, 1);
 
             // Produto 
-            Produto produto01 = new Produto(1, "Dell", "G15", "6996", "Placa mãe queimou!", cliente2);
+            Produto produto01 = new Produto(1, "Dell", "G15", "6996", "Placa mãe queimou!", cliente2, 1);
 
             // OrdemDeServico
             OrdemServico ordem01 = new OrdemServico(1, 1, 1, "Nao liga", DateTime.Now, "Carregador", "Pendente", 1, cliente2, produto01, 1);

@@ -32,11 +32,14 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Cliente")]
         public int ClienteId { get; set; } = 0;
 
+        public int FuncionarioId { get; set; }
+
+        public Funcionario Funcionario { get; set; }
         public Produto()
         {
         }
 
-        public Produto(int idProduto, string marca, string modelo, string nSerie, string condicao, Cliente cliente)
+        public Produto(int idProduto, string marca, string modelo, string nSerie, string condicao, Cliente cliente, int funcionarioId)
         {
             IdProduto = idProduto;
             Marca = marca;
@@ -44,6 +47,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
             NSerie  = nSerie;
             Condicao = condicao;
             Cliente = cliente;
+            FuncionarioId = funcionarioId;
         }
     }
 }

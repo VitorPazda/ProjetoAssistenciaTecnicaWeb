@@ -35,6 +35,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
         {
             var resultado = _context.Produto
                 .Include(p => p.Cliente)
+                .Include(p => p.Funcionario)
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(modelo))

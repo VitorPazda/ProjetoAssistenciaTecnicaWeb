@@ -46,6 +46,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Cliente.CPF_CNPJ)
                     </th>
+                    <th>
+                        <a href="#">Funcionário Cadastro</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -69,6 +72,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Cliente.CPF_CNPJ)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.IdProduto">Editar</a>
