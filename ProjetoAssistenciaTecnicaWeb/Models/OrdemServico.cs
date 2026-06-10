@@ -51,6 +51,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
 
         public Funcionario Funcionario { get; set; }
 
+        // Todos os atributos nulos da Ordem de Servico
+
+        public DateTime? DataConserto { get; set; }
+        public string? DescricaoServicoPrestado { get; set; }
+        public int? TecnicoResponsavelId { get; set; }
+        public Funcionario? TecnicoResponsavel { get; set; }
+        public decimal? ValorConsertoBase { get; set; }
+        public decimal? PercentualEstabelecimento { get; set; }
+        public decimal? PercentualTecnico { get; set; }
+        public decimal? ValorPecas { get; set; }
+        public decimal? ValorAcrescentado { get; set; }
         public OrdemServico()
         {
         }
