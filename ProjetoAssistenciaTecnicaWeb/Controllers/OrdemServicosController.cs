@@ -182,5 +182,17 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
             await _ordemServicoService.FinishAsync(id, viewModel.OrdemServico);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> GeneratePdf(int id)
+        {
+            var os = await _ordemServicoService.FindByIdAsync(id);
+
+            var pdf = OrdemServicoPdfGenerator.Generate(os);
+
+            return File(
+                pdf,
+                "application/pdf",
+                $"Orcamento_OS_{os.NumeroAtendimento}.pdf");
+        }
     }
 }
