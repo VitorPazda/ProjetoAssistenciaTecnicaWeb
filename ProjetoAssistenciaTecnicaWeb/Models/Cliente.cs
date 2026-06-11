@@ -42,6 +42,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public int EnderecoId { get; set; }
         public Endereco Endereco { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Funcionario")]
         public int FuncionarioId { get; set; }
         public Funcionario Funcionario { get; set; }
         public Cliente() 

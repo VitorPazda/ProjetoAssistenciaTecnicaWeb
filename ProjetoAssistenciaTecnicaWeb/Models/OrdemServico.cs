@@ -47,6 +47,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Produto")]
         public int ProdutoId { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Funcionario")]
         public int FuncionarioId { get; set; }
 
         public Funcionario Funcionario { get; set; }

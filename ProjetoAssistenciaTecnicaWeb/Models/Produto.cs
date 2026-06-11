@@ -32,6 +32,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Cliente")]
         public int ClienteId { get; set; } = 0;
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Funcionario")]
         public int FuncionarioId { get; set; }
 
         public Funcionario Funcionario { get; set; }

@@ -59,7 +59,7 @@
                         @Html.DisplayNameFor(model => model.DataCadastro)
                     </th>
                     <th>
-                        <a href="#">Funcionário Cadastro</a>
+                        @Html.DisplayNameFor(model => model.FuncionarioId)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Endereco.Municipio)
@@ -89,7 +89,7 @@
                             @Html.DisplayFor(modelItem => item.DataCadastro)
                         </td>
                         <td>
-                            @item.Funcionario.Nome
+                            @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Endereco.Municipio)

@@ -33,6 +33,8 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
 
         public int Codigo { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Funcionario")]
         public int FuncionarioId { get; set; }
 
         public Funcionario Funcionario { get; set; }
