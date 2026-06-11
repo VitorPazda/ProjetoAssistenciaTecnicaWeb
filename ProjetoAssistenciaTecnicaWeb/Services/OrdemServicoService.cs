@@ -29,11 +29,26 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             ordemServico.DataAbertura = DateTime.Now;
             ordemServico.Status = StatusOrdemServico.EmAnalise;
 
-            // Salvar para gerar Id
             _context.OrdemServico.Add(ordemServico);
             await _context.SaveChangesAsync();
 
-            ordemServico.Tick = ordemServico.IdOrdemServico;
+            var equipamentoExistente = await _context.OrdemServico
+                .Where(o =>
+                    o.ClienteId == ordemServico.ClienteId &&
+                    o.ProdutoId == ordemServico.ProdutoId &&
+                    o.IdOrdemServico != ordemServico.IdOrdemServico)
+                .OrderBy(o => o.IdOrdemServico)
+                .FirstOrDefaultAsync();
+
+            if (equipamentoExistente != null)
+            {
+                ordemServico.Tick = equipamentoExistente.Tick;
+            }
+            else
+            {
+                ordemServico.Tick = ordemServico.IdOrdemServico;
+            }
+
             ordemServico.NumeroAtendimento = ordemServico.IdOrdemServico;
             ordemServico.IdOrcamentoInicial = ordemServico.IdOrdemServico;
 
