@@ -55,7 +55,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Data
             Produto produto01 = new Produto(1, "Dell", "G15", "6996", "Placa mãe queimou!", cliente2, 1);
 
             // OrdemDeServico
-            OrdemServico ordem01 = new OrdemServico(1, 1, 1, "Nao liga", DateTime.Now, "Carregador", "Pendente", 1, cliente2, produto01, 1);
+            OrdemServico ordem01 = new OrdemServico(1, 1, 1, "Nao liga", DateTime.Now, "Carregador", StatusOrdemServico.EmAnalise, 1, cliente2, produto01, 1);
 
             // Orcamento
             Orcamento orcamento01 = new Orcamento(1, 1, 20, 1);

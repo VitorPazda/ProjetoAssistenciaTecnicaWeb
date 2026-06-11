@@ -31,7 +31,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         [Display(Name = "Acessórios")]
         [DataType(DataType.Text)]
         public string Acessorios { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
+        public StatusOrdemServico Status { get; set; }
 
         [Display(Name = "ID Orçamento Inicial")]
         public int IdOrcamentoInicial { get; set; }
@@ -66,7 +66,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         {
         }
 
-        public OrdemServico(int idOrdemServico, int tick, int numeroAtendimento, string defeito, DateTime dataAbertura, string acessorios, string status, int idOrcamentoInicial, Cliente cliente, Produto produto, int funcionarioId)
+        public OrdemServico(int idOrdemServico, int tick, int numeroAtendimento, string defeito, DateTime dataAbertura, string acessorios, StatusOrdemServico status, int idOrcamentoInicial, Cliente cliente, Produto produto, int funcionarioId)
         {
             IdOrdemServico = idOrdemServico;
             Tick = tick;

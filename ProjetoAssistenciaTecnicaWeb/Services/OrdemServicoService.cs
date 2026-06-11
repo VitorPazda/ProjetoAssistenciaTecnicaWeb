@@ -27,7 +27,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
         public async Task InsertAsync(OrdemServico ordemServico)
         {
             ordemServico.DataAbertura = DateTime.Now;
-            ordemServico.Status = "Pendente";
+            ordemServico.Status = StatusOrdemServico.EmAnalise;
 
             // Salvar para gerar Id
             _context.OrdemServico.Add(ordemServico);
@@ -137,7 +137,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
             ordemServico.ValorPecas = dadosFinalizacao.ValorPecas;
             ordemServico.ValorAcrescentado = dadosFinalizacao.ValorAcrescentado;
 
-            ordemServico.Status = "Finalizada";
+            ordemServico.Status = StatusOrdemServico.Finalizado;
 
             await _context.SaveChangesAsync();
         }
