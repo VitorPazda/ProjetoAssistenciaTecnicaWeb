@@ -194,5 +194,12 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 "application/pdf",
                 $"Orcamento_OS_{os.NumeroAtendimento}.pdf");
         }
+
+        public async Task<IActionResult> Relatorio()
+        {
+            var relatorio = await _ordemServicoService.GenerateReportAsync();
+
+            return View(relatorio);
+        }
     }
 }

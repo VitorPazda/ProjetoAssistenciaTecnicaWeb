@@ -156,5 +156,22 @@ namespace ProjetoAssistenciaTecnicaWeb.Services
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<ReportFormViewModel> GenerateReportAsync()
+        {
+            return new ReportFormViewModel
+            {
+                OSAbertas = await _context.OrdemServico.CountAsync(),
+
+                OSFinalizadas = await _context.OrdemServico
+                    .CountAsync(o => o.Status == StatusOrdemServico.Finalizado),
+
+                OSEmAnalise = await _context.OrdemServico
+                    .CountAsync(o => o.Status == StatusOrdemServico.EmAnalise),
+
+                OSAguardandoCliente = await _context.OrdemServico
+                    .CountAsync(o => o.Status == StatusOrdemServico.AguardandoClienteRetirar)
+            };
+        }
     }
 }

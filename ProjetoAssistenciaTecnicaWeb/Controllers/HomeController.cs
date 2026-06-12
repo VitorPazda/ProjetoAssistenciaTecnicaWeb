@@ -1,21 +1,41 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProjetoAssistenciaTecnicaWeb.Data;
 using ProjetoAssistenciaTecnicaWeb.Models;
 using ProjetoAssistenciaTecnicaWeb.Models.ViewModels;
+using System.Diagnostics;
 
 namespace ProjetoAssistenciaTecnicaWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ProjetoAssistenciaTecnicaWebContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ProjetoAssistenciaTecnicaWebContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.OSFinalizadas =
+                await _context.OrdemServico
+                    .CountAsync(o => o.Status == StatusOrdemServico.Finalizado);
+
+            ViewBag.OSEmAnalise =
+                await _context.OrdemServico
+                    .CountAsync(o => o.Status == StatusOrdemServico.EmAnalise);
+
+            ViewBag.ItensConsertadosMes =
+                await _context.OrdemServico
+                    .CountAsync(o =>
+                        o.Status == StatusOrdemServico.Finalizado &&
+                        o.DataConserto.HasValue &&
+                        o.DataConserto.Value.Month == DateTime.Now.Month &&
+                        o.DataConserto.Value.Year == DateTime.Now.Year);
+
             return View();
         }
 
