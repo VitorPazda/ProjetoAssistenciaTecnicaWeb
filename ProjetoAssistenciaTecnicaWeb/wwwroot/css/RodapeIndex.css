@@ -1,0 +1,46 @@
+/* ===== RODAPÉ / RELATÓRIO ===== */
+.rodape-relatorio {
+    width: 100%;
+    max-width: 1000px;
+    margin: 10px auto;
+    padding: 10px;
+    color: black;
+}
+
+    /* ===== TÍTULO ===== */
+    .rodape-relatorio h2 {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+/* ===== GRID COM 3 COLUNAS ===== */
+.relatorio-coluna {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+/* ===== CARD DE CADA INFORMAÇÃO ===== */
+.relatorio-linha {
+    padding: 25px 20px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    font-size:25px;
+}
+
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 800px) {
+    .relatorio-coluna {
+        grid-template-columns: 1fr;
+    }
+
+    .rodape-relatorio {
+        padding: 25px;
+    }
+}

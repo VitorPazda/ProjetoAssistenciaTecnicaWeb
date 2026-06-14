@@ -1,5 +1,8 @@
 ﻿@{
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/RodapeIndex.css" />
+}
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,26 +15,28 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h2>Relatório do Mês</h2>
+    <div class="rodape-relatorio">
+        <h2>Relatório do Mês</h2>
 
-    <hr />
+        <hr />
 
-    <p>
-        <strong>Itens Consertados no Mês:</strong>
-        @ViewBag.ItensConsertadosMes
-    </p>
+        <div class="relatorio-coluna">
+            <div class="relatorio-linha">
+                Itens Consertados no Mês
+                <span>@ViewBag.ItensConsertadosMes</span>
+            </div>
 
-    <p>
-        <strong>OS Finalizadas:</strong>
-        @ViewBag.OSFinalizadas
-    </p>
+            <div class="relatorio-linha">
+                OS Finalizadas
+                <span>@ViewBag.OSFinalizadas</span>
+            </div>
 
-    <p>
-        <strong>OS Em Análise:</strong>
-        @ViewBag.OSEmAnalise
-    </p>
-
-    <hr />
+            <div class="relatorio-linha">
+                OS Em Análise
+                <span>@ViewBag.OSEmAnalise</span>
+            </div>
+        </div>
+    </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
