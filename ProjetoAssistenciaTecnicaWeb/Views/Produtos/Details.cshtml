@@ -2,12 +2,15 @@
 @{
     ViewData["Title"] = "Details";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/ProdutoDetail.css" />
+}
 
 <h1>Detalhes</h1>
+<hr />
 
-<div>
-    <h4>Cliente</h4>
-    <hr />
+<div class="details-container">
+    <h4>Produtos</h4>
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Produto.Marca)
@@ -47,7 +50,7 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Produto.IdProduto">Edit</a> |
-    <a asp-action="Index">Voltar</a>
+<div class="actions">
+    <a class="btn-edit" asp-action="Edit" asp-route-id="@Model?.Produto.IdProduto">Editar</a>
+    <a class="btn-back" asp-action="Index">Voltar</a>
 </div>

@@ -3,13 +3,16 @@
 @{
     ViewData["Title"] = "Delete";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/ProdutoDelete.css" />
+}
 
 <h1>Excluir</h1>
+<hr />
 
 <h3>Você tem certeza?</h3>
-<div>
-    <h4>Cliente</h4>
-    <hr />
+<div class="pagina">
+    <h4>Produto</h4>
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Marca)
@@ -51,7 +54,7 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdProduto" />
-        <input type="submit" value="Delete" class="btn btn-danger"/> |
+        <input type="submit" value="Delete" class="btn btn-danger"/>
         <a asp-action="Index">Voltar</a>
     </form>
 </div>
