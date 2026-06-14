@@ -1,14 +1,13 @@
 ﻿@model ProjetoAssistenciaTecnicaWeb.Models.Orcamento
 
-@{
-    ViewData["Title"] = "Details";
+@section Styles {
+    <link rel="stylesheet" href="~/css/OrcamentoDetail.css" />
 }
 
 <h1>Detalhes</h1>
+<hr />
 
-<div>
-    <h4>Peça</h4>
-    <hr />
+<div class="details-container">
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CodigoOrcamento)
@@ -23,7 +22,7 @@
             @Html.DisplayFor(model => model.Valor)
         </dd>
     </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model?.IdOrcamento">Edit</a> |
-        <a asp-action="Index">Voltar</a>
+    <div class="actions">
+        <a class="btn-edit" asp-action="Edit" asp-route-id="@Model?.IdOrcamento">Editar</a>
+        <a class="btn-back" asp-action="Index">Voltar</a>
     </div>
