@@ -136,6 +136,11 @@ select {
     transition: 0.3s;
 }
 
+.btn-primary:hover {
+    background: #145c2b;
+    transform: translateY(-2px);
+}
+
 
 #buscarCep {
     width: 100%;

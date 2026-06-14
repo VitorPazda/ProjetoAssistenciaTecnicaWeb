@@ -13,9 +13,7 @@
 
         <h1 class="titulo">Produtos</h1>
 
-        <div class="botoes-menus">
-            <a asp-action="Create" class="botao-salvar">Criar Novo</a>
-        </div>
+        <button asp-action="Create" type="submit" class="botao-buscar">Criar Novo</button>
 
         <form class="formulario" role="search">
             <div class="general-infos">
@@ -52,7 +50,7 @@
                         @Html.DisplayNameFor(model => model.Cliente.CPF_CNPJ)
                     </th>
                     <th>
-                        <a href="#">Funcionário Cadastro</a>
+                        @Html.DisplayNameFor(model => model.FuncionarioId)
                     </th>
                 </tr>
             </thead>

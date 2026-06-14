@@ -57,8 +57,9 @@ body {
     font-weight: bold;
 }
 
-    .btn-primary:hover {
-        background-color: #0b5ed7;
+    .botao-buscar:hover {
+        background: #145c2b;
+        transform: translateY(-2px);
     }
 
 /* ===== GRID FILTROS ===== */

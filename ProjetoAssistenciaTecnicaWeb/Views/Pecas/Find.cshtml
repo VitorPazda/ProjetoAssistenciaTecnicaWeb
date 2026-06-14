@@ -14,10 +14,7 @@
     <div class="pagina-menus">
 
         <h1 class="titulo">Peças</h1>
-
-        <div class="botoes-menus">
-            <a asp-action="Create" class="botao-salvar">Criar Novo</a>
-        </div>
+        <button asp-action="Create" type="submit" class="botao-buscar">Criar Novo</button>
 
             <form class="formulario" role="search">
                 <div class="general-infos">
@@ -51,7 +48,7 @@
                         @Html.DisplayNameFor(model => model.Quantidade)
                     </th>
                     <th>
-                        <a href="#">Funcionário Cadastro</a>
+                        @Html.DisplayNameFor(model => model.FuncionarioId)
                     </th>
                 </tr>
             </thead>

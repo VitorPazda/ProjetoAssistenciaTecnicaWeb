@@ -3,84 +3,90 @@
 @{
     ViewData["Title"] = "Finalizar Ordem de Serviço";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/OrdemFinish.css" />
+}
 
 <h1>Finalizar Ordem de Serviço</h1>
-
 <hr />
 
-<form asp-action="Finish">
+<div class="pagina-principal">
+    <div class="pagina">
+        <form asp-action="Finish">
 
-    <input type="hidden" asp-for="OrdemServico.IdOrdemServico" />
+            <input type="hidden" asp-for="OrdemServico.IdOrdemServico" />
 
-    <div class="form-group">
-        <label asp-for="OrdemServico.DataConserto"></label>
-        <input asp-for="OrdemServico.DataConserto" class="form-control" />
-        <span asp-validation-for="OrdemServico.DataConserto" class="text-danger"></span>
+            <div class="general-infos">
+                <div class="form-group">
+                    <label asp-for="OrdemServico.DataConserto"></label>
+                    <input asp-for="OrdemServico.DataConserto" class="form-control" />
+                    <span asp-validation-for="OrdemServico.DataConserto" class="text-danger"></span>
+                </div>
+
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.DescricaoServicoPrestado"></label>
+                    <textarea asp-for="OrdemServico.DescricaoServicoPrestado"
+                              class="form-control"
+                              rows="4"></textarea>
+                    <span asp-validation-for="OrdemServico.DescricaoServicoPrestado"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.TecnicoResponsavelId"></label>
+
+                    <select asp-for="OrdemServico.TecnicoResponsavelId"
+                            asp-items='@(new SelectList(Model.Funcionarios, "IdFuncionario", "Nome"))'
+                            class="form-control">
+
+                        <option value="">Selecione um técnico</option>
+
+                    </select>
+                </div>
+
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.ValorConsertoBase"></label>
+                    <input asp-for="OrdemServico.ValorConsertoBase"
+                           class="form-control" />
+                </div>
+
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.PercentualEstabelecimento"></label>
+                    <input asp-for="OrdemServico.PercentualEstabelecimento"
+                           class="form-control" />
+                </div>
+
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.PercentualTecnico"></label>
+                    <input asp-for="OrdemServico.PercentualTecnico"
+                           class="form-control" />
+                </div>
+
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.ValorPecas"></label>
+                    <input asp-for="OrdemServico.ValorPecas"
+                           class="form-control" />
+                </div>
+
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.ValorAcrescentado"></label>
+                    <input asp-for="OrdemServico.ValorAcrescentado"
+                           class="form-control" />
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <input type="submit" value="Finalizar Ordem" class="btn-primary" />
+                </div>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </div>
+        </form>
     </div>
-
-    <div class="form-group">
-        <label asp-for="OrdemServico.DescricaoServicoPrestado"></label>
-        <textarea asp-for="OrdemServico.DescricaoServicoPrestado"
-                  class="form-control"
-                  rows="4"></textarea>
-        <span asp-validation-for="OrdemServico.DescricaoServicoPrestado"
-              class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OrdemServico.TecnicoResponsavelId"></label>
-
-        <select asp-for="OrdemServico.TecnicoResponsavelId"
-                asp-items='@(new SelectList(Model.Funcionarios, "IdFuncionario", "Nome"))'
-                class="form-control">
-
-            <option value="">Selecione um técnico</option>
-
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OrdemServico.ValorConsertoBase"></label>
-        <input asp-for="OrdemServico.ValorConsertoBase"
-               class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OrdemServico.PercentualEstabelecimento"></label>
-        <input asp-for="OrdemServico.PercentualEstabelecimento"
-               class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OrdemServico.PercentualTecnico"></label>
-        <input asp-for="OrdemServico.PercentualTecnico"
-               class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OrdemServico.ValorPecas"></label>
-        <input asp-for="OrdemServico.ValorPecas"
-               class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OrdemServico.ValorAcrescentado"></label>
-        <input asp-for="OrdemServico.ValorAcrescentado"
-               class="form-control" />
-    </div>
-
-    <br />
-
-    <button type="submit" class="btn btn-success">
-        Finalizar Ordem de Serviço
-    </button>
-
-    <a asp-action="Index" class="btn btn-secondary">
-        Cancelar
-    </a>
-
-</form>
-
+</div>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

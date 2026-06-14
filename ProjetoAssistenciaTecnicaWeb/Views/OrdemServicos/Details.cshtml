@@ -7,10 +7,10 @@
 }
 
 <h1>Detalhes</h1>
+    <hr />
 
 <div class="details-container">
     <h4>Ordem</h4>
-    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrdemServico.Tick)
@@ -69,6 +69,6 @@
     </dl>
 </div>
 <div class="actions">
-    <a class="btn-edit" asp-action="Edit" asp-route-id="@Model?.OrdemServico.IdOrdemServico">Edit</a> |
+    <a class="btn-edit" asp-action="Edit" asp-route-id="@Model?.OrdemServico.IdOrdemServico">Editar</a>
     <a class="btn-back" asp-action="Index">Voltar</a>
 </div>
