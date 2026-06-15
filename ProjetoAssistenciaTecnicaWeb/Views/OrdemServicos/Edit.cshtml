@@ -22,10 +22,25 @@
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="general-infos">
-                <label asp-for="OrdemServico.ClienteId"></label>
-                <select asp-for="OrdemServico.ClienteId" asp-items='@(new SelectList(Model.Clientes, "IdCliente", "Nome"))' class="form-control">
-                    <option value="">Selecione um cliente</option>
-                </select>
+                <div class="personal-info">
+                    <label asp-for="OrdemServico.Cliente.Nome" class="control-label"></label>
+                    <input list="clientes"
+                           id="clienteNome"
+                           class="form-control" />
+
+                    <datalist id="clientes">
+                        @foreach (var cliente in Model.Clientes)
+                        {
+                            <option value="@cliente.Nome"
+                                    data-id="@cliente.IdCliente">
+                            </option>
+                        }
+                    </datalist>
+
+                    <input type="hidden"
+                           asp-for="OrdemServico.ClienteId"
+                           id="clienteId" />
+                </div>
             </div>
             <div class="general-infos">
                 <label asp-for="OrdemServico.ProdutoId"></label>
@@ -65,5 +80,29 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+            document.getElementById('clienteNome')
+                .addEventListener('change', function () {
+
+                    let nomeSelecionado = this.value;
+
+                    let options =
+                        document.querySelectorAll('#clientes option');
+
+                    let clienteId = '';
+
+                    options.forEach(function (option) {
+
+                        if (option.value === nomeSelecionado) {
+                            clienteId =
+                                option.getAttribute('data-id');
+                        }
+
+                    });
+
+                    document.getElementById('clienteId').value =
+                        clienteId;
+                });
+        </script>
     }
 }
