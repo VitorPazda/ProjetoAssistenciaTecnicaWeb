@@ -66,6 +66,54 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrdemServico.Produto.Modelo)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.DataConserto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.DataConserto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.DescricaoServicoPrestado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.DescricaoServicoPrestado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.TecnicoResponsavelId)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.OrdemServico.Funcionario?.Nome
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.ValorConsertoBase)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.ValorConsertoBase)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.PercentualEstabelecimento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.PercentualEstabelecimento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.PercentualTecnico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.PercentualTecnico)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.ValorPecas)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.ValorPecas)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdemServico.ValorAcrescentado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrdemServico.ValorAcrescentado)
+        </dd>
     </dl>
 </div>
 <div class="actions">

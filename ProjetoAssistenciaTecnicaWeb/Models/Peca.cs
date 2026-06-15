@@ -8,14 +8,14 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public int IdPeca { get; set; }
 
         [Required(ErrorMessage = "{0} required")]
-        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e 1")]
+        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e }1}")]
         [Display(Name = "Valor de Compra")]
         [DataType(DataType.Currency)]
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public float ValorCompra { get; set; }
 
         [Required(ErrorMessage = "{0} required")]
-        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e 1")]
+        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Valor de Revenda")]
         [DataType(DataType.Currency)]
         [DisplayFormat(DataFormatString = "{0:C2}")]

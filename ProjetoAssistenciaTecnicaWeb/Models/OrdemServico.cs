@@ -54,15 +54,45 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public Funcionario Funcionario { get; set; }
 
         // Todos os atributos nulos da Ordem de Servico
-
+        [Display(Name = "Data Conserto")]
+        [DataType(DataType.Date)]
         public DateTime? DataConserto { get; set; }
+
+        [StringLength(300, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
+        [Display(Name = "Descrição do Serviço Prestado")]
+        [DataType(DataType.Text)]
         public string? DescricaoServicoPrestado { get; set; }
+
+        [Display(Name = "Técnico Responsável")]
         public int? TecnicoResponsavelId { get; set; }
         public Funcionario? TecnicoResponsavel { get; set; }
+
+        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {1} e {2}")]
+        [Display(Name = "Valor do Conserto Base")]
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal? ValorConsertoBase { get; set; }
+
+        [Range(0.0, 100.0, ErrorMessage = "{0} o tamanho deve ser entre {1} e {2}")]
+        [Display(Name = "Percentual do Estabelecimento")]
+        [DisplayFormat(DataFormatString = "{0:N2}%")]
         public decimal? PercentualEstabelecimento { get; set; }
+
+        [Range(0.0, 100.0, ErrorMessage = "{0} o tamanho deve ser entre {1} e {2}")]
+        [Display(Name = "Percentual do Técnico")]
+        [DisplayFormat(DataFormatString = "{0:N2}%")]
         public decimal? PercentualTecnico { get; set; }
+
+        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
+        [Display(Name = "Valor das Peças")]
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal? ValorPecas { get; set; }
+
+        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
+        [Display(Name = "Valor Acrescentado")]
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal? ValorAcrescentado { get; set; }
         public OrdemServico()
         {
