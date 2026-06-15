@@ -8,7 +8,7 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public int IdPeca { get; set; }
 
         [Required(ErrorMessage = "{0} required")]
-        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e }1}")]
+        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e {1}")]
         [Display(Name = "Valor de Compra")]
         [DataType(DataType.Currency)]
         [DisplayFormat(DataFormatString = "{0:C2}")]
@@ -27,13 +27,11 @@ namespace ProjetoAssistenciaTecnicaWeb.Models
         public string Descricao { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "{0} required")]
-        [Range(0.0, 10000000.0, ErrorMessage = "{0} o tamanho deve ser entre {2} e 1")]
         [Display(Name = "Quantidade")]
         public int Quantidade { get; set; }
 
         public int Codigo { get; set; }
 
-        [Required(ErrorMessage = "{0} required")]
         [Display(Name = "Funcionario")]
         public int FuncionarioId { get; set; }
 

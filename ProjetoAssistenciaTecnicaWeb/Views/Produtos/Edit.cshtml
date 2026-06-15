@@ -14,6 +14,7 @@
     <div class="pagina">
         <form asp-action="Edit">
             <input type="hidden" asp-for="Produto.IdProduto"/>
+            <input type="hidden" asp-for="Produto.FuncionarioId"/>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="general-infos">

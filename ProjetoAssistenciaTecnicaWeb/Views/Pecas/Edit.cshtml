@@ -1,4 +1,4 @@
-﻿@model ProjetoAssistenciaTecnicaWeb.Models.Peca
+﻿@model ProjetoAssistenciaTecnicaWeb.Models.ViewModels.PecaFormViewModel
 
 @{
     ViewData["Title"] = "Editar";
@@ -15,31 +15,32 @@
     <div class="pagina">
 
         <form asp-action="Edit">
-            <input type="hidden" asp-for="IdPeca" />
-            <input type="hidden" asp-for="Codigo" />
+            <input type="hidden" asp-for="Peca.IdPeca"/>
+            <input type="hidden" asp-for="Peca.Codigo"/>
+            <input type="hidden" asp-for="Peca.FuncionarioId"/>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="general-infos">
                 <div class="personal-info">
-                    <label asp-for="Descricao" class="control-label"></label>
-                    <input asp-for="Descricao" class="form-control" />
-                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                    <label asp-for="Peca.Descricao" class="control-label"></label>
+                    <input asp-for="Peca.Descricao" class="form-control" />
+                    <span asp-validation-for="Peca.Descricao" class="text-danger"></span>
                 </div>
                 <div class="personal-info">
-                    <label asp-for="ValorCompra" class="control-label"></label>
-                    <input asp-for="ValorCompra" class="form-control" />
-                    <span asp-validation-for="ValorCompra" class="text-danger"></span>
+                    <label asp-for="Peca.ValorCompra" class="control-label"></label>
+                    <input asp-for="Peca.ValorCompra" class="form-control" />
+                    <span asp-validation-for="Peca.ValorCompra" class="text-danger"></span>
                 </div>
                 <div class="personal-info">
-                    <label asp-for="ValorRevenda" class="control-label"></label>
-                    <input asp-for="ValorRevenda" class="form-control" />
-                    <span asp-validation-for="ValorRevenda" class="text-danger"></span>
+                    <label asp-for="Peca.ValorRevenda" class="control-label"></label>
+                    <input asp-for="Peca.ValorRevenda" class="form-control" />
+                    <span asp-validation-for="Peca.ValorRevenda" class="text-danger"></span>
                 </div>
                 <div class="personal-info">
-                    <label asp-for="Quantidade" class="control-label"></label>
-                    <input asp-for="Quantidade" class="form-control" />
-                    <span asp-validation-for="Quantidade" class="text-danger"></span>
+                    <label asp-for="Peca.Quantidade" class="control-label"></label>
+                    <input asp-for="Peca.Quantidade" class="form-control" />
+                    <span asp-validation-for="Peca.Quantidade" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Salvar" class="btn btn-primary" />

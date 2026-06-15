@@ -111,7 +111,10 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
-            return View(peca);
+            var funcionarios = await _funcionarioService.FindAllAsync();
+            var viewModel = new PecaFormViewModel { Peca = peca, Funcionarios = funcionarios };
+
+            return View(viewModel);
         }
 
         // POST: Pecas/Edit
@@ -119,15 +122,15 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Peca peca)
+        public async Task<IActionResult> Edit(int id, PecaFormViewModel viewModel)
         {
-            if (id != peca.IdPeca)
+            if (id != viewModel.Peca.IdPeca)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not mismatch" });
             }
             try
             {
-                await _pecaService.UpdateAsync(peca);
+                await _pecaService.UpdateAsync(viewModel.Peca);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)
