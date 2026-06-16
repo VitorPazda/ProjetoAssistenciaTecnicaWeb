@@ -70,5 +70,14 @@ namespace ProjetoAssistenciaTecnicaWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Relatorio()
+        {
+            ViewBag.ItensConsertadosMes = 10;
+            ViewBag.OSFinalizadas = 7;
+            ViewBag.OSEmAnalise = 3;
+
+            return View();
+        }
     }
 }

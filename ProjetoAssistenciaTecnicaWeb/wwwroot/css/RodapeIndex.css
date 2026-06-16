@@ -1,38 +1,37 @@
-/* ===== RODAPÉ / RELATÓRIO ===== */
+/* ===== RODAPÉ / RELATÓRIO (Agora posicionado no topo e mais fino) ===== */
 .rodape-relatorio {
     width: 100%;
     max-width: 1000px;
-    margin: 10px auto;
-    padding: 10px;
+    margin: 0 auto 10px auto; /* Margem ajustada para o topo, com espaço apenas embaixo */
+    padding: 5px 10px; /* Reduzido para ficar mais fino */
     color: black;
 }
 
     /* ===== TÍTULO ===== */
     .rodape-relatorio h2 {
-        font-size: 2rem;
-        margin-bottom: 5px;
+        font-size: 1.3rem; /* Reduzido de 2rem para ocupar menos espaço vertical */
+        margin-bottom: 3px;
     }
 
 /* ===== GRID COM 3 COLUNAS ===== */
 .relatorio-coluna {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    gap: 10px; /* Reduzido de 18px */
 }
 
 /* ===== CARD DE CADA INFORMAÇÃO ===== */
 .relatorio-linha {
-    padding: 25px 20px;
-    min-height: 80px;
+    padding: 8px 15px; /* Reduzido drasticamente (era 25px 20px) para achatar o card */
+    min-height: 40px; /* Cortado pela metade (era 80px) */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 4px; /* Reduzido de 12px */
     text-align: center;
-    font-size:25px;
+    font-size: 16px; /* Reduzido de 25px para se ajustar à nova altura fina */
 }
-
 
 /* ===== RESPONSIVO ===== */
 @media (max-width: 800px) {
@@ -41,6 +40,6 @@
     }
 
     .rodape-relatorio {
-        padding: 25px;
+        padding: 15px;
     }
 }

@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório do Mês</title>
+
+    <link rel="stylesheet" href="~/css/RodapeIndex.css" />
+</head>
+<body>
+    <div class="rodape-relatorio">
+        <h2>Relatório do Mês</h2>
+
+        <hr />
+
+        <div class="relatorio-coluna">
+            <div class="relatorio-linha">
+                <p>Itens Consertados no Mês</p>
+                <span>@ViewBag.ItensConsertadosMes</span>
+            </div>
+
+            <div class="relatorio-linha">
+                <p>OS Finalizadas</p>
+                <span>@ViewBag.OSFinalizadas</span>
+            </div>
+
+            <div class="relatorio-linha">
+                <p>OS Em Análise</p>
+                <span>@ViewBag.OSEmAnalise</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
