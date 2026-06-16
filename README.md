@@ -2,7 +2,7 @@
 
 ## Sobre o Projeto
 
-O Projeto Assistência Técnica Web é um sistema desenvolvido para auxiliar o gerenciamento de uma assistência técnica de equipamentos eletrônicos. A aplicação permite controlar clientes, produtos, peças, funcionários, ordens de serviço e orçamentos, centralizando todas as informações necessárias para o atendimento e acompanhamento dos consertos.
+O Projeto Assistência Técnica Web é um sistema feito para atualizar o sistema existente na loja Dirshnabel, com foco no gerenciamento de uma assistência técnica de equipamentos eletrônicos. A aplicação permite controlar clientes, produtos, peças, funcionários, ordens de serviço e orçamentos, centralizando todas as informações necessárias para o atendimento e acompanhamento dos consertos.
 
 O objetivo do sistema é tornar o processo de manutenção mais organizado, permitindo o registro de equipamentos, abertura de ordens de serviço, acompanhamento do status dos reparos e geração de orçamentos para os clientes.
 
