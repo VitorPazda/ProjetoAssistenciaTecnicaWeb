@@ -31,7 +31,7 @@
                     <datalist id="clientes">
                         @foreach (var cliente in Model.Clientes)
                         {
-                            <option value="@cliente.Nome"
+                            <option value="@cliente.Nome - CPF: @cliente.CPF_CNPJ"
                                     data-id="@cliente.IdCliente">
                             </option>
                         }
